@@ -1,0 +1,67 @@
+.cabeçalho {
+    max-height: 50px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 3px;
+    margin-top: -2px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    font: bold 22pt arial;
+    color: #223e63;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.151);
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  }
+
+.logo{
+    max-height: 50px;
+    height: auto;
+}
+
+body{
+    background-image: url("../images/home-background.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    font: normal 15pt arial;
+    text-align: center;
+}
+
+.layer {
+    background-color: rgba(255, 255, 255, 0.1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+section{
+    background: rgba(245, 255, 255, 0.5);
+    border-radius: 3px;
+    font: normal 13pt arial;
+    width: 440px;
+    padding: 1px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+div#interp{
+    font: bold 12pt arial;
+    color: #2c0a0a;
+}
+
+footer{
+    color: azure;
+    text-align: center;
+    font-style: italic;
+    font: normal 10pt consolas;
+}
