@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="css/dados.css">
+    <script src="js/dados.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1 class="cabeçalho">
+            <img class="logo" src="./images/home-logo.png" alt="">
+        </h1>
+    </header>
+    <section id="S2">
+        <div id="Variável">
+            Insira o nome da variável pesquisada<br><br>
+            <input type="radio" name="processos" value="0" checked>População
+            <input type="radio" name="processos" value="1">Amostra<br><br>
+            <input type="text" name="Vari" id="PVar"> <br><br>
+            <label for="#vars">Selecione o tipo de variavel.</label>
+            <select name="variaveis" id="vars">
+                <option selected>Selecione...</option>
+                <option>Quantitativa Discreta</option>
+                <option>Quantitativa Contínua</option>
+                <option>Qualitativa Nominal</option>
+                <option>Qualitativa Ordinal</option>
+            </select>
+        </div>
+        <div id="iDados">
+            Insira os dados manualmente separando-os por ponto e vírgula (;)<br><br>
+            <textarea name="Dados" id="PDados" cols="60" rows="7" style="resize: vertical"></textarea><br>
+            <input type="button" value="Confirmar" onclick="shazam()">
+        </div>
+    </section>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
+</body>
+
+</html>

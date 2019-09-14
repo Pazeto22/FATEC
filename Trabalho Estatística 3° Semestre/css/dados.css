@@ -1,0 +1,110 @@
+.logo{
+    max-height: 50px;
+    height: auto;
+}
+
+.cabeçalho {
+    max-height: 75px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 3px;
+    margin-top: -2px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    font: bold 22pt arial;
+    color: #223e63;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.151);
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  }
+
+header{
+    padding: 25px;
+}
+
+body{
+    background-image: url("../images/home-background.jpg") !important;
+    background-size: 100% !important;
+    background-repeat: no-repeat !important;
+    /* width: 100%;
+    height: 100%; */
+    font-family: Calibri, Arial, sans-serif !important;
+    text-align: center !important;
+    /* background: rgb(90, 77, 148) !important; */
+    color: white !important;
+}
+
+h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    text-align: center;
+    font-size: 30pt;
+}
+
+div {
+    background: white;
+    width: 50%;
+    margin: 50px auto;
+    color: #444;
+    padding: 20px;
+    border-radius: 16px;
+    width: 650px;
+    background: rgba(245, 252, 255, 0.7);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border-bottom: 1px solid #888;
+    padding: 8px;
+    text-align: left;
+    background-color: rgb(255, 255, 255);
+}
+
+tr#titulo{
+    font: bold 13pt arial;
+    color: rgb(0, 0, 0);
+}
+
+th {
+    color: seagreen;
+    font-family: Georgia, 'Times New Roman', serif;
+}
+
+.alin-dir {
+    text-align: right;
+}
+
+/* .layer {
+    background-color: rgba(255, 255, 255, 0.1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+} */
+
+  section#S2{
+    
+    /* text-align: center; */
+    /* background: rgba(245, 255, 255, 0.5); */
+    /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226); */
+    /* border-radius: 3px; */
+    font: normal 13pt arial;
+    /* width: auto; */
+    /* position: absolute; */
+}
+
+textarea {
+    margin-bottom: 10px;
+    width: 400px;
+    height: 100px;
+  }
