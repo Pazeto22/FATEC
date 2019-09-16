@@ -119,7 +119,7 @@
         <section>
             <div id="Principal">
                 Defina o tamanho do vetor <br> e o método utilizado: <br>
-                <select id="TVetor" onchange="Valeatorio(vet)">
+                <select id="TVetor" onchange="Valeatorio(vet), resetM()">
                         <option value="0">Escolha o tamanho</option>
                         <option value="10">10 elementos</option>
                         <option value="100">100 elementos</option>
@@ -255,6 +255,12 @@
         return vet;
     } 
 
+    //Resetar Método
+
+    function resetM(){
+        document.getElementById("EMetodo").value = 0
+    }
+
     //Organizadores
 
     function Organizador(vet){
@@ -282,20 +288,20 @@
                 console.timeEnd("Teste Seleção Direta")
                 document.getElementById('Contas').innerHTML = `<strong>Método Seleção Direta:</strong><br>${vet2}`
             } else {
-                Bubble(vet2)
                 console.time("Teste Seleção Direta")
-                document.getElementById('Contas').innerHTML = "<strong>Método Seleção Direta:</strong><br>Selecione um método com 10 elementos para demonstração." 
+                Direta(vet2)
                 console.timeEnd("Teste Seleção Direta")
+                document.getElementById('Contas').innerHTML = "<strong>Método Seleção Direta:</strong><br>Selecione um método com 10 elementos para demonstração." 
             } 
         } else if (método == 3){
             if (tamanho == 10){
                 console.time("Teste Inserção Direta")
-                Direta(vet3)
+                Idireta(vet3)
                 console.timeEnd("Teste Inserção Direta")
                 document.getElementById('Contas').innerHTML = `<strong>Método Inserção Direta:</strong><br>${vet3}`
             } else {
                 console.time("Teste Inserção Direta")
-                Bubble(vet3)
+                Idireta(vet3)
                 console.timeEnd("Teste Inserção Direta")
                 document.getElementById('Contas').innerHTML = "<strong>Método Inserção Direta:</strong><br>Selecione um método com 10 elementos para demonstração." 
             } 
