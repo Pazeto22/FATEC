@@ -1,0 +1,20 @@
+.bms {
+    -webkit-appearance: none;
+    width: 175px;
+    height: 8px;
+    border-radius: 5px;  
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  
+  .bms::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 100%; 
+    background: rgb(190, 70, 116);
+    cursor: pointer;
+  }

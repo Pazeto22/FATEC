@@ -1,25 +1,53 @@
+function shazamBarra(){
+    //Funcionamento da barra da medida separatriz
+    var slider = document.getElementById("barraMS")
+    var vbms = document.getElementById("valorBMS")
+    vbms.innerHTML = `${slider.value}%`; // Mostra o valor inicial
+    
+    // Atualiza o valor conforme o usuário usa
+    slider.oninput = function() {
+    vbms.innerHTML = `${slider.value}%`
+    }
+}
+
+function shazamMedida(){
+    var barra = document.getElementById("barraMS")
+    var barraescolha = document.getElementById("ems").value
+
+    if (barraescolha == "Percentil"){
+        barra.min = 1
+        barra.max = 100
+        barra.step = 1
+        barra.value = 1
+    } else if (barraescolha == "Decil"){
+        barra.min = 10
+        barra.max = 100
+        barra.step = 10
+        barra.value = 10
+    } else if (barraescolha == "Quintil"){
+        barra.min = 20
+        barra.max = 100
+        barra.step = 20
+        barra.value = 20
+    } else if (barraescolha == "Quartil"){
+        barra.min = 25
+        barra.max = 100
+        barra.step = 25
+        barra.value = 25
+    }
+}
+
 function shazam() {
 
-    function QuantidadesRepetidas(vetor) {
-        let Quantidades = {};
-        let aux;
-        for (let i of vetor) {
-            aux = 0;
-            for (let j of vetor) {
-                if (j === i) {
-                    aux++
-                }
-            }
-            Quantidades[`${i}`] = aux;
-        }
-        return Quantidades;
+    let vari = document.getElementById('PVar').value;
+    let dadosIn = document.getElementById('PDados').value.replace(/ /g,'');
+    if (dadosIn.endsWith(";")){
+        dadosIn = dadosIn.substring(0, dadosIn.length-1);
     }
-
-    let vari = document.getElementById('PVar').value
-    let dadosI = document.getElementById('PDados').value.split(';')
+    dadosIn = dadosIn.split(";");
     let tipoVariavel = document.getElementById('vars').value;
     // let abridor = window.tden('tabelas.html', '_self')
-    // alert(dadosI)
+    // alert(dadosIn)
     // console.log(abridor.document.getElementById("titulo").innerHTML)
 
     document.getElementsByTagName('body')[0].innerHTML += `
@@ -28,11 +56,11 @@ function shazam() {
             <table>
                 <thead class="thead-dark">
                     <tr id='titulo'>
-                        <td>${vari}</td>
-                        <td>Frequência Simples</td>
-                        <td>FR%</td>
-                        <td>FAC</td>
-                        <td>FAC%</td>
+                        <td >${vari}</td>
+                        <td >FI</td>
+                        <td >FR%</td>
+                        <td >FAC</td>
+                        <td >FAC%</td>
                     </tr>
                 </thead>
                 <tbody id='corpo'></tbody>
@@ -44,46 +72,16 @@ function shazam() {
     if (tipoVariavel == 'Qualitativa Nominal') {
 
         let corpo = document.getElementById('corpo');
-        for (let i = 0; i < dadosI.length; i++) {
-            dadosI[i] = dadosI[i].trim();
-            dadosI[i] = dadosI[i].toUpperCase();
+        for (let i = 0; i < dadosIn.length; i++) {
+            dadosIn[i] = dadosIn[i].trim();
+            dadosIn[i] = dadosIn[i].toUpperCase();
             corpo.innerHTML += `<tr></tr>`;
         }
-        dadosI.sort();
+        dadosIn.sort();
 
 
         // Escrevendo a tabela
-        let Quantidades = QuantidadesRepetidas(dadosI);
-
-        let linha = 1, frequenciaAtual = 0, frequenciaPercentAtual = 0;
-        for (let i in Quantidades) {
-            let linhaAtual = document.getElementsByTagName('tr');
-            linhaAtual[linha].innerHTML += `
-            <td>${i}</td>
-            <td>${Quantidades[i]}</td>
-            <td>${(Quantidades[i] / dadosI.length * 100).toFixed(2)}</td>
-            <td>${frequenciaAtual += Quantidades[i]}</td>
-            <td>${(frequenciaPercentAtual += Quantidades[i] / dadosI.length * 100).toFixed(2)}</td>`;
-            linha++;
-        }
-        document.getElementById('S2').innerHTML = "";
-        s3 = document.getElementById('S3');
-        s3.innerHTML += `
-        <p style="color:black;">Média: ${media(Quantidades, dadosI.length)}</p>
-        <p style="color:black;">Mediana: ${mediana(medianinhas, dadosI.length)}</p>`;
-
-    } else if (tipoVariavel == 'Quantitativa Discreta') {
-        let corpo = document.getElementById('corpo');
-        for (let i = 0; i < dadosI.length; i++) {
-            dadosI[i] = dadosI[i].trim();
-            dadosI[i] = dadosI[i].toUpperCase();
-            corpo.innerHTML += `<tr></tr>`;
-        }
-        dadosI.sort();
-
-
-        // Escrevendo a tabela
-        let Quantidades = QuantidadesRepetidas(dadosI);
+        let Quantidades = quantidadesRepetidas(dadosIn);
 
         let linha = 1, frequenciaAtual = 0, frequenciaPercentAtual = 0, medianinhas = {};
         for (let i in Quantidades) {
@@ -91,78 +89,282 @@ function shazam() {
             linhaAtual[linha].innerHTML += `
             <td>${i}</td>
             <td>${Quantidades[i]}</td>
-            <td>${(Quantidades[i] / dadosI.length * 100).toFixed(2)}</td>
+            <td>${(Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>
             <td>${frequenciaAtual += Quantidades[i]}</td>
-            <td>${(frequenciaPercentAtual += Quantidades[i] / dadosI.length * 100).toFixed(2)}</td>`;
+            <td>${(frequenciaPercentAtual += Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>`;
             linha++;
             medianinhas[`${i}`] = frequenciaAtual;
         }
+
         document.getElementById('S2').innerHTML = "";
+
+        s3 = document.getElementById('S3');
+        s3.innerHTML += `
+        <p style="color:black;">Moda: ${acumularModa(Quantidades)}</p>
+        <p style="color:black;">Mediana: ${mediana(medianinhas, dadosIn.length)}</p>`;
+
+    } else if (tipoVariavel == 'Quantitativa Discreta') {
+        let corpo = document.getElementById('corpo');
+        for (let i = 0; i < dadosIn.length; i++) {
+            dadosIn[i] = dadosIn[i].trim();
+            dadosIn[i] = dadosIn[i].toUpperCase();
+            corpo.innerHTML += `<tr></tr>`;
+        }
+        dadosIn.sort();
+
+
+        // Escrevendo a tabela
+        let Quantidades = quantidadesRepetidas(dadosIn);
+
+        let linha = 1, frequenciaAtual = 0, frequenciaPercentAtual = 0, medianinhas = {};
+
+        for (let i in Quantidades) {
+            let linhaAtual = document.getElementsByTagName('tr');
+            linhaAtual[linha].innerHTML += `
+            <td>${i}</td>
+            <td >${Quantidades[i]}</td>
+            <td >${(Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>
+            <td >${frequenciaAtual += Quantidades[i]}</td>
+            <td >${(frequenciaPercentAtual += Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>`;
+            linha++;
+            medianinhas[`${i}`] = frequenciaAtual;
+        }
+
+        document.getElementById('S2').innerHTML = "";
+
         s3 = document.getElementById('S3');
         s3.innerHTML += `<p style="color:black;">Moda: ${acumularModa(Quantidades)}</p>
-        <p style="color:black;">Média: ${media(Quantidades, dadosI.length)}</p>
-        <p style="color:black;">Mediana: ${mediana(medianinhas, dadosI.length)}</p>`;
-
+        <p style="color:black;">Média: ${media(Quantidades, dadosIn.length)}</p>
+        <p style="color:black;">Mediana: ${mediana(medianinhas, dadosIn.length)}</p>`;
 
 
     } else if (tipoVariavel == 'Qualitativa Ordinal') {
 
+        let ordem = String(document.getElementById('nomeVars').innerHTML);
+
+        if (ordem.endsWith("<br>")) {
+            ordem = ordem.substring(0, ordem.length-4);
+        }
+        ordem = ordem.toUpperCase();
+        ordem = ordem.split("<BR>");
+        console.log(ordem);
         let corpo = document.getElementById('corpo');
-        for (let i = 0; i < dadosI.length; i++) {
-            dadosI[i] = dadosI[i].trim();
-            dadosI[i] = dadosI[i].toUpperCase();
+        for (let i = 0; i < dadosIn.length; i++) {
+            dadosIn[i] = dadosIn[i].trim();
+            dadosIn[i] = dadosIn[i].toUpperCase();
             corpo.innerHTML += `<tr></tr>`;
         }
-        dadosI.sort();
+        dadosIn.sort();
+        console.log(dadosIn);
+        let aux = [];
+        for (let i = 0; i < ordem.length; i++) {
+            for( let j = 0; j < dadosIn.length; j++) {
+                if (dadosIn[j] == ordem[i]){
+                    aux.push(dadosIn[j]);
+                }
+            }
+        }
+        console.log(aux);
+        dadosIn = aux;
+
+        // Escrevendo a tabela
+        let Quantidades = quantidadesRepetidas(dadosIn);
+        
+
+        let linha = 1, frequenciaAtual = 0, frequenciaPercentAtual = 0, medianinhas = {};
+        for (let i in Quantidades) {
+            let linhaAtual = document.getElementsByTagName('tr');
+            linhaAtual[linha].innerHTML += `
+            <td>${i}</td>
+            <td >${Quantidades[i]}</td>
+            <td >${(Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>
+            <td >${frequenciaAtual += Quantidades[i]}</td>
+            <td >${(frequenciaPercentAtual += Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>`;
+            linha++;
+            medianinhas[`${i}`] = frequenciaAtual;
+        }
+
+        document.getElementById('S2').innerHTML = "";
+
+        s3 = document.getElementById('S3');
+        s3.innerHTML += `
+        <p style="color:black;">Moda: ${acumularModa(Quantidades)}</p>
+        <p style="color:black;">Mediana: ${mediana(medianinhas, dadosIn.length)}</p>
+        <canvas id="justChart"></canvas>`;
     }
 
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'bar',
 
+        // The data for our dataset
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 10, 5, 2, 20, 30, 45]
+            }]
+        },
+
+        // Configuration options go here
+        options: {
+            title:{
+                diplay: true,
+                position: "top",
+                text: `Gráfico de ${vari}`
+            },
+            elements: {
+                //https://www.chartjs.org/docs/latest/configuration/elements.html
+                //backgroundColor: 'rgba(0, 0, 0, 0,1),
+                //borderSkipped
+            }
+        }
+
+    });
+}
+
+function quantidadesRepetidas(vetor) {
+    let Quantidades = {};
+    let aux;
+    for (let i of vetor) {
+        aux = 0;
+        for (let j of vetor) {
+            if (j === i) {
+                aux++
+            }
+        }
+        Quantidades[`${i}`] = aux;
+    }
+
+    return Quantidades;
 }
 
 function ordinal() {
-    let Quantidades = QuantidadesRepetidas(dadosI);
-
+    let Quantidades = quantidadesRepetidas(dadosIn);
+    
     let linha = 1, frequenciaAtual = 0, frequenciaPercentAtual = 0;
+
     for (let i in Quantidades) {
         let linhaAtual = document.getElementsByTagName('tr');
         linhaAtual[linha].innerHTML += `
             <td>${i}</td>
             <td>${Quantidades[i]}</td>
-            <td>${(Quantidades[i] / dadosI.length * 100).toFixed(2)}</td>
+            <td>${(Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>
             <td>${frequenciaAtual += Quantidades[i]}</td>
-            <td>${(frequenciaPercentAtual += Quantidades[i] / dadosI.length * 100).toFixed(2)}</td>`;
+            <td>${(frequenciaPercentAtual += Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>`;
         linha++;
     }
+
     document.getElementById('S2').innerHTML = "";
 }
 
+function isOrdinal(){
+    let tipoVariavel = document.getElementById('vars').value;
+    let dadosIn = document.getElementById('PDados').value.replace(/ /g,'');
 
-function acumularModa(dadosI) {
+    if (dadosIn.endsWith(";")){
+        dadosIn = dadosIn.substring(0,dadosIn.length-1);
+    }
+    dadosIn = dadosIn.split(";");
+
+    let Quantidades = quantidadesRepetidas(dadosIn);
+    let ordem = document.getElementById('ordem');
+
+    if (tipoVariavel == 'Qualitativa Ordinal' && ordem.innerText == "") {
+        ordem.style.visibility = "visible";
+        let strHTML = "";
+
+        for (let i in Quantidades){
+            strHTML +=`<input type='radio' name='radOrdemVar' id='${i}'></option>
+                                <label for='${i}'> ${i}</label>`
+        }
+
+        ordem.innerHTML += strHTML + '<p id="nomeVars"></p>';
+
+    } else if (tipoVariavel == 'Qualitativa Ordinal' && ordem.innerText != ""){
+        let selectVar = document.getElementsByName('radOrdemVar');
+        let ordem = document.getElementById('ordem');
+        let strHTML = "";
+        
+        let parConteudo = String(document.getElementById('nomeVars').innerHTML);
+
+        if (parConteudo.length > 4){
+            if(parConteudo.endsWith("<br>")){
+                parConteudo = parConteudo.substring(0, parConteudo.length-4);
+            }
+
+            parConteudo = parConteudo.replace(/\<br\>\<br\>/g, '<br>');
+
+            parConteudo = parConteudo.split("<br>");
+        } else if(parConteudo == ""){
+            parConteudo = [];
+        } else {
+            parConteudo = Array(parConteudo);
+        }
+
+        for (let i = 0; i < selectVar.length; i++) {
+            if(selectVar[i].checked == true){
+                parConteudo.push(`${selectVar[i].id}`);
+            }
+        }
+
+        document.getElementById('ordem').innerHTML = "";
+
+        for (let i in Quantidades){
+            if (!(parConteudo.includes(String(i)))){
+                strHTML +=`<input type='radio' name='radOrdemVar' id='${i}'></option>
+                                    <label for='${i}'> ${i}</label>`
+            }
+        }
+
+        ordem.innerHTML += strHTML + '<p id="nomeVars"></p>';
+        
+        for (let i = 0; i < parConteudo.length; i++){
+            if (parConteudo != ""){
+                document.getElementById('nomeVars').innerHTML += parConteudo[i]+"<br>";
+            }
+        }
+    } else {
+        ordem.innerText = ""
+        ordem.style.visibility = "hidden";
+    }
+}
+
+function acumularModa(dadosIn) {
     let maior = 0, moda = [];
-    for (let i in dadosI) {
-        if (dadosI[i] > maior) {
-            maior = dadosI[i];
+
+    for (let i in dadosIn) {
+        if (dadosIn[i] > maior) {
+            maior = dadosIn[i];
         }
     }
-    for (let i in dadosI) {
-        if (dadosI[i] == maior) {
+
+    for (let i in dadosIn) {
+        if (dadosIn[i] == maior) {
             moda.push(i);
         }
     }
+
     return moda;
 
 }
 
-function media(dadosI, totalFreq) {
+function media(dadosIn, totalFreq) {
     let soma = 0;
-    for (let i in dadosI) {
-        soma += parseInt(i) * dadosI[i];
+
+    for (let i in dadosIn) {
+        soma += parseInt(i) * dadosIn[i];
     }
+
     return (soma / totalFreq).toFixed(2);
 }
 
-function mediana(dadosI, totalFreq) {
+function mediana(dadosIn, totalFreq) {
     let posicoes = [], medianas = [];
+
     if (totalFreq % 2 == 0) {
         posicoes.push(totalFreq / 2, totalFreq / 2 + 1);
     } else {
@@ -171,14 +373,15 @@ function mediana(dadosI, totalFreq) {
 
     for (let j of posicoes) {
         let controle = 0
-        for (let i in dadosI) {
-            if (j >= controle && j < dadosI[i]) {
+
+        for (let i in dadosIn) {
+            if (j >= controle && j < dadosIn[i]) {
                 medianas.push(i);
                 break
             }
-            controle = dadosI[i];
+            controle = dadosIn[i];
         }
-
     }
+
     return medianas;
 }

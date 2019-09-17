@@ -44,16 +44,50 @@ h1 {
     font-size: 30pt;
 }
 
-div {
+section#iDados {
     background: white;
     width: 50%;
     margin: 50px auto;
     color: #444;
-    padding: 20px;
+    padding: 10px;
     border-radius: 16px;
-    width: 650px;
+    width: 622px;
     background: rgba(245, 252, 255, 0.7);
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226);
+}
+
+section#Variável{
+    background: white;
+    width: 50%;
+    margin: 50px auto;
+    color: #444;
+    padding: 10px;
+    border-radius: 16px;
+    width: 622px;
+    background: rgba(245, 252, 255, 0.7);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226);
+}
+
+div#pt1{
+    text-align: left;
+}
+
+div#pt2{
+    text-align: right;
+}
+
+p#Confirmar{
+    text-align: center;
+}
+
+#ordem{
+    background: white;
+    width: auto;
+    margin: 10px auto;
+    padding: 5px;
+    border-radius: 16px;
+    background: rgba(245, 252, 255, 0.7);
+    visibility: hidden;
 }
 
 table {
@@ -65,9 +99,11 @@ th,
 td {
     border-bottom: 1px solid #888;
     padding: 8px;
+    width: auto;
     text-align: left;
     background-color: rgb(255, 255, 255);
 }
+
 
 tr#titulo{
     font: bold 13pt arial;
