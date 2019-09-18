@@ -1,10 +1,10 @@
 .cabeçalho {
-    max-height: 50px;
+    max-height: 75px;
     padding-left: 10px;
     padding-top: 10px;
     padding-bottom: 3px;
     margin-top: -2px;
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     left: 0;
@@ -18,7 +18,7 @@
   }
 
 .logo{
-    max-height: 50px;
+    max-height: 45px;
     height: auto;
 }
 
@@ -30,15 +30,6 @@ body{
     height: 100%;
     font: normal 15pt arial;
     text-align: center;
-}
-
-.layer {
-    background-color: rgba(255, 255, 255, 0.1);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
 }
 
 section{

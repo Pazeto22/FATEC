@@ -101,8 +101,62 @@ function shazam() {
         s3 = document.getElementById('S3');
         s3.innerHTML += `
         <p style="color:black;">Moda: ${acumularModa(Quantidades)}</p>
-        <p style="color:black;">Mediana: ${mediana(medianinhas, dadosIn.length)}</p>`;
+        <p style="color:black;">Mediana: ${mediana(medianinhas, dadosIn.length)}</p>
+        <canvas id="justChart"></canvas>`;
 
+    } else if (tipoVariavel == 'Qualitativa Ordinal') {
+
+        let ordem = String(document.getElementById('nomeVars').innerHTML);
+
+        if (ordem.endsWith("<br>")) {
+            ordem = ordem.substring(0, ordem.length-4);
+        }
+        ordem = ordem.toUpperCase();
+        ordem = ordem.split("<BR>");
+
+        let corpo = document.getElementById('corpo');
+        for (let i = 0; i < dadosIn.length; i++) {
+            dadosIn[i] = dadosIn[i].trim();
+            dadosIn[i] = dadosIn[i].toUpperCase();
+            corpo.innerHTML += `<tr></tr>`;
+        }
+        dadosIn.sort();
+
+        let aux = [];
+        for (let i = 0; i < ordem.length; i++) {
+            for( let j = 0; j < dadosIn.length; j++) {
+                if (dadosIn[j] == ordem[i]){
+                    aux.push(dadosIn[j]);
+                }
+            }
+        }
+
+        dadosIn = aux;
+
+        // Escrevendo a tabela
+        let Quantidades = quantidadesRepetidas(dadosIn);
+        
+
+        let linha = 1, frequenciaAtual = 0, frequenciaPercentAtual = 0, medianinhas = {};
+        for (let i in Quantidades) {
+            let linhaAtual = document.getElementsByTagName('tr');
+            linhaAtual[linha].innerHTML += `
+            <td>${i}</td>
+            <td >${Quantidades[i]}</td>
+            <td >${(Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>
+            <td >${frequenciaAtual += Quantidades[i]}</td>
+            <td >${(frequenciaPercentAtual += Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>`;
+            linha++;
+            medianinhas[`${i}`] = frequenciaAtual;
+        }
+
+        document.getElementById('S2').innerHTML = "";
+
+        s3 = document.getElementById('S3');
+        s3.innerHTML += `
+        <p style="color:black;">Moda: ${acumularModa(Quantidades)}</p>
+        <p style="color:black;">Mediana: ${mediana(medianinhas, dadosIn.length)}</p>
+        <canvas id="justChart"></canvas>`;
     } else if (tipoVariavel == 'Quantitativa Discreta') {
         let corpo = document.getElementById('corpo');
         for (let i = 0; i < dadosIn.length; i++) {
@@ -135,96 +189,92 @@ function shazam() {
         s3 = document.getElementById('S3');
         s3.innerHTML += `<p style="color:black;">Moda: ${acumularModa(Quantidades)}</p>
         <p style="color:black;">Média: ${media(Quantidades, dadosIn.length)}</p>
-        <p style="color:black;">Mediana: ${mediana(medianinhas, dadosIn.length)}</p>`;
-
-
-    } else if (tipoVariavel == 'Qualitativa Ordinal') {
-
-        let ordem = String(document.getElementById('nomeVars').innerHTML);
-
-        if (ordem.endsWith("<br>")) {
-            ordem = ordem.substring(0, ordem.length-4);
-        }
-        ordem = ordem.toUpperCase();
-        ordem = ordem.split("<BR>");
-        console.log(ordem);
-        let corpo = document.getElementById('corpo');
-        for (let i = 0; i < dadosIn.length; i++) {
-            dadosIn[i] = dadosIn[i].trim();
-            dadosIn[i] = dadosIn[i].toUpperCase();
-            corpo.innerHTML += `<tr></tr>`;
-        }
-        dadosIn.sort();
-        console.log(dadosIn);
-        let aux = [];
-        for (let i = 0; i < ordem.length; i++) {
-            for( let j = 0; j < dadosIn.length; j++) {
-                if (dadosIn[j] == ordem[i]){
-                    aux.push(dadosIn[j]);
-                }
-            }
-        }
-        console.log(aux);
-        dadosIn = aux;
-
-        // Escrevendo a tabela
-        let Quantidades = quantidadesRepetidas(dadosIn);
-        
-
-        let linha = 1, frequenciaAtual = 0, frequenciaPercentAtual = 0, medianinhas = {};
-        for (let i in Quantidades) {
-            let linhaAtual = document.getElementsByTagName('tr');
-            linhaAtual[linha].innerHTML += `
-            <td>${i}</td>
-            <td >${Quantidades[i]}</td>
-            <td >${(Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>
-            <td >${frequenciaAtual += Quantidades[i]}</td>
-            <td >${(frequenciaPercentAtual += Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>`;
-            linha++;
-            medianinhas[`${i}`] = frequenciaAtual;
-        }
-
-        document.getElementById('S2').innerHTML = "";
-
-        s3 = document.getElementById('S3');
-        s3.innerHTML += `
-        <p style="color:black;">Moda: ${acumularModa(Quantidades)}</p>
         <p style="color:black;">Mediana: ${mediana(medianinhas, dadosIn.length)}</p>
         <canvas id="justChart"></canvas>`;
+
+
+    }  else if (tipoVariavel == 'Quantitativa Contínua') {
+        //Semelhante a discreta porém com agrupamentos
     }
 
-    var ctx = document.getElementById('myChart').getContext('2d');
+    function getLabel (Quantidades) {
+            let label = [];
+
+            for (let i in Quantidades){
+                label.push(i);
+            }
+            return label;
+        };
+    
+    function getDados (Quantidades) {
+        let dados = [];
+
+        for (let i in Quantidades){
+            dados.push(Quantidades[i]);
+        }
+        return dados;
+    }
+    
+    let options = {
+        title: {
+            display: true,
+            position: 'top',
+            text: `Gráfico de ${vari}`
+        },
+        legend: {
+            display: false
+        },
+        elements: {
+            //https://www.chartjs.org/docs/latest/configuration/elements.html
+            backgroundColor: 'rgba(0, 0, 0, 0,1)',
+            borderSkipped: 'right'
+        },
+        scales: {
+            xAxes: [{
+                gridLines: {
+                    display: false
+                },
+            }],
+            yAxes: [{
+                ticks: {
+                    min: 0,
+                    beginAtZero: true
+                },
+                gridLines: {
+                    display: false
+                }
+            }]
+        }
+    };
+
+    if (tipoVariavel == 'Quantitativa Contínua') {
+        options.scales.xAxes[0].categoryPercentage=1.0;
+        options.scales.xAxes[0].barPercentage= 1.0;
+    };
+
+    var ctx = document.getElementById('justChart').getContext('2d');
     var chart = new Chart(ctx, {
         // The type of chart we want to create
-        type: 'bar',
+        type: (tipoVariavel == 'Quantitativa Contínua') ? 'line' : 'bar',
 
         // The data for our dataset
         data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: getLabel(quantidadesRepetidas(dadosIn)),
             datasets: [{
-                label: 'My First dataset',
+                label: 'Frequência dos dados',
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: [0, 10, 5, 2, 20, 30, 45]
+                data: getDados(quantidadesRepetidas(dadosIn))
             }]
         },
 
         // Configuration options go here
-        options: {
-            title:{
-                diplay: true,
-                position: "top",
-                text: `Gráfico de ${vari}`
-            },
-            elements: {
-                //https://www.chartjs.org/docs/latest/configuration/elements.html
-                //backgroundColor: 'rgba(0, 0, 0, 0,1),
-                //borderSkipped
-            }
-        }
-
+        options: options
     });
+
+    
 }
+    
 
 function quantidadesRepetidas(vetor) {
     let Quantidades = {};
@@ -384,4 +434,22 @@ function mediana(dadosIn, totalFreq) {
     }
 
     return medianas;
+}
+
+function desvioPadrao(Quantidades, media, totalFreq, processo){
+    let sum = 0;
+    // Precisa de calcular as frequencias 
+    for (let i in Quantidades) {
+        sum += (i - media)**2*Quantidades[i];
+    }
+
+    if(processo == "Amostra"){
+        return Math.sqrt(sum/(totalFreq-1)).toFixed(2);
+    } else {
+        return Math.sqrt(sum/totalFreq).toFixed(2);
+    }
+}
+
+function coeficienteVar(desvio, media){
+    return desvio/media;
 }
