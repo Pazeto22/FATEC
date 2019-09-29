@@ -1,9 +1,10 @@
-.logo{
+/* .logo {
     max-height: 45px;
     height: auto;
-}
+} */
 
-.cabeçalho {
+
+/* .cabeçalho {
     max-height: 75px;
     min-height: 66px;
     padding-left: 10px;
@@ -19,16 +20,25 @@
     text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.151);
     text-align: left;
     border-bottom: 1px solid #ccc;
-    background: rgba(255, 255, 255, 0.9);;
+    background: rgba(255, 255, 255, 0.9);
+    ;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
-  }
+} */
 
-header{
+header {
     padding: 25px;
 }
 
-body{
-    background-image: url("../images/home-background.jpg") !important;
+#nav1 {
+    /* opacity: 0.85;
+     */
+    background: rgba(252, 255, 255, 0.975) !important;
+    border-bottom: 1px solid rgba(204, 204, 204, 0.5);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background-image: url("../images/dados-background.jpg") !important;
     background-size: 100% !important;
     background-repeat: no-repeat !important;
     /* width: 100%;
@@ -37,6 +47,10 @@ body{
     text-align: center !important;
     /* background: rgb(90, 77, 148) !important; */
     color: white !important;
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -310px 0 0 -300px; */
 }
 
 h1 {
@@ -53,11 +67,11 @@ section#iDados {
     padding: 20px;
     border-radius: 16px;
     width: 622px;
-    background: rgba(245, 252, 255, 0.7);
+    background: rgba(245, 252, 255, 0.85);
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226);
 }
 
-section#Variável{
+section#Variável {
     background: white;
     width: 50%;
     margin: 1px auto;
@@ -65,30 +79,38 @@ section#Variável{
     padding: 20px;
     border-radius: 16px;
     width: 622px;
-    background: rgba(245, 252, 255, 0.7);
+    background: rgba(245, 252, 255, 0.85);
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226);
+    margin-bottom: 30px;
 }
 
-div, section{
-    margin:auto;
+div,
+section {
+    margin: auto;
 }
 
-div#rowx2{
+div#rowx2 {
     align-items: center;
 }
 
-p#s2ex{
+p#s2ex {
     font: normal 8pt arial;
     margin: auto;
 }
 
-#ordem{
-    background: white;
-    width: auto;
-    margin: 10px auto;
+div#cordem {
+    width: 300px;
+    /* border-radius: 16px; */
+    visibility: hidden;
+}
+
+#ordem {
+    /* background: white; */
+    width: 300px;
+    /* margin: 10px auto;
     padding: 5px;
     border-radius: 16px;
-    background: rgba(245, 252, 255, 0.7);
+    background: rgba(245, 252, 255, 0.7); */
     visibility: hidden;
 }
 
@@ -106,8 +128,7 @@ td {
     background-color: rgb(255, 255, 255);
 }
 
-
-tr#titulo{
+tr#titulo {
     font: bold 13pt arial;
     color: rgb(0, 0, 0);
 }
@@ -121,6 +142,7 @@ th {
     text-align: right;
 }
 
+
 /* .layer {
     background-color: rgba(255, 255, 255, 0.1);
     position: absolute;
@@ -130,8 +152,7 @@ th {
     height: 100%;
 } */
 
-  section#S2{
-    
+section#S2 {
     /* text-align: center; */
     /* background: rgba(245, 255, 255, 0.5); */
     /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226); */
@@ -141,8 +162,55 @@ th {
     /* position: absolute; */
 }
 
+section#S3 {
+    background: rgba(245, 255, 255, 0.5);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226);
+    border-radius: 3px;
+    font: normal 13pt arial;
+    color: black;
+    /* width: auto; */
+    /* position: absolute; */
+    width: 1000px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.chartjs-render-monitor {
+    height: 400px !important;
+    width: auto !important;
+}
+
+.table-responsive {
+    text-align: center !important;
+}
+
+table {
+    color: black;
+    width: 800px;
+    border-style: solid;
+    border-width: medium;
+    /* border-radius: 20px; */
+}
+
+div#tabl2{
+    padding: 30px;
+}
+
 textarea {
     margin-bottom: 10px;
     width: 400px;
     height: 100px;
-  }
+    background: rgb(250, 253, 255);
+    border-radius: 5pt;
+    outline: none;
+}
+
+input, 
+select {
+    margin-top: 10pt;
+    background: rgb(250, 253, 255);
+    /* width: 80pt; */
+    /* height: 20pt; */
+    border-radius: 5pt;
+    outline: none;
+}
