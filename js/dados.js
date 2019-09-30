@@ -72,7 +72,9 @@ function shazam() {
                 <tbody id='corpo'></tbody>
             </table>
         </div>
+        <div class="table-responsive col-md-10">
         <canvas id="justChart"></canvas>
+        </div>
     </section>`;
 
     if (tipoVariavel == 'Qualitativa Nominal') {
