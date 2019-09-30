@@ -207,7 +207,7 @@ function shazam() {
         <p style="color:black;">Média: ${media(Quantidades, dadosIn.length)}</p>
         <p style="color:black;">Mediana: ${mediana(medianinhas, dadosIn.length)}</p>
         <p style="color:black;">DesvioPadrão: ${desvio}</p>
-        <p style="color:black;">Variância: ${coeficienteVar(desvio, mediaData)}</p>`;
+        <p style="color:black;">Variância: ${coeficienteVar(desvio, mediaData)}%</p>`;
         console.log(Quantidades);
     } else if (tipoVariavel == 'Quantitativa Contínua') {
 
@@ -554,7 +554,7 @@ function desvioPadrao(Quantidades, media, totalFreq, processo) {
 }
 
 function coeficienteVar(desvio, media) {
-    return (desvio / media).toFixed(4);
+    return ((desvio / media).toFixed(4))*100;
 }
 
 function cortaString(vetor) {
