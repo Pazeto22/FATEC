@@ -170,11 +170,18 @@ section#S3 {
     border-radius: 3px;
     font: normal 13pt arial;
     color: black;
+    padding: 2px;
     /* width: auto; */
     /* position: absolute; */
     width: 1000px;
     margin-top: 30px;
     margin-bottom: 30px;
+}
+
+section#S3Resultados{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: auto;
 }
 
 .chartjs-render-monitor {
