@@ -319,6 +319,8 @@ function shazam() {
     Chart.platform.disableCSSInjection = true;
     document.getElementById('justChart').style.display = 'inherint';
 
+    document.querySelector(".fab").style = "visibility: visible"
+
 }
 
 
