@@ -229,6 +229,6 @@ select {
     outline: none;
 }
 
-input#ColorMode{
-    width: 100px;
+img#ColorModeIco{
+    cursor: pointer;
 }
