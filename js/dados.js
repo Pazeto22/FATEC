@@ -5,7 +5,7 @@ function shazamBarra() {
     vbms.innerHTML = `${slider.value}%`; // Mostra o valor inicial
 
     // Atualiza o valor conforme o usuário usa
-    slider.oninput = function() {
+    slider.oninput = function () {
         vbms.innerHTML = `${slider.value}%`
     }
 }
@@ -75,6 +75,8 @@ function shazam() {
         <div class="table-responsive col-md-10">
         <canvas id="justChart"></canvas>
         </div>
+        <section id = 'S3Resultados'>
+        </section>
     </section>`;
 
     if (tipoVariavel == 'Qualitativa Nominal') {
@@ -109,7 +111,7 @@ function shazam() {
 
         document.getElementById('S2').innerHTML = "";
 
-        s3 = document.getElementById('S3');
+        s3 = document.getElementById('S3Resultados');
         s3.innerHTML += `
         <p style="color:black;">Moda: ${acumularModa(Quantidades)}</p>
         <p style="color:black;">Mediana: ${mediana(medianinhas, dadosIn.length)}</p>`;
@@ -165,7 +167,7 @@ function shazam() {
 
         document.getElementById('S2').innerHTML = "";
 
-        s3 = document.getElementById('S3');
+        s3 = document.getElementById('S3Resultados');
         s3.innerHTML += `
         <p style="color:black;">Moda: ${acumularModa(Quantidades)}</p>
         <p style="color:black;">Mediana: ${mediana(medianinhas, dadosIn.length)}</p>`;
@@ -200,9 +202,9 @@ function shazam() {
             medianinhas[`${i}`] = frequenciaAtual;
         }
 
-        document.getElementById('S2').innerHTML= "";
+        document.getElementById('S2').innerHTML = "";
 
-        s3 = document.getElementById('S3');
+        s3 = document.getElementById('S3Resultados');
         let mediaData = media(Quantidades, dadosIn.length);
         let desvio = desvioPadrao(Quantidades, mediaData, dadosIn.length, processo);
         s3.innerHTML += `<p style="color:black;">Moda: ${acumularModa(Quantidades)}</p>
@@ -242,8 +244,8 @@ function shazam() {
         }
 
         document.getElementById('S2').innerHTML = "";
-        
-        s3 = document.getElementById('S3');
+
+        s3 = document.getElementById('S3Resultados');
         let mediaData = media(Quantidades, dadosIn.length);
         let desvio = desvioPadrao(Quantidades, mediaData, dadosIn.length, processo);
         s3.innerHTML += `<p style="color:black;">Moda: ${cortaString(acumularModa(Quantidades))}</p>
@@ -251,7 +253,7 @@ function shazam() {
         <p style="color:black;">Mediana: ${cortaString(mediana(medianinhas, dadosIn.length))}</p>
         <p style="color:black;">DesvioPadrão: ${desvio}</p>
         <p style="color:black;">Variância: ${coeficienteVar(desvio, mediaData)}</p>`;
-    } 
+    }
 
     let options = {
         title: {
@@ -324,32 +326,32 @@ function quantidadesRepetidas(vetor, tipoVariavel) {
     let Quantidades = {};
     let aux;
 
-    if (isQuantiContinous(vetor, tipoVariavel).type){
+    if (isQuantiContinous(vetor, tipoVariavel).type) {
         vetor = vetor.map(Number);
-        vetor = vetor.sort(function (a, b) { return a - b;});
+        vetor = vetor.sort(function (a, b) { return a - b; });
         let ic = isQuantiContinous(vetor, tipoVariavel).intervalo;
         let intervalo = [vetor[0]];
         let i = 0;
         let max = Math.max(...vetor);
-        let flag= true;
+        let flag = true;
 
         while (flag) {
-            intervalo.push(intervalo[i]+ic);
+            intervalo.push(intervalo[i] + ic);
             i++;
-            if(intervalo[i] > max || ic <= 1) {
+            if (intervalo[i] > max || ic <= 1) {
                 flag = false
                 break;
             }
 
         }
-        for (let i =0; i < intervalo.length-1; i++) {
+        for (let i = 0; i < intervalo.length - 1; i++) {
             aux = 0;
             for (let j of vetor) {
-                if (j > intervalo[i] && j < intervalo[i+1]  ) {
+                if (j > intervalo[i] && j < intervalo[i + 1]) {
                     aux++
                 }
             }
-            Quantidades[`${intervalo[i]} |-- ${intervalo[i+1]}`] = aux;
+            Quantidades[`${intervalo[i]} |-- ${intervalo[i + 1]}`] = aux;
         }
     } else {
         for (let i of vetor) {
@@ -391,16 +393,16 @@ function ordinal() {
 
 function isQuantiContinous(vetor, tipoVariavel) {
 
-    if ( tipoVariavel == 'Quantitativa Contínua') {
+    if (tipoVariavel == 'Quantitativa Contínua') {
         dadosIn = vetor
 
         let at = (Math.max(...vetor) - Math.min(...vetor)) + 1;
         let k = Math.trunc(Math.sqrt(dadosIn.length));
         let ic = 0;
 
-        while( ic == 0) {
-            for ( let i = k -1; i <= k +1; i++) {
-                if (at % i == 0){
+        while (ic == 0) {
+            for (let i = k - 1; i <= k + 1; i++) {
+                if (at % i == 0) {
                     ic = at / i;
                     break;
                 }
@@ -408,9 +410,9 @@ function isQuantiContinous(vetor, tipoVariavel) {
             at += 1;
         }
 
-        return {type: true, intervalo: ic};
+        return { type: true, intervalo: ic };
     } else {
-        return {type: false, intervalo: 0};
+        return { type: false, intervalo: 0 };
     }
 }
 
@@ -556,26 +558,26 @@ function desvioPadrao(Quantidades, media, totalFreq, processo) {
 }
 
 function coeficienteVar(desvio, media) {
-    return ((desvio / media).toFixed(4))*100;
+    return ((desvio / media).toFixed(4)) * 100;
 }
 
 function cortaString(vetor) {
-    if (!Number.isInteger(vetor)){
+    if (!Number.isInteger(vetor)) {
         let res = '';
-        if ( vetor.length >1) {
-            for (let i = 0; i < vetor.length-1; i++) {
+        if (vetor.length > 1) {
+            for (let i = 0; i < vetor.length - 1; i++) {
                 s = vetor[i];
                 res += String((Number(s.substring(0, s.indexOf(" "))) + Number(s.substring(s.indexOf("-") + 2, s.length))) / 2) + ", ";
             }
-        } 
-        s = vetor[vetor.length-1];
-        if (s.includes('--')){
+        }
+        s = vetor[vetor.length - 1];
+        if (s.includes('--')) {
             res += String((Number(s.substring(0, s.indexOf(" "))) + Number(s.substring(s.indexOf("-") + 2, s.length))) / 2);
             return res;
-        } else{
+        } else {
             return s;
         }
-        
+
     } else {
         return vetor;
     }
@@ -598,3 +600,4 @@ function getDados(Quantidades) {
     }
     return dados;
 }
+
