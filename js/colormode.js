@@ -12,32 +12,32 @@
 
 // Inicialização da Página + Salvamento ColorMode
 
-function dataSave() {
-    let css = document.querySelector("link[href='./css/dados.css']").href
-    let icone = document.querySelector("#ColorModeIco").src
-    let logoicone = document.getElementById("logoIco").src
-    let onclick = document.getElementById("ColorModeIco")
-    let navbar = document.getElementById("nav1").className
-    let barraMS = document.getElementById("barraMS").style
+// function dataSave() {
+//     let css = document.querySelector("link[href='./css/dados.css']").href
+//     let icone = document.querySelector("#ColorModeIco").src
+//     let logoicone = document.getElementById("logoIco").src
+//     let onclick = document.getElementById("ColorModeIco")
+//     let navbar = document.getElementById("nav1").className
+//     let barraMS = document.getElementById("barraMS").style
 
-    localStorage.setItem("valor", css, icone, logoicone, onclick, navbar, barraMS); // Salva o valor
-    dataGet();
-}
+//     localStorage.setItem("valor", css, icone, logoicone, onclick, navbar, barraMS); // Salva o valor
+//     dataGet();
+// }
 
-function dataGet() {
-    var valorTemp = localStorage.getItem("valor") || 'dados';
+// function dataGet() {
+//     var valorTemp = localStorage.getItem("valor") || 'dados';
 
-    document.querySelector("link[href='./css/dados.css']").href = valorTemp;
-    document.querySelector("#ColorModeIco").src = valorTemp;
-    let logoicone = document.getElementById("logoIco").src = valorTemp;
-    document.getElementById("ColorModeIco") = valorTemp;
-    document.getElementById("nav1").className = valorTemp;
-    document.getElementById("barraMS").style = valorTemp;
-}
+//     document.querySelector("link[href='./css/dados.css']").href = valorTemp;
+//     document.querySelector("#ColorModeIco").src = valorTemp;
+//     let logoicone = document.getElementById("logoIco").src = valorTemp;
+//     document.getElementById("ColorModeIco") = valorTemp;
+//     document.getElementById("nav1").className = valorTemp;
+//     document.getElementById("barraMS").style = valorTemp;
+// }
 
 function StartBody() {
     shazamBarra();
-    dataGet();
+    // dataGet();
 }
 
 /////////////////////////////////////////////////
