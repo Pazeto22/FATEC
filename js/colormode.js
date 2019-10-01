@@ -48,7 +48,7 @@ function DarkMode() {
     document.getElementById("logoIco").src = "./images/home-logo-black.png"
     document.getElementById("ColorModeIco").setAttribute("onClick", "javascript: LightMode();");
     document.getElementById("nav1").className = "navbar fixed-top navbar-expand-lg navbar navbar-dark bg-dark"
-    document.getElementById("barraMS").style = "background:  rgb(33, 35, 41);"
+    document.getElementById("barraMS").style = "background:  rgb(59, 62, 73);"
 }
 
 function LightMode() {
