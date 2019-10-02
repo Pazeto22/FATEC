@@ -143,17 +143,17 @@ function shazam() {
         <table class="table table-hover table-bordered table-sm" id="TabResult">
         <thead "thead-dark">
           <tr class="table-shazam">
-            <th scope="col">#</th>
-            <th scope="col">Resultado</th>
+            <td scope="col">#</td>
+            <td scope="col">Resultado</td>
           </tr>
         </thead>
         <tbody>
           <tr class="table-light">
-            <th scope="row">Moda</th>
+            <td scope="row">Moda</td>
             <td>${acumularModa(Quantidades)}</td>
           </tr>
           <tr class="table-light">
-            <th scope="row">Mediana</th>
+            <td scope="row">Mediana</td>
             <td>${mediana(medianinhas, dadosIn.length)}</td>
           </tr>
         </tbody>
@@ -222,11 +222,11 @@ function shazam() {
         </thead>
         <tbody>
           <tr class="table-light">
-            <th scope="row">Moda</th>
+            <td scope="row">Moda</td>
             <td>${acumularModa(Quantidades)}</td>
           </tr>
           <tr class="table-light">
-            <th scope="row">Mediana</th>
+            <td scope="row">Mediana</td>
             <td>${mediana(medianinhas, dadosIn.length)}</td>
           </tr>
         </tbody>
@@ -278,23 +278,23 @@ function shazam() {
         </thead>
         <tbody>
           <tr class="table-light">
-            <th scope="row">Moda</th>
+            <td scope="row">Moda</td>
             <td>${acumularModa(Quantidades)}</td>
           </tr>
           <tr class="table-light">
-            <th scope="row">Média</th>
+            <td scope="row">Média</td>
             <td>${media(Quantidades, dadosIn.length)}</td>
           </tr>
           <tr class="table-light">
-            <th scope="row">Mediana</th>
+            <td scope="row">Mediana</td>
             <td>${mediana(medianinhas, dadosIn.length)}}</td>
           </tr>
           <tr class="table-light">
-            <th scope="row">Desvio Padrão</th>
+            <td scope="row">Desvio Padrão</td>
             <td>${desvio}</td>
           </tr>
           <tr class="table-light">
-            <th scope="row">Variância</th>
+            <td scope="row">Variância</td>
             <td>${coeficienteVar(desvio, mediaData)}</td>
           </tr>
         </tbody>
@@ -351,23 +351,23 @@ function shazam() {
         </thead>
         <tbody>
           <tr class="table-light">
-            <th scope="row">Moda</th>
+            <td scope="row">Moda</td>
             <td>${cortaString(acumularModa(Quantidades))}</td>
           </tr>
           <tr class="table-light">
-            <th scope="row">Média</th>
+            <td scope="row">Média</td>
             <td>${mediaData}</td>
           </tr>
           <tr class="table-light">
-            <th scope="row">Mediana</th>
+            <td scope="row">Mediana</td>
             <td>${cortaString(mediana(medianinhas, dadosIn.length))}</td>
           </tr>
           <tr class="table-light">
-            <th scope="row">DesvioPadrão</th>
+            <td scope="row">DesvioPadrão</td>
             <td>${desvio}</td>
           </tr>
           <tr class="table-light">
-            <th scope="row">Variância</th>
+            <td scope="row">Variância</td>
             <td>${coeficienteVar(desvio, mediaData)}</td>
           </tr>
         </tbody>
