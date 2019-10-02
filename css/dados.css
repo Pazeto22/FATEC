@@ -168,8 +168,14 @@ section#S2 {
     /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226); */
     /* border-radius: 3px; */
     font: normal 13pt arial;
-    /* width: auto; */
+    /* width: 200px; */
     /* position: absolute; */
+    display: inline;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 53%;
+    left: 50%;
+    overflow: auto;
 }
 
 section#S3 {

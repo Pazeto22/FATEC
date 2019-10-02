@@ -136,7 +136,7 @@ function shazam() {
             medianinhas[`${i}`] = frequenciaAtual;
         }
 
-        document.getElementById('S2').innerHTML = "";
+        document.getElementById('S2').style.display='none';
 
         s3 = document.getElementById('S3Resultados');
         s3.innerHTML += `
@@ -209,7 +209,7 @@ function shazam() {
             medianinhas[`${i}`] = frequenciaAtual;
         }
 
-        document.getElementById('S2').innerHTML = "";
+        document.getElementById('S2').style.display='none';
 
         s3 = document.getElementById('S3Resultados');
         s3.innerHTML += `
@@ -263,7 +263,7 @@ function shazam() {
             medianinhas[`${i}`] = frequenciaAtual;
         }
 
-        document.getElementById('S2').innerHTML = "";
+        document.getElementById('S2').style.display='none';
 
         s3 = document.getElementById('S3Resultados');
         let mediaData = media(Quantidades, dadosIn.length);
@@ -331,7 +331,7 @@ function shazam() {
             medianinhas[`${i}`] = frequenciaAtual;
         }
 
-        document.getElementById('S2').innerHTML = "";
+        document.getElementById('S2').style.display='none';
 
         s3 = document.getElementById('S3Resultados');
         let mediaData = media(Quantidades, dadosIn.length);
@@ -725,3 +725,10 @@ function getDados(Quantidades) {
     return dados;
 }
 
+function Voltar(){
+    document.getElementById('S3').innerHTML = ""
+    $('#S3').remove();
+    document.getElementById('S2').style.display='inline';
+    document.querySelector(".fab").style = "visibility: hidden"
+
+}
