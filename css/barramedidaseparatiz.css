@@ -15,14 +15,14 @@
     width: 16px;
     height: 16px;
     border-radius: 100%; 
-    background: rgb(190, 70, 116);
+    background: rgb(255, 99, 132);
     cursor: pointer;
   }
 
   .fab{
     position: fixed;
-    bottom:10px;
-    right:10px;
+    bottom:25px;
+    right:25px;
   }
   
   .fab button{
@@ -33,7 +33,7 @@
     border: none;
     box-shadow: 0 1px 5px rgba(0,0,0,.4);
     font-size: 24px;
-    color: rgb(0, 0, 0);
+    color: white;
       
     -webkit-transition: .2s ease-out;
     -moz-transition: .2s ease-out;
@@ -45,7 +45,7 @@
     width: 60px;
     height: 60px;
     border-radius: 30px;
-    background: rgba(245, 255, 255, 0.2);
+    background: rgb(255, 99, 132);
     right: 0;
     bottom: 0;
     z-index: 20;
@@ -59,7 +59,7 @@
   
   .fab button.main:active{
     outline: none;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgb(190, 70, 116);
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
    }
   

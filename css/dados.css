@@ -35,6 +35,11 @@ header {
     background: rgba(252, 255, 255, 0.975) !important;
     border-bottom: 1px solid rgba(204, 204, 204, 0.5);
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+div#conteudoNavbarSuportado{
+    width: 20%;
 }
 
 body {
@@ -45,7 +50,7 @@ body {
     background-position: center;
     /* width: 100%;
     height: 100%; */
-    font-family: Calibri, Arial, sans-serif !important;
+    font-family: Calibri, sans-serif !important;
     text-align: center !important;
     /* background: rgb(90, 77, 148) !important; */
     color: white !important;
@@ -66,9 +71,11 @@ section#iDados {
     width: 50%;
     margin: 30px auto;
     color: #444;
-    padding: 20px;
+    padding-top: 15px !important;
+    padding: 8px;
     border-radius: 16px;
     width: 622px;
+    height: auto;
     background: rgba(245, 252, 255, 0.85);
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226);
 }
@@ -78,7 +85,7 @@ section#Variável {
     width: 50%;
     margin: 1px auto;
     color: #444;
-    padding: 20px;
+    padding: 12px;
     border-radius: 16px;
     width: 622px;
     background: rgba(245, 252, 255, 0.85);
@@ -103,34 +110,35 @@ p#s2ex {
 div#cordem {
     width: 300px;
     /* border-radius: 16px; */
-    visibility: hidden;
+    display: none;
+    width:200px;
+    /* position:absolute; */
 }
 
 #ordem {
     /* background: white; */
     width: 300px;
     /* margin: 10px auto;
-    padding: 5px;
     border-radius: 16px;
     background: rgba(245, 252, 255, 0.7); */
     visibility: hidden;
 }
 
-table {
+/* table {
     width: 100%;
     border-collapse: collapse;
-}
+} */
 
-th,
+/* th,
 td {
     border-bottom: 1px solid #888;
     padding: 8px;
     width: auto;
     text-align: left;
-    background-color: rgb(255, 255, 255);
-}
+    opacity: 1;
+} */
 
-tr#titulo {
+/* tr#titulo {
     font: bold 13pt arial;
     color: rgb(0, 0, 0);
 }
@@ -138,7 +146,7 @@ tr#titulo {
 th {
     color: seagreen;
     font-family: Georgia, 'Times New Roman', serif;
-}
+} */
 
 .alin-dir {
     text-align: right;
@@ -167,6 +175,23 @@ section#S2 {
 section#S3 {
     background: rgba(245, 255, 255, 0.5);
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226);
+    border-radius: 16px;
+    font: normal 13pt arial;
+    color: black;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    /* width: auto; */
+    /* position: absolute; */
+    width: 1000px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+section#S3-2 {
+    background: rgba(245, 255, 255, 0.5);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226);
     border-radius: 3px;
     font: normal 13pt arial;
     color: black;
@@ -178,10 +203,12 @@ section#S3 {
     margin-bottom: 30px;
 }
 
-section#S3Resultados{
-    margin-top: 10px;
-    margin-bottom: 10px;
-    height: auto;
+div#S3Resultados{
+    /* margin-top: 10px;
+    margin-bottom: 10px; */
+    width: 400px;
+    margin: 0 auto;
+    text-align: center !important;
 }
 
 .chartjs-render-monitor {
@@ -189,20 +216,29 @@ section#S3Resultados{
     width: auto !important;
 }
 
-.table-responsive {
+/* .table-responsive {
     text-align: center !important;
-}
+} */
 
-table {
+/*table {
     color: black;
     width: 800px;
     border-style: solid;
     border-width: medium;
-    /* border-radius: 20px; */
+    border-radius: 20px;
+} */
+
+table{
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226) !important;
+    border-radius: 16px !important;
+}
+
+.table-shazam{
+    background-color: rgb(255, 99, 132);
 }
 
 div#tabl2{
-    padding: 30px;
+    padding: 5px;
 }
 
 textarea {
@@ -227,3 +263,4 @@ select {
 img#ColorModeIco{
     cursor: pointer;
 }
+

@@ -5,8 +5,8 @@
     <title>GHYD Statistics</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./css/dados.css">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/dados.css">
     <link rel="stylesheet" href="./css/barramedidaseparatiz.css">
     <script src="./js/colormode.js"></script>
     <script src="./js/dados.js"></script>
@@ -15,8 +15,8 @@
 <body onload="StartBody()">
     <header>
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light" id="nav1">
-            <a class="navbar-brand" href="./home.html"><img src="./images/home-logo.png" id="logoIco" width="auto" height="30"
-                    alt=""></a>
+            <a class="navbar-brand" href="./home.html"><img src="./images/home-logo.png" id="logoIco" width="auto"
+                    height="30" alt=""></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
                 aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
                 <span class="navbar-toggler-icon"></span>
@@ -46,29 +46,24 @@
                         <a class="nav-link disabled" href="#">Desativado</a>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <!-- <button class="" ><img src="./images/colormodeico.png" onclick="ColorMode()" width="auto" height="30"></button> -->
-                    <!-- <input type="button" id="ColorMode" class="btn btn-sm btn-outline-secondary" value=''> -->
-                    <img src="./images/colormodeico.png" id="ColorModeIco" width="auto" height="30" onclick="DarkMode()">
-                </form>
+                <!-- <form class="form-inline my-2 my-lg-0">
+                    <img src="./images/colormodeico.png" id="ColorModeIco" width="auto" height="30"
+                        onclick="DarkMode()">
+                </form> -->
             </div>
         </nav>
-        <!-- <h1 class="cabeçalho">
-            <img class="logo" src="./images/home-logo.png" alt="">
-        </h1> -->
     </header>
 
     <div class="fab" style="visibility: hidden" ontouchstart="">
         <button class="main" onClick='window.location.reload()'></button>
-      </div>
+    </div>
 
     <section id="S2">
         <section id="iDados">
-            Insira os dados manualmente separando-os por ponto e vírgula (;).<br><br>
+            <p>Insira os dados manualmente separando-os por ponto e vírgula (;)</p>
             <textarea name="Dados" id="PDados" cols="60" rows="7" style="resize: vertical"></textarea><br>
             <p id="s2ex">Não use outros separadores. Não deixe um ponto e vírgula após o último elemento.</p>
-        </section>
-        <section id="Variável">
+            <hr>
             <div class="container">
                 <div class="row d-flex justify-content-center" id="rowx2">
                     <div class="col-xs-6" id="pt1">
@@ -84,10 +79,11 @@
                             <option>Qualitativa Nominal</option>
                             <option>Qualitativa Ordinal</option>
                         </select>
-                        <div id="cordem" visibility>
-                            <br>Selecione a ordem desejada<br>para visualização<br><br>
+                        <div id="cordem" display>
+                            <hr>Selecione a ordem desejada<br>para visualização<br>
                             <div id="ordem">
                             </div>
+                            <hr>
                         </div>
                     </div>
                     <div class="col-xs-6" id="pt2">
@@ -103,8 +99,8 @@
                         <p id="valorBMS">-</p>
                     </div>
                 </div>
+                <p id="Confirmar"><input type="button" value="Confirmar" onclick="shazam()"></p>
             </div>
-            <p id="Confirmar"><input type="button" value="Confirmar" onclick="shazam()"></p>
         </section>
 
     </section>

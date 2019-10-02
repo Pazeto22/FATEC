@@ -40,6 +40,9 @@ function shazamMedida() {
 function shazam() {
 
     let vari = document.getElementById('PVar').value;
+    if (vari == ""){
+        vari = "Variável"
+    }
     let dadosIn = document.getElementById('PDados').value.replace(/ /g, '');
     if (dadosIn.endsWith(";")) {
         dadosIn = dadosIn.substring(0, dadosIn.length - 1);
@@ -56,28 +59,52 @@ function shazam() {
     // alert(dadosIn)
     // console.log(abridor.document.getElementById("titulo").innerHTML)
 
-    document.getElementsByTagName('body')[0].innerHTML += `
+    document.getElementsByTagName('body')[0].innerHTML += 
+    // `
+    // <section id = 'S3'>
+    //     <div class="table-responsive col-md-10" id="tabl2">
+    //         <table class=" col-md-10">
+    //             <thead class="thead-dark">
+    //                 <tr id='titulo'>
+    //                     <td >${vari}</td>
+    //                     <td >FI</td>
+    //                     <td >FR%</td>
+    //                     <td >FAC</td>
+    //                     <td >FAC%</td>
+    //                 </tr>
+    //             </thead>
+    //             <tbody id='corpo'></tbody>
+    //         </table>
+    //     </div>
+    //     <section id = 'S3Resultados'>
+    //     </section>
+    //     <div class="table-responsive col-md-10">
+    //     <canvas id="justChart"></canvas>
+    //     </div>
+    // </section>
+    // `;
+    `
     <section id = 'S3'>
         <div class="table-responsive col-md-10" id="tabl2">
-            <table>
-                <thead class="thead-dark">
-                    <tr id='titulo'>
-                        <td >${vari}</td>
-                        <td >FI</td>
-                        <td >FR%</td>
-                        <td >FAC</td>
-                        <td >FAC%</td>
+            <table class="table table-hover table-bordered table-sm" id="TabPrincipal">
+                <thead "thead-dark">
+                    <tr class="table-shazam" id="titulo">
+                        <th scope="col">${vari}</th>
+                        <th scope="col">FI</th>
+                        <th scope="col">FR%</th>
+                        <th scope="col">FAC</th>
+                        <th scope="col">FAC%</th>
                     </tr>
                 </thead>
                 <tbody id='corpo'></tbody>
             </table>
         </div>
-        <div class="table-responsive col-md-10">
+        <section class="table-responsive col-md-10" id="tabl2">
+        <div id = 'S3Resultados'></div>
         <canvas id="justChart"></canvas>
-        </div>
-        <section id = 'S3Resultados'>
-        </section>
-    </section>`;
+        </section><br>
+    </section>
+    `;
 
     if (tipoVariavel == 'Qualitativa Nominal') {
 
@@ -85,7 +112,7 @@ function shazam() {
         for (let i = 0; i < dadosIn.length; i++) {
             dadosIn[i] = dadosIn[i].trim();
             dadosIn[i] = dadosIn[i].toUpperCase();
-            corpo.innerHTML += `<tr></tr>`;
+            corpo.innerHTML += `<tr class="table-light"></tr>`;
         }
         dadosIn.sort();
 
@@ -100,11 +127,11 @@ function shazam() {
         for (let i in Quantidades) {
             let linhaAtual = document.getElementsByTagName('tr');
             linhaAtual[linha].innerHTML += `
-            <th>${i}</th>
-            <th>${Quantidades[i]}</th>
-            <th>${(Quantidades[i] / dadosIn.length * 100).toFixed(2)}</th>
-            <th>${frequenciaAtual += Quantidades[i]}</th>
-            <th>${(frequenciaPercentAtual += Quantidades[i] / dadosIn.length * 100).toFixed(2)}</th>`;
+            <td>${i}</td>
+            <td>${Quantidades[i]}</td>
+            <td>${(Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>
+            <td>${frequenciaAtual += Quantidades[i]}</td>
+            <td>${(frequenciaPercentAtual += Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>`;
             linha++;
             medianinhas[`${i}`] = frequenciaAtual;
         }
@@ -113,8 +140,25 @@ function shazam() {
 
         s3 = document.getElementById('S3Resultados');
         s3.innerHTML += `
-        <p style="color:black;">Moda: ${acumularModa(Quantidades)}</p>
-        <p style="color:black;">Mediana: ${mediana(medianinhas, dadosIn.length)}</p>`;
+        <table class="table table-hover table-bordered table-sm" id="TabResult">
+        <thead "thead-dark">
+          <tr class="table-shazam">
+            <th scope="col">#</th>
+            <th scope="col">Resultado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-light">
+            <th scope="row">Moda</th>
+            <td>${acumularModa(Quantidades)}</td>
+          </tr>
+          <tr class="table-light">
+            <th scope="row">Mediana</th>
+            <td>${mediana(medianinhas, dadosIn.length)}</td>
+          </tr>
+        </tbody>
+      </table>
+      `
 
     } else if (tipoVariavel == 'Qualitativa Ordinal') {
 
@@ -130,7 +174,7 @@ function shazam() {
         for (let i = 0; i < dadosIn.length; i++) {
             dadosIn[i] = dadosIn[i].trim();
             dadosIn[i] = dadosIn[i].toUpperCase();
-            corpo.innerHTML += `<tr></tr>`;
+            corpo.innerHTML += `<tr class="table-light"></tr>`;
         }
         dadosIn.sort();
 
@@ -169,15 +213,32 @@ function shazam() {
 
         s3 = document.getElementById('S3Resultados');
         s3.innerHTML += `
-        <p style="color:black;">Moda: ${acumularModa(Quantidades)}</p>
-        <p style="color:black;">Mediana: ${mediana(medianinhas, dadosIn.length)}</p>`;
+        <table class="table table-hover table-bordered table-sm" id="TabResult">
+        <thead "thead-dark">
+          <tr class="table-shazam">
+            <th scope="col">#</th>
+            <th scope="col">Resultado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-light">
+            <th scope="row">Moda</th>
+            <td>${acumularModa(Quantidades)}</td>
+          </tr>
+          <tr class="table-light">
+            <th scope="row">Mediana</th>
+            <td>${mediana(medianinhas, dadosIn.length)}</td>
+          </tr>
+        </tbody>
+      </table>
+      `
 
     } else if (tipoVariavel == 'Quantitativa Discreta') {
         let corpo = document.getElementById('corpo');
         for (let i = 0; i < dadosIn.length; i++) {
             dadosIn[i] = dadosIn[i].trim();
             dadosIn[i] = dadosIn[i].toUpperCase();
-            corpo.innerHTML += `<tr></tr>`;
+            corpo.innerHTML += `<tr class="table-light"></tr>`;
         }
         dadosIn.sort();
 
@@ -207,11 +268,38 @@ function shazam() {
         s3 = document.getElementById('S3Resultados');
         let mediaData = media(Quantidades, dadosIn.length);
         let desvio = desvioPadrao(Quantidades, mediaData, dadosIn.length, processo);
-        s3.innerHTML += `<p style="color:black;">Moda: ${acumularModa(Quantidades)}</p>
-        <p style="color:black;">Média: ${media(Quantidades, dadosIn.length)}</p>
-        <p style="color:black;">Mediana: ${mediana(medianinhas, dadosIn.length)}</p>
-        <p style="color:black;">DesvioPadrão: ${desvio}</p>
-        <p style="color:black;">Variância: ${coeficienteVar(desvio, mediaData)}%</p>`;
+        s3.innerHTML +=`
+        <table class="table table-hover table-bordered table-sm" id="TabResult">
+        <thead "thead-dark">
+          <tr class="table-shazam">
+            <th scope="col">#</th>
+            <th scope="col">Resultado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-light">
+            <th scope="row">Moda</th>
+            <td>${acumularModa(Quantidades)}</td>
+          </tr>
+          <tr class="table-light">
+            <th scope="row">Média</th>
+            <td>${media(Quantidades, dadosIn.length)}</td>
+          </tr>
+          <tr class="table-light">
+            <th scope="row">Mediana</th>
+            <td>${mediana(medianinhas, dadosIn.length)}}</td>
+          </tr>
+          <tr class="table-light">
+            <th scope="row">Desvio Padrão</th>
+            <td>${desvio}</td>
+          </tr>
+          <tr class="table-light">
+            <th scope="row">Variância</th>
+            <td>${coeficienteVar(desvio, mediaData)}</td>
+          </tr>
+        </tbody>
+      </table>
+      `
         console.log(Quantidades);
     } else if (tipoVariavel == 'Quantitativa Contínua') {
 
@@ -219,7 +307,7 @@ function shazam() {
         for (let i = 0; i < dadosIn.length; i++) {
             dadosIn[i] = dadosIn[i].trim();
             dadosIn[i] = dadosIn[i].toUpperCase();
-            corpo.innerHTML += `<tr></tr>`;
+            corpo.innerHTML += `<tr class="table-light"></tr>`;
         }
         dadosIn.sort();
 
@@ -248,11 +336,44 @@ function shazam() {
         s3 = document.getElementById('S3Resultados');
         let mediaData = media(Quantidades, dadosIn.length);
         let desvio = desvioPadrao(Quantidades, mediaData, dadosIn.length, processo);
-        s3.innerHTML += `<p style="color:black;">Moda: ${cortaString(acumularModa(Quantidades))}</p>
-        <p style="color:black;">Média: ${mediaData}</p>
-        <p style="color:black;">Mediana: ${cortaString(mediana(medianinhas, dadosIn.length))}</p>
-        <p style="color:black;">DesvioPadrão: ${desvio}</p>
-        <p style="color:black;">Variância: ${coeficienteVar(desvio, mediaData)}</p>`;
+        // s3.innerHTML += `<p style="color:black;">Moda: ${cortaString(acumularModa(Quantidades))}</p>
+        // <p style="color:black;">Média: ${mediaData}</p>
+        // <p style="color:black;">Mediana: ${cortaString(mediana(medianinhas, dadosIn.length))}</p>
+        // <p style="color:black;">DesvioPadrão: ${desvio}</p>
+        // <p style="color:black;">Variância: ${coeficienteVar(desvio, mediaData)}</p>`;
+        s3.innerHTML += `
+        <table class="table table-hover table-bordered table-sm" id="TabResult">
+        <thead "thead-dark">
+          <tr class="table-shazam">
+            <th scope="col">#</th>
+            <th scope="col">Resultado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-light">
+            <th scope="row">Moda</th>
+            <td>${cortaString(acumularModa(Quantidades))}</td>
+          </tr>
+          <tr class="table-light">
+            <th scope="row">Média</th>
+            <td>${mediaData}</td>
+          </tr>
+          <tr class="table-light">
+            <th scope="row">Mediana</th>
+            <td>${cortaString(mediana(medianinhas, dadosIn.length))}</td>
+          </tr>
+          <tr class="table-light">
+            <th scope="row">DesvioPadrão</th>
+            <td>${desvio}</td>
+          </tr>
+          <tr class="table-light">
+            <th scope="row">Variância</th>
+            <td>${coeficienteVar(desvio, mediaData)}</td>
+          </tr>
+        </tbody>
+      </table>
+      `
+
     }
 
     let options = {
@@ -431,12 +552,13 @@ function isOrdinal() {
     let cordem = document.getElementById('cordem');
 
     if (tipoVariavel == 'Qualitativa Ordinal' && ordem.innerText == "") {
-        cordem.style.visibility = "visible";
+        cordem.style.display = "inline";
+        // cordem.style.position = ""
         ordem.style.visibility = "visible";
         let strHTML = "";
 
         for (let i in Quantidades) {
-            strHTML += ` <input type='radio' name='radOrdemVar' id='${i}'></option>
+            strHTML += `<input type='radio' name='radOrdemVar' id='${i}'></option>
                                 <label for='${i}'> ${i}; </label>`
         }
 

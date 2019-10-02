@@ -1,33 +1,69 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Trabalho de Estatística</title>
-    <link rel="stylesheet" href="css/home.css">
-    <script src="javaScript.js"></script>
+    <link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <script src="./js/colormode.js"></script>
+    <script src="./js/dados.js"></script>
 </head>
+
 <body>
     <header>
-        <h1 class="cabeçalho">
-            <img class="logo" src="./images/home-logo.png" alt="">
-        </h1>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light" id="nav1">
+            <a class="navbar-brand" href="./home.html"><img src="./images/home-logo.png" id="logoIco" width="auto" height="30"
+                    alt=""></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
+                aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./index.html">Home <span class="sr-only">(Página atual)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Ação</a>
+                            <a class="dropdown-item" href="#">Outra ação</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Algo mais aqui</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Desativado</a>
+                    </li>
+                </ul>
+                <!-- <form class="form-inline my-2 my-lg-0">
+                    <img src="./images/colormodeico.png" id="ColorModeIco" width="auto" height="30" onclick="DarkMode()">
+                </form> -->
+            </div>
+        </nav>
     </header>
 
     <div class="background">
     </div>
-    <section>
-        <div id='interp'>
+    <section id ='login'>
+        <div id='login'>
             <p>Faça o login para entrar no interpretador de dados:</p>
-        </div>
-        <div>
             <p>
                 <label>E-mail:</label>
-                <input type="text" name="usuário" id="usuário">
+                <input type="email" name="usuário" id="usuário">
             </p>
 
             <p>
                 <label>Senha:</label>
-                <input type="text" name="senha" id="senha">
+                <input type="password" name="senha" id="senha">
             </p>
 
             <p>
@@ -37,7 +73,10 @@
         </div>
 
     </section>
-    
+
+    <script src="./js/jquery-3.3.1.slim.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
 
 </body>
 
