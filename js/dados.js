@@ -287,7 +287,7 @@ function shazam() {
           </tr>
           <tr class="table-light">
             <td scope="row">Mediana</td>
-            <td>${mediana(medianinhas, dadosIn.length)}}</td>
+            <td>${mediana(medianinhas, dadosIn.length)}</td>
           </tr>
           <tr class="table-light">
             <td scope="row">Desvio Padrão</td>
