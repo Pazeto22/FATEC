@@ -59,7 +59,7 @@ function shazam() {
     // alert(dadosIn)
     // console.log(abridor.document.getElementById("titulo").innerHTML)
 
-    document.getElementsByTagName('body')[0].innerHTML += 
+    
     // `
     // <section id = 'S3'>
     //     <div class="table-responsive col-md-10" id="tabl2">
@@ -83,6 +83,8 @@ function shazam() {
     //     </div>
     // </section>
     // `;
+
+    let configTableString = 
     `
     <section id = 'S3'>
         <div class="table-responsive col-md-10" id="tabl2">
@@ -105,6 +107,8 @@ function shazam() {
         </section><br>
     </section>
     `;
+
+    document.getElementsByTagName('body')[0].innerHTML += configTableString;
 
     if (tipoVariavel == 'Qualitativa Nominal') {
 
@@ -297,10 +301,14 @@ function shazam() {
             <td scope="row">Variância</td>
             <td>${coeficienteVar(desvio, mediaData)}</td>
           </tr>
+          <tr class="table-light">
+            <td scope="row">${document.getElementById("ems").value}</td>
+            <td>${exibePercentil( document.getElementById("barraMS").value, dadosIn)}</td>
+          </tr>
         </tbody>
       </table>
       `
-        console.log(Quantidades);
+        console.log(document.getElementById("ems").value);
     } else if (tipoVariavel == 'Quantitativa Contínua') {
 
         let corpo = document.getElementById('corpo');
@@ -408,7 +416,6 @@ function shazam() {
             }]
         }
     };
-
 
 
     if (tipoVariavel == 'Quantitativa Contínua') {
@@ -732,3 +739,35 @@ function Voltar(){
     document.querySelector(".fab").style = "visibility: hidden"
 
 }
+
+function exibePercentil (valor, dadosIn){
+    let size = dadosIn.length;
+    let posicaoDado = Math.round(valor*size/100);
+
+    return dadosIn[posicaoDado-1];
+}
+
+function csvJSON(csv){
+    // credits: http://techslides.com/convert-csv-to-json-in-javascript
+    var lines = csv.split("\n");
+
+    var result = [];
+
+    var headers = lines[0].split(",");
+
+    for (var i = 1; i < lines.length; i++) {
+
+        var obj = {};
+        var currentline = lines[i].split(",");
+
+        for (var j=0; j< headers.length; j++) {
+            obj[headers[j]] = currentline[j];
+        }
+
+      result.push(obj);
+
+    }
+
+    //return result; //JavaScript object
+    return JSON.stringify(result); //JSON
+  }
