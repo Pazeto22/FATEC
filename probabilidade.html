@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>GHYD Statistics</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/probabilidade.css">
+    <link rel="stylesheet" href="./css/barramedidaseparatiz.css">
+    <script src="./js/colormode.js"></script>
+    <script src="./js/probabilidade.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light" id="nav1">
+            <a class="navbar-brand" href="./home.html"><img src="./images/home-logo.png" id="logoIco" width="auto"
+                    height="30" alt=""></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
+                aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./index.html">Home <span class="sr-only">(Página atual)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Ação</a>
+                            <a class="dropdown-item" href="#">Outra ação</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Algo mais aqui</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Desativado</a>
+                    </li>
+                </ul>
+                <!-- <form class="form-inline my-2 my-lg-0">
+                    <img src="./images/colormodeico.png" id="ColorModeIco" width="auto" height="30"
+                        onclick="DarkMode()">
+                </form> -->
+            </div>
+        </nav>
+    </header>
+
+    <main id="prob">
+        <section id="sabas" class="container-abas grid-container">
+            <!-- Aba 1 -->
+            <input type="radio" name="abas" class="abas" id="aba1" checked onchange="shazamabas(this)">
+            <label for="aba1">Uniforme</label>
+            <div>
+                <section class="sconteudo">
+                    <p id="botao">Insira os dados</p>
+                    Ponto mínimo:<br> <input type="number" name="pmin" class="dado"><br><br>
+                    Ponto máximo:<br> <input type="number" name="pmax" class="dado"><br><br>
+                    Intervalo de análise: <br>
+                    <input type="radio" name="intervaloa" class="ia dado" value="menor" onchange="intervalo(this)">
+                    Menor
+                    <input type="radio" name="intervaloa" class="ia dado" value="entre" onchange="intervalo(this)">
+                    Entre
+                    <input type="radio" name="intervaloa" class="ia dado" value="maior" onchange="intervalo(this)">
+                    Maior
+                    <div id="escolhaintervalo"></div>
+                    <br><br>
+                    <p id="botao"><input type="button" class="butn bconfirmar" value="Confirmar"></p>
+                </section>
+            </div>
+            <!-- Aba 2 -->
+            <input type="radio" name="abas" class="abas" id="aba2" onchange="shazamabas(this)">
+            <label for="aba2">Binomial</label>
+            <div>
+                <section class="sconteudo2">
+                    <p id="botao">Insira os dados</p>
+                    Tamanho da Amostra (n):<br> <input type="number" name="tamostra" class="dado"><br><br>
+                    Evento (k):<br> <input type="number" name="eventok" class="dado"><br><br>
+                    Sucesso (p):<br> <input type="number" name="sucessop" class="dado"><br><br>
+                    Fracasso (q):<br> <input type="number" name="fracassoq" class="dado"><br><br>
+                    <p id="botao"><input type="button" class="butn bconfirmar" value="Confirmar"></p>
+                </section>
+            </div>
+            <!-- Aba 3 -->
+            <input type="radio" name="abas" class="abas" id="aba3" onchange="shazamabas(this)">
+            <label for="aba3">Normal</label>
+            <div>
+                <section class="sconteudo3">
+                    <p id="botao">Insira os dados</p>
+                    Média:<br> <input type="number" name="media" class="dado"><br><br>
+                    Desvio Padrão:<br> <input type="number" name="dpadrao" class="dado"><br><br>
+                    Intervalo de análise: <br>
+                    <input type="radio" name="intervaloa2" class="ia dado" value="menor" onchange="intervalo2(this)">
+                    Menor
+                    <input type="radio" name="intervaloa2" class="ia dado" value="entre" onchange="intervalo2(this)">
+                    Entre
+                    <input type="radio" name="intervaloa2" class="ia dado" value="maior" onchange="intervalo2(this)">
+                    Maior
+                    <div id="escolhaintervalo2"></div>
+                    <br><br>
+                    <p id="botao"><input type="button" class="butn bconfirmar" value="Confirmar"></p>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <script src="./js/jquery-3.3.1.slim.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+</body>
+
+</html>

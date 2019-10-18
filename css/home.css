@@ -23,6 +23,7 @@ header {
     color: black;
     padding: 5px;
     cursor: pointer;
+    outline: none;
 }
 
 .btnlogin {
