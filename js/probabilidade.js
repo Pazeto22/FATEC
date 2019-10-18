@@ -50,21 +50,29 @@ function shazamabas(x) {
     section = document.querySelector(".sconteudo")
     section2 = document.querySelector(".sconteudo2")
     section3 = document.querySelector(".sconteudo3")
+    eintervalo = document.querySelector("#escolhaintervalo")
+    eintervalo2 = document.querySelector("#escolhaintervalo2")
     if (x.id == "aba1"){
         tamanhojanela.style.height = "400px"
         section.style.display = "inline"
         section2.style.display = "none"
         section3.style.display = "none"
+        eintervalo.innerHTML = ""
+        eintervalo2.innerHTML = ""
     } else if (x.id == "aba2"){
         tamanhojanela.style.height = "470px"
         section.style.display = "none"
         section2.style.display = "inline"
         section3.style.display = "none"
+        eintervalo.innerHTML = ""
+        eintervalo2.innerHTML = ""
     } else if (x.id == "aba3"){
         tamanhojanela.style.height = "400px"
         section.style.display = "none"
         section2.style.display = "none"
         section3.style.display = "inline"
+        eintervalo.innerHTML = ""
+        eintervalo2.innerHTML = ""
     }
 
 }
