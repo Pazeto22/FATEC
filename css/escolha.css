@@ -49,4 +49,30 @@ section#principal{
 .grid-item {
     /* background-color: pink; */
     padding: 2px !important;
+    margin-left: 10px;
+    margin-right: 10px;
 }
+
+.bescolha {
+    height: 250px;  
+    width: 250px;
+    border: 4px solid rgb(255, 99, 132);
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+    background-color: rgb(255, 99, 132);
+    border-radius: 15px;
+    box-shadow: 0 9px rgb(255, 70, 110);
+  }
+
+  .bescolha:active {
+    box-shadow: 0 5px rgb(255, 62, 104);
+    transform: translateY(4px);
+  }
+
+  .text{
+      background-color: rgb(255, 99, 132);
+      padding: 10px;
+      border-radius: 16px;
+      color: white;
+  }

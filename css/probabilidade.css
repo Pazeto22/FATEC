@@ -180,7 +180,7 @@ input.abas + label {
 }
 
 input.abas:hover + label {
-    background-color: rgb(255, 99, 132);
+    background-color: rgb(204, 78, 105);
     color: white;
     -webkit-transition: all 500ms ease;
     -moz-transition: all 500ms ease;
