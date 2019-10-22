@@ -76,3 +76,29 @@ function shazamabas(x) {
     }
 
 }
+
+/*
+function binomio (n, k) {
+    //(n k) => n!/(k! * (n - k)!)]
+    let res =1;
+    if (n == k || k == 0){
+        return 1;
+    } else if (n == k +1 || k ==1) {
+        return n;
+    } else {
+        return fatorial(n,k) / fatorial(n)
+    }
+
+}
+
+function fatorial (n, k=1) {
+    if (n == k ){
+        return k;
+    } else {
+        return n * fatorial(n -1);
+    }
+}
+
+function bimodal () {
+
+}*/
