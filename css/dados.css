@@ -256,12 +256,21 @@ textarea {
     outline: none;
 }
 
-input, select {
+select {
     margin-top: 10pt;
     background: rgb(250, 253, 255);
     /* width: 80pt; */
     /* height: 20pt; */
     border-radius: 5pt;
+    outline: none;
+}
+
+input {
+    margin-top: 10pt;
+    background: rgb(250, 253, 255);
+    border: none;
+    border-bottom: 1px solid rgb(224, 224, 224);
+    background-color: rgba(255, 255, 255, 0);
     outline: none;
 }
 

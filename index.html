@@ -13,8 +13,10 @@
 <body>
     <header>
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light" id="nav1">
-            <a class="navbar-brand" href="./home.html"><img src="./images/home-logo.png" id="logoIco" width="auto"
-                    height="30" alt=""></a>
+                
+            <a class="navbar-brand mr-5" href="./home.html"><img src="./images/home-logo.png" id="logoIco" width="auto" 
+            height="30" alt=""></a>
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
                 aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
                 <span class="navbar-toggler-icon"></span>
@@ -22,32 +24,38 @@
 
             <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
                 <ul class="navbar-nav mr-auto">
+                    
                     <li class="nav-item active">
-                        <a class="nav-link" href="./index.html">Home <span class="sr-only">(Página atual)</span></a>
+                        <a class="nav-link" href="./index.html">Início <span class="sr-only">(Página atual)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" href="#">Abrir chamado</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contato</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sobre nós</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://site.fatecfranca.edu.br/">Parceiros</a>
+                    </li>
+
+                </ul>
+
+                <ul class="navbar-nav mr-5">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        <a class="nav-link dropdown-toggle disable" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown
+                            Estatísticas
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Ação</a>
-                            <a class="dropdown-item" href="#">Outra ação</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Algo mais aqui</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Desativado</a>
                     </li>
                 </ul>
                 <!-- <form class="form-inline my-2 my-lg-0">
                     <img src="./images/colormodeico.png" id="ColorModeIco" width="auto" height="30" onclick="DarkMode()">
                 </form> -->
             </div>
+            
         </nav>
     </header>
 
@@ -55,18 +63,20 @@
     </div>
     <section id='login'>
         <div id='login'>
-            <p>Faça o login para entrar no interpretador de dados:</p>
+            <img src="./images/home-logo.png" id="logoIcoLogin" height="100"><br><br>
+            <!-- <p>Faça o login para entrar no interpretador de dados:</p> -->
+            <!-- <h1>Entrar</h1><br> -->
             <p>
-                <label>E-mail:</label>
-                <input type="email" name="usuário" id="usuário">
-            </p>
+                <!-- <label>E-mail:</label> -->
+                <input type="email" name="usuário" id="usuário" placeholder=" Digite seu email">
+            </p><br>
 
             <p>
-                <label>Senha:</label>
-                <input type="password" name="senha" id="senha">
+                <!-- <label>Senha:</label> -->
+                <input type="password" name="senha" id="senha" placeholder=" Digite sua senha">
             </p>
 
-            <p>
+            <p><br>
                 <input type="button" class="butn btnlogin" value="Entrar" onclick="location.href='escolha.html'">
             </p>
         </div>
