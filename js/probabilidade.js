@@ -133,10 +133,10 @@ function binomial (n, k, p, q) {
     if (op[0].checked) { //menor
         res = (1 / (max -min)) * (values[0] - min);
     } else if (op[1].checked) {//entre
-        if (values[3] > values[2]) {
-            res = (1 / (max -min)) * (values[3] - values[2]);
+        if (values[3] > values[1]) {
+            res = (1 / (max -min)) * (values[3] - values[1]);
         } else {
-            res = (1 / (max -min)) * (values[2] - values[3]);
+            res = (1 / (max -min)) * (values[1] - values[3]);
         }
     } else if (op[2].checked) {//maior
         res = (1 / (max -min)) * (max - values[4]);
@@ -148,8 +148,62 @@ function binomial (n, k, p, q) {
     //Inserir resultados aqui
 }
 
+function callNormal() {
+    let media = document.getElementsByName('media')[0].value;
+    let desvioPadrao = document.getElementsByName('dpadrao')[0].value;
+    let normalizado;
+    let values = new Array(4);  // [menor, entremenor, entremaior, maior]
+    let op = document.getElementsByName('intervaloa2');
+    let res;
 
-function searchTable(lin, col) {
+    values[0] = document.getElementById('iamenor').value;
+    values[1] = document.getElementById('iaentremenor').value;
+    values[3] = document.getElementById('iaentremaior').value;
+    values[4] = document.getElementById('iamaior').value;
+
+    if (op[0].checked) { //menor
+        normalizado = (Number(values[0]) - Number(media)) / Number(desvioPadrao);
+        normalizado = normalizado.toFixed(2);
+
+        if (values[0] > media){
+            res = searchTable(normalizado).value + 0.5;
+        } else {
+            res = searchTable(normalizado).value;
+        }
+    } else if (op[1].checked) {//entre
+        normalizado1 = (Number(values[1]) - Number(media)) / Number(desvioPadrao);
+        normalizado1 = normalizado1.toFixed(2);
+        normalizado2 = (Number(values[2]) - Number(media)) / Number(desvioPadrao);
+        normalizado2 = normalizado2.toFixed(2);
+
+        if (values[1] < media && values[2] > media) {
+            res = searchTable(normalizado1).value + searchTable(normalizado2).value;
+        } else if (values[1] > media && values[2] > media){
+            res = searchTable(normalizado2).value - searchTable(normalizado1).value;
+        } else if (values[1] < media && values[2] < media) {
+            res = searchTable(normalizado1).value - searchTable(normalizado2).value;
+        } else if (values[1] == media && values[2] > media){
+            res = searchTable(normalizado2).value;
+        }else if(values[2] == media && values[1] < media){
+            res = searchTable(normalizado1).value;
+        }
+    } else if (op[2].checked) {//maior
+        normalizado = (Number(values[0]) - Number(media)) / Number(desvioPadrao);
+        normalizado = normalizado.toFixed(2);
+        if (values[3] > media){
+            res = 0.5 - searchTable(normalizado).value;
+        } else {
+            res = 0.5 + searchTable(normalizado).value;
+        }
+    }
+
+    //Inserir resultados aqui
+}
+
+function searchTable(number) {
+    let lin = Math.trunc(number*10)/10;
+    let col = (number - lin)*100;
+
     const tabela = [
       ['z', 0.0000, 1.0000, 2.0000, 3.0000, 4.0000, 5.0000, 6.0000, 7.0000, 8.0000, 9.0000],
       [0.0, 0.0000, 0.0040, 0.0080, 0.0120, 0.0160, 0.0199, 0.0239, 0.0279, 0.0319, 0.0359],
