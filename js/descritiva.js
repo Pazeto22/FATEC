@@ -61,6 +61,21 @@ function shazam() {
     if (tipoVariavel == "Selecione..." || dadosIn == "") {
         alert("Insira todos os dados");
     } else {
+        let Quantidades ={};
+        let typeData = document.getElementById('typeIn').value;
+        if (typeData == 'Dados condensados'){
+            vari = vari.split(';');
+            var data = csvJSON(document.getElementById("PDados").value);
+            for (let i = 0; i<data.length-1; i++) {
+                let aux = data[i][vari[0]];
+                if (aux.toUpperCase() in Quantidades) {
+                    Quantidades[aux.toUpperCase()] += data[i][vari[1]];
+                } else {
+                    Quantidades[aux.toUpperCase()] = data[i][vari[1]];
+                }
+            }
+            vari = vari[0];
+        }
 
         document.getElementsByTagName('body')[0].innerHTML +=
             // `
@@ -121,7 +136,8 @@ function shazam() {
 
 
             // Escrevendo a tabela
-            let Quantidades = quantidadesRepetidas(dadosIn, tipoVariavel);
+            if (typeData == 'Dados brutos')
+                let Quantidades = quantidadesRepetidas(dadosIn, tipoVariavel);
 
             let linha = 1,
                 frequenciaAtual = 0,
@@ -193,7 +209,8 @@ function shazam() {
             dadosIn = aux;
 
             // Escrevendo a tabela
-            let Quantidades = quantidadesRepetidas(dadosIn, tipoVariavel);
+            if (typeData == 'Dados brutos')
+                let Quantidades = quantidadesRepetidas(dadosIn, tipoVariavel);
 
 
             let linha = 1,
@@ -247,7 +264,8 @@ function shazam() {
 
 
             // Escrevendo a tabela
-            let Quantidades = quantidadesRepetidas(dadosIn, tipoVariavel);
+            if (typeData == 'Dados brutos')
+                let Quantidades = quantidadesRepetidas(dadosIn, tipoVariavel);
 
             let linha = 1,
                 frequenciaAtual = 0,
@@ -303,7 +321,6 @@ function shazam() {
                 </tbody>
             </table>
             `
-            console.log(Quantidades);
         } else if (tipoVariavel == 'Quantitativa Contínua') {
 
             let corpo = document.getElementById('corpo');
@@ -315,8 +332,9 @@ function shazam() {
             dadosIn.sort();
 
             // Escrevendo a tabela
-            let Quantidades = quantidadesRepetidas(dadosIn, tipoVariavel);
-            console.log(Quantidades)
+            if (typeData == 'Dados brutos')
+                let Quantidades = quantidadesRepetidas(dadosIn, tipoVariavel);
+
             let linha = 1,
                 frequenciaAtual = 0,
                 frequenciaPercentAtual = 0,
@@ -737,14 +755,13 @@ function exibePercentil(valor, dadosIn) {
 }
 
 function lerArq() {
-    var arq = document.getElementById("fileDesc").files[0];
-    var reader = new FileReader();
+    let arq = document.getElementById("fileDesc").files[0];
+    let reader = new FileReader();
     reader.onload = function (e) {
         var dados = document.getElementById("PDados");
         dados.value = reader.result;
     }
     reader.readAsText(arq);
-    //document.getElementById("labelArqD").innerHTML = arq.name;
 }
 
 function csvJSON(csv) {
@@ -768,8 +785,8 @@ function csvJSON(csv) {
 
     }
 
-    //return result; //JavaScript object
-    return JSON.stringify(result); //JSON
+    return result; //JavaScript object
+    //return JSON.stringify(result); //JSON
 }
 
 function Voltar() {
