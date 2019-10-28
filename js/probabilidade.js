@@ -77,8 +77,15 @@ function shazamabas(x) {
 
 }
 
-/*
-function binomio (n, k) {
+function callBinomial() {
+    n = document.getElementsByName('tamostra')[0].value;
+    k = document.getElementsByName('eventok')[0].value;
+    p = document.getElementsByName('sucessop')[0].value;
+    q = document.getElementsByName('fracassoq')[0].value;
+    res = binomial(n, k, p, q);
+}
+
+function binomioMod (n, k) {
     //(n k) => n!/(k! * (n - k)!)]
     let res =1;
     if (n == k || k == 0){
@@ -86,7 +93,7 @@ function binomio (n, k) {
     } else if (n == k +1 || k ==1) {
         return n;
     } else {
-        return fatorial(n,k) / fatorial(n)
+        return fatorial(n, k) / fatorial(n-k)
     }
 
 }
@@ -99,6 +106,14 @@ function fatorial (n, k=1) {
     }
 }
 
-function bimodal () {
+function binomial (n, k, p, q) {
+    /* n => Tamanho da amostra
+        k => Evento em estudo
+        p => sucesso do evento
+        q => fracasso do evento*/
+    return binomioMod(n,k) * (p ** k) * (q ** (n -k));
+}
 
-}*/
+function padrao (num, media, desvioPadrao) {
+    return (num - media)/desvioPadrao;
+ }
