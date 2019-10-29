@@ -55,13 +55,20 @@ function shazam() {
     } else {
         processo = "Amostra";
     }
+    let mseparatriz = document.getElementById('ems').value;
+    let percentual;
+    if (mseparatriz != 'Selecione...') {
+        percentual = document.getElementById("valorBMS").innerText;
+        percentual = Number(percentual.substring(0, percentual.length-1));
+    }
+
+    let Quantidades ={};
     // let abridor = window.tden('tabelas.html', '_self')
     // alert(dadosIn)
     // console.log(abridor.document.getElementById("titulo").innerHTML)
     if (tipoVariavel == "Selecione..." || dadosIn == "") {
         alert("Insira todos os dados");
     } else {
-        let Quantidades ={};
         let typeData = document.getElementById('typeIn').value;
         if (typeData == 'Dados condensados'){
             vari = vari.split(';');
@@ -136,8 +143,9 @@ function shazam() {
 
 
             // Escrevendo a tabela
-            if (typeData == 'Dados brutos')
-                let Quantidades = quantidadesRepetidas(dadosIn, tipoVariavel);
+            if (typeData == 'Dados brutos') {
+                Quantidades = quantidadesRepetidas(dadosIn, tipoVariavel);
+            }
 
             let linha = 1,
                 frequenciaAtual = 0,
@@ -175,9 +183,13 @@ function shazam() {
                   <td scope="row">Mediana</td>
                   <td>${mediana(medianinhas, dadosIn.length)}</td>
                 </tr>
+                <tr class="table-light">
+                    <td scope="row">${mseparatriz + ' ' + percentual}</td>
+                    <td>${exibePercentil(percentual, dadosIn, Quantidades, mseparatriz, tipoVariavel)}</td>
+                </tr>
               </tbody>
             </table>
-            `
+            `;
 
         } else if (tipoVariavel == 'Qualitativa Ordinal') {
 
@@ -209,9 +221,9 @@ function shazam() {
             dadosIn = aux;
 
             // Escrevendo a tabela
-            if (typeData == 'Dados brutos')
-                let Quantidades = quantidadesRepetidas(dadosIn, tipoVariavel);
-
+            if (typeData == 'Dados brutos') {
+                Quantidades = quantidadesRepetidas(dadosIn, tipoVariavel);
+            }
 
             let linha = 1,
                 frequenciaAtual = 0,
@@ -249,6 +261,10 @@ function shazam() {
                   <td scope="row">Mediana</td>
                   <td>${mediana(medianinhas, dadosIn.length)}</td>
                 </tr>
+                <tr class="table-light">
+                    <td scope="row">${mseparatriz + ' ' + percentual}</td>
+                    <td>${exibePercentil(percentual, dadosIn, Quantidades, mseparatriz, tipoVariavel)}</td>
+                </tr>
               </tbody>
             </table>
             `
@@ -264,8 +280,9 @@ function shazam() {
 
 
             // Escrevendo a tabela
-            if (typeData == 'Dados brutos')
-                let Quantidades = quantidadesRepetidas(dadosIn, tipoVariavel);
+            if (typeData == 'Dados brutos') {
+                Quantidades = quantidadesRepetidas(dadosIn, tipoVariavel);
+            }
 
             let linha = 1,
                 frequenciaAtual = 0,
@@ -318,6 +335,10 @@ function shazam() {
                     <td scope="row">Variância</td>
                     <td>${coeficienteVar(desvio, mediaData)}</td>
                 </tr>
+                <tr class="table-light">
+                    <td scope="row">${mseparatriz + ' ' + percentual}</td>
+                    <td>${exibePercentil(percentual, dadosIn, Quantidades, mseparatriz, tipoVariavel)}</td>
+                </tr>
                 </tbody>
             </table>
             `
@@ -332,8 +353,9 @@ function shazam() {
             dadosIn.sort();
 
             // Escrevendo a tabela
-            if (typeData == 'Dados brutos')
-                let Quantidades = quantidadesRepetidas(dadosIn, tipoVariavel);
+            if (typeData == 'Dados brutos') {
+                Quantidades = quantidadesRepetidas(dadosIn, tipoVariavel);
+            }
 
             let linha = 1,
                 frequenciaAtual = 0,
@@ -390,6 +412,10 @@ function shazam() {
                 <tr class="table-light">
                   <td scope="row">Variância</td>
                   <td>${coeficienteVar(desvio, mediaData)}</td>
+                </tr>
+                <tr class="table-light">
+                    <td scope="row">${mseparatriz + ' ' + percentual}</td>
+                    <td>${exibePercentil(percentual, dadosIn, Quantidades, mseparatriz, tipoVariavel)}</td>
                 </tr>
               </tbody>
             </table>
@@ -464,7 +490,6 @@ function shazam() {
         document.querySelector(".fab").style = "visibility: visible"
     }
 }
-
 
 function quantidadesRepetidas(vetor, tipoVariavel) {
     let Quantidades = {};
@@ -747,11 +772,27 @@ function getDados(Quantidades) {
 }
 
 
-function exibePercentil(valor, dadosIn) {
+function exibePercentil(valor, dadosIn, Quantidades, mseparatriz, tipoVariavel) {
+ 
     let size = dadosIn.length;
     let posicaoDado = Math.round(valor * size / 100);
 
-    return dadosIn[posicaoDado - 1];
+    if (mseparatriz != 'Selecione...') {
+        let count = 0;
+        let aux;
+        if (tipoVariavel == 'Quantitativa Contínua'){
+            for (let i in Quantidades) {
+                if (count >= posicaoDado){
+                    aux = i;
+                    break;
+                }
+                count += Quantidades[i];
+            }
+            return Number(Number(aux.substring(0, aux.indexOf(" "))) + ((Math.trunc(posicaoDado) - count) / Quantidades[aux]) * isQuantiContinous(dadosIn, tipoVariavel).intervalo).toFixed(2);
+        } else {
+            return dadosIn[Math.trunc(posicaoDado)];
+        }
+    }
 }
 
 function lerArq() {
