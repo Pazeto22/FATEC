@@ -125,20 +125,19 @@ function binomial (n, k, p, q) {
     let op = document.getElementsByName('intervaloa');
     let res;
 
-    values[0] = document.getElementById('iamenor').value;
-    values[1] = document.getElementById('iaentremenor').value;
-    values[3] = document.getElementById('iaentremaior').value;
-    values[4] = document.getElementById('iamaior').value;
-
     if (op[0].checked) { //menor
+        values[0] = document.getElementById('iamenor').value;
         res = (1 / (max -min)) * (values[0] - min);
     } else if (op[1].checked) {//entre
+        values[1] = document.getElementById('iaentremenor').value;
+        values[2] = document.getElementById('iaentremaior').value;
         if (values[3] > values[1]) {
             res = (1 / (max -min)) * (values[3] - values[1]);
         } else {
             res = (1 / (max -min)) * (values[1] - values[3]);
         }
     } else if (op[2].checked) {//maior
+        values[3] = document.getElementById('iamaior').value;
         res = (1 / (max -min)) * (max - values[4]);
     }
 
@@ -156,12 +155,8 @@ function callNormal() {
     let op = document.getElementsByName('intervaloa2');
     let res;
 
-    values[0] = document.getElementById('iamenor').value;
-    values[1] = document.getElementById('iaentremenor').value;
-    values[3] = document.getElementById('iaentremaior').value;
-    values[4] = document.getElementById('iamaior').value;
-
     if (op[0].checked) { //menor
+        values[0] = document.getElementById('iamenor').value;
         normalizado = (Number(values[0]) - Number(media)) / Number(desvioPadrao);
         normalizado = normalizado.toFixed(2);
 
@@ -171,6 +166,8 @@ function callNormal() {
             res = searchTable(normalizado).value;
         }
     } else if (op[1].checked) {//entre
+        values[1] = document.getElementById('iaentremenor').value;
+        values[2] = document.getElementById('iaentremaior').value;
         normalizado1 = (Number(values[1]) - Number(media)) / Number(desvioPadrao);
         normalizado1 = normalizado1.toFixed(2);
         normalizado2 = (Number(values[2]) - Number(media)) / Number(desvioPadrao);
@@ -188,6 +185,7 @@ function callNormal() {
             res = searchTable(normalizado1).value;
         }
     } else if (op[2].checked) {//maior
+        values[4] = document.getElementById('iamaior').value;
         normalizado = (Number(values[0]) - Number(media)) / Number(desvioPadrao);
         normalizado = normalizado.toFixed(2);
         if (values[3] > media){
