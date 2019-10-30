@@ -38,16 +38,12 @@ function shazamMedida() {
 }
 
 function quaseshazam() {
-    let tipoVariavel = document.getElementById('vars').value;
+    let tipoVariavel = document.querySelector('#vars').value;
     if (tipoVariavel == 'Qualitativa Ordinal') {
         $('#cordem').modal('toggle')
     } else {
         return shazam()
     }
-}
-
-function calcularon(){
-    
 }
 
 function shazam() {
@@ -96,7 +92,7 @@ function shazam() {
             vari = vari[0];
         }
 
-        document.getElementsByTagName('body')[0].innerHTML +=
+        document.querySelector('#S3-Container').innerHTML +=
             // `
             // <section id = 'S3'>
             //     <div class="table-responsive col-md-10" id="tabl2">
@@ -478,7 +474,7 @@ function shazam() {
         var ctx = document.getElementById('justChart').getContext('2d');
         var chart = new Chart(ctx, {
             // The type of chart we want to create
-            type: 'bar',
+            type: (tipoVariavel.substring(0,4) == "Qual")? 'pie':'bar',
 
             // The data for our dataset
             data: {
