@@ -838,9 +838,10 @@ function csvJSON(csv) {
 }
 
 function Voltar() {
-    document.getElementById('S3').innerHTML = ""
-    $('#S3').remove();
-    document.getElementById('S2').style.display = 'inline';
-    document.querySelector(".fab").style = "visibility: hidden"
+    location.reload();
+    // document.getElementById('S3').innerHTML = ""
+    // $('#S3').remove();
+    // document.getElementById('S2').style.display = 'inline';
+    // document.querySelector(".fab").style = "visibility: hidden"
 
 }

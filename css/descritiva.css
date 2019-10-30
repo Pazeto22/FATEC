@@ -76,7 +76,7 @@ section#iDados {
     margin: 30px auto;
     color: #444;
     padding-top: 15px !important;
-    padding: 8px;
+    padding: 3px;
     border-radius: 16px;
     width: 950px;
     height: auto;
@@ -86,7 +86,7 @@ section#iDados {
 
 div#ddados {
     width: 425px;
-    margin: 15px;
+    margin: 10px;
 }
 
 /* section#Variável {
@@ -252,7 +252,7 @@ div#tabl2{
 textarea {
     margin-bottom: 10px;
     width: 400px;
-    height: 114px;
+    height: 112px;
     background: rgb(250, 253, 255);
     border-radius: 5pt;
     outline: none;
