@@ -65,7 +65,7 @@ section#principal{
     box-shadow: 0 9px rgb(255, 70, 110);
   }
 
-  .bescolha:active {
+  .bescolha:hover {
     box-shadow: 0 5px rgb(255, 62, 104);
     transform: translateY(4px);
   }
@@ -75,4 +75,36 @@ section#principal{
       padding: 10px;
       border-radius: 16px;
       color: white;
+  }
+
+  .butn {
+    /* height: 100px; */
+    border: 2px solid black;
+    border-radius: 16px;
+    background-color: rgba(255, 255, 255, 0);
+    color: black;
+    padding: 5px;
+    cursor: pointer;
+    outline: none;
+}
+
+.btnescolha {
+    width: 250px;
+    border-color: rgb(255, 99, 132);
+    color: rgb(255, 99, 132);
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.btnescolha:hover {
+    background-color: rgb(255, 99, 132);
+    color: white;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
   }
