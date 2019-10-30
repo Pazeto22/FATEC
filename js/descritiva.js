@@ -37,8 +37,20 @@ function shazamMedida() {
     }
 }
 
-function shazam() {
+function quaseshazam() {
+    let tipoVariavel = document.getElementById('vars').value;
+    if (tipoVariavel == 'Qualitativa Ordinal') {
+        $('#cordem').modal('toggle')
+    } else {
+        return shazam()
+    }
+}
 
+function calcularon(){
+    
+}
+
+function shazam() {
     let vari = document.getElementById('PVar').value;
     if (vari == "") {
         vari = "Variável"
@@ -59,10 +71,10 @@ function shazam() {
     let percentual;
     if (mseparatriz != 'Selecione...') {
         percentual = document.getElementById("valorBMS").innerText;
-        percentual = Number(percentual.substring(0, percentual.length-1));
+        percentual = Number(percentual.substring(0, percentual.length - 1));
     }
 
-    let Quantidades ={};
+    let Quantidades = {};
     // let abridor = window.tden('tabelas.html', '_self')
     // alert(dadosIn)
     // console.log(abridor.document.getElementById("titulo").innerHTML)
@@ -70,10 +82,10 @@ function shazam() {
         alert("Insira todos os dados");
     } else {
         let typeData = document.getElementById('typeIn').value;
-        if (typeData == 'Dados condensados'){
+        if (typeData == 'Dados condensados') {
             vari = vari.split(';');
             var data = csvJSON(document.getElementById("PDados").value);
-            for (let i = 0; i<data.length-1; i++) {
+            for (let i = 0; i < data.length - 1; i++) {
                 let aux = data[i][vari[0]];
                 if (aux.toUpperCase() in Quantidades) {
                     Quantidades[aux.toUpperCase()] += data[i][vari[1]];
@@ -486,7 +498,6 @@ function shazam() {
         Chart.defaults.global.defaultFontColor = 'rgb (23,39,48)';
         Chart.platform.disableCSSInjection = true;
         document.getElementById('justChart').style.display = 'inherint';
-
         document.querySelector(".fab").style = "visibility: visible"
     }
 }
@@ -595,12 +606,12 @@ function isOrdinal() {
 
     let Quantidades = quantidadesRepetidas(dadosIn, tipoVariavel);
     let ordem = document.getElementById('ordem');
-    let cordem = document.getElementById('cordem');
+    // let cordem = document.getElementById('cordem');
 
     if (tipoVariavel == 'Qualitativa Ordinal' && ordem.innerText == "") {
-        cordem.style.display = "inline";
+        // cordem.style.display = "inline";
         // cordem.style.position = ""
-        ordem.style.visibility = "visible";
+        // ordem.style.visibility = "visible";
         let strHTML = "";
 
         for (let i in Quantidades) {
@@ -655,7 +666,7 @@ function isOrdinal() {
         }
     } else {
         ordem.innerText = ""
-        ordem.style.visibility = "hidden";
+        // ordem.style.visibility = "hidden";
     }
 }
 
@@ -773,16 +784,16 @@ function getDados(Quantidades) {
 
 
 function exibePercentil(valor, dadosIn, Quantidades, mseparatriz, tipoVariavel) {
- 
+
     let size = dadosIn.length;
     let posicaoDado = Math.round(valor * size / 100);
 
     if (mseparatriz != 'Selecione...') {
         let count = 0;
         let aux;
-        if (tipoVariavel == 'Quantitativa Contínua'){
+        if (tipoVariavel == 'Quantitativa Contínua') {
             for (let i in Quantidades) {
-                if (count >= posicaoDado){
+                if (count >= posicaoDado) {
                     aux = i;
                     break;
                 }

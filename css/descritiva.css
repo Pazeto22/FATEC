@@ -1,0 +1,347 @@
+/* .logo {
+    max-height: 45px;
+    height: auto;
+} */
+
+
+/* .cabeçalho {
+    max-height: 75px;
+    min-height: 66px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 3px;
+    margin-top: -2px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    font: bold 22pt arial;
+    color: #223e63;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.151);
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+    background: rgba(255, 255, 255, 0.9);
+    ;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+} */
+
+header {
+    padding: 25px;
+}
+
+#nav1 {
+    /* opacity: 0.85;
+     */
+    background: rgba(252, 255, 255, 0.975) !important;
+    border-bottom: 1px solid rgba(204, 204, 204, 0.5);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+div#conteudoNavbarSuportado{
+    width: 20%;
+}
+
+body {
+    background-image: url("../images/dados-background.jpg");
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed;
+    background-position: center;
+    /* width: 100%;
+    height: 100%; */
+    font-family: Calibri, sans-serif !important;
+    text-align: center !important;
+    /* background: rgb(90, 77, 148) !important; */
+    color: white !important;
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -310px 0 0 -300px; */
+}
+
+h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    text-align: center;
+    font-size: 30pt;
+}
+
+/* p#valorBMS{
+    padding-left: 130px;
+} */
+
+section#iDados {
+    background: white;
+    width: 50%;
+    margin: 30px auto;
+    color: #444;
+    padding-top: 15px !important;
+    padding: 8px;
+    border-radius: 16px;
+    width: 950px;
+    height: auto;
+    background: rgba(245, 252, 255, 0.85);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226);
+}
+
+div#ddados {
+    width: 425px;
+    margin: 15px;
+}
+
+/* section#Variável {
+    background: white;
+    width: 50%;
+    margin: 1px auto;
+    color: #444;
+    padding: 12px;
+    border-radius: 16px;
+    width: 622px;
+    background: rgba(245, 252, 255, 0.85);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226);
+    margin-bottom: 30px;
+} */
+
+div,
+section {
+    margin: auto;
+}
+
+div#rowx2 {
+    align-items: center;
+}
+
+p#s2ex {
+    font: normal 8pt arial;
+    margin: auto;
+}
+
+.modal-content{
+    background: white !important;
+    color: #444;
+    padding-top: 15px !important;
+    padding: 8px !important;
+    border-radius: 16px !important;
+    background: rgb(245, 252, 255) !important;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226) !important;
+}
+
+/* table {
+    width: 100%;
+    border-collapse: collapse;
+} */
+
+/* th,
+td {
+    border-bottom: 1px solid #888;
+    padding: 8px;
+    width: auto;
+    text-align: left;
+    opacity: 1;
+} */
+
+/* tr#titulo {
+    font: bold 13pt arial;
+    color: rgb(0, 0, 0);
+}
+
+th {
+    color: seagreen;
+    font-family: Georgia, 'Times New Roman', serif;
+} */
+
+.alin-dir {
+    text-align: right;
+}
+
+
+/* .layer {
+    background-color: rgba(255, 255, 255, 0.1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+} */
+
+section#S2 {
+    /* text-align: center; */
+    /* background: rgba(245, 255, 255, 0.5); */
+    /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226); */
+    /* border-radius: 3px; */
+    font: normal 13pt arial;
+    width: 1200px;
+    /* position: absolute; */
+    /* display: inline; */
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 53%;
+    left: 50%;
+    overflow: auto;
+}
+
+section#S3 {
+    background: rgba(245, 255, 255, 0.5);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226);
+    border-radius: 16px;
+    font: normal 13pt arial;
+    color: black;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    /* width: auto; */
+    /* position: absolute; */
+    width: 1000px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+section#S3-2 {
+    background: rgba(245, 255, 255, 0.5);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226);
+    border-radius: 3px;
+    font: normal 13pt arial;
+    color: black;
+    padding: 2px;
+    /* width: auto; */
+    /* position: absolute; */
+    width: 1000px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+div#S3Resultados{
+    /* margin-top: 10px;
+    margin-bottom: 10px; */
+    width: 400px;
+    margin: 0 auto;
+    text-align: center !important;
+}
+
+.chartjs-render-monitor {
+    height: 400px !important;
+    width: auto !important;
+}
+
+/* .table-responsive {
+    text-align: center !important;
+} */
+
+/*table {
+    color: black;
+    width: 800px;
+    border-style: solid;
+    border-width: medium;
+    border-radius: 20px;
+} */
+
+table{
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226) !important;
+    border-radius: 16px !important;
+}
+
+.table-shazam{
+    background-color: rgb(255, 99, 132);
+}
+
+div#tabl2{
+    padding: 5px;
+}
+
+textarea {
+    margin-bottom: 10px;
+    width: 400px;
+    height: 114px;
+    background: rgb(250, 253, 255);
+    border-radius: 5pt;
+    outline: none;
+}
+
+select {
+    margin-top: 10pt;
+    background: rgb(250, 253, 255);
+    /* width: 80pt; */
+    /* height: 20pt; */
+    border-radius: 5pt;
+    outline: none;
+}
+
+input {
+    margin-top: 10pt;
+    background: rgb(250, 253, 255);
+    border: none;
+    border-bottom: 1px solid rgb(224, 224, 224);
+    background-color: rgba(255, 255, 255, 0);
+    outline: none;
+}
+
+.butn {
+    /* height: 100px; */
+    border: 2px solid black;
+    border-radius: 16px;
+    background-color: rgba(255, 255, 255, 0);
+    color: black;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.btnconfirmar {
+    width: 125px;
+    border-color: rgb(255, 99, 132);
+    color: rgb(255, 99, 132);
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.btnconfirmar:hover {
+    background-color: rgb(255, 99, 132);
+    color: white;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+  }
+
+  .btnenviar {
+    width: 185px;
+    border-color: rgb(255, 99, 132);
+    color: rgb(255, 99, 132);
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.btnenviar:hover {
+    background-color: rgb(255, 99, 132);
+    color: white;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+  }
+
+img#ColorModeIco{
+    cursor: pointer;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 10px;
+    margin: 10px;
+  }
+
+.grid-item {
+    /* background-color: pink; */
+    padding: 2px !important;
+    margin-left: 10px;
+    margin-right: 10px;
+}
