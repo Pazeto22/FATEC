@@ -843,5 +843,4 @@ function Voltar() {
     // $('#S3').remove();
     // document.getElementById('S2').style.display = 'inline';
     // document.querySelector(".fab").style = "visibility: hidden"
-
 }
