@@ -98,13 +98,23 @@
                 <textarea name="Dados" id="yDados" cols="60" rows="7" style="resize: vertical"
                     placeholder="Insira os dados"></textarea><br>
             </div>
-        </div>
+            <br>
+                    <hr>
+                    <label for="#find">Selecione a medida separatiz</label><br>
+                    <select name="findYfindX" id="find">
+                        <option selected>Encontrar Y</option>
+                        <option>Encontrar X</option>
+                    </select>
         <p id="botao"><input type="button" class="butn bconfirmar" value="Confirmar" onclick="callUniforme()"></p>
+        <div id = 'resultados'></div>
+                <canvas id="justChart"></canvas>
+        </div>
     </main>
 
     <script src="./js/jquery-3.3.1.slim.min.js"></script>
     <script src="./js/popper.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/chart.js"></script>
 </body>
 
 </html>

@@ -62,19 +62,20 @@ function correlacao(x, y) {
 function regressao(x, y) {
     let xDataSum = x.reduce((a, b) => a + b, 0);
     let yDataSum = y.reduce((a, b) => a + b, 0);
-    let xDataQuad = x.reduce((a, b) => a**2 + b**2, 0);
+    let xDataQuad = x.reduce((a, b) => a + b**2, 0);
     let n = x.length;
     let sumXY = 0;
 
-    for( let i = 0; i < xDados.length; i++) {
-        sumXY += x[i] *y[i];
+    for( let i = 0; i < x.length; i++) {
+        sumXY = sumXY + x[i] *y[i];
     }
 
     let a = ( n * sumXY - xDataSum*yDataSum) / ( n*xDataQuad - xDataSum**2);
+    a = a.toFixed(2);
+    let b = yDataSum/n - a * xDataSum/n;
+    b = b.toFixed(2);
 
-    b = yDataSum/n - a * xDataSum/n;
-
-    return {a, b}
+    return {a, b};
 }
 
 function findY(x, a, b) {
@@ -85,21 +86,121 @@ function findX(y, a, b) {
     return (y - b) / a;
 }
 
-function test() {
-    x1 = [300, 400, 500, 600, 700, 800];
-    y1 = [33, 25, 24, 18, 12, 10];
-    r = -0.98;
-    a = -0.05;
-    b = 47.83;
-    reg = regressao(x1,y1);
-    console.log("Soma x: 3300");
-    console.log("Soma y: 122");
-    console.log("Soma xy: 59100");
-    console.log("Soma quad x: 1.990.000");
-    console.log("Soma quad y: 2858")
-    console.log( "Correlação: " + correlacao(x1, y1) + " ==> " + r);
-    console.log("ok");
-    console.log( reg.a + " ==> " + a);
-    console.log( reg.b + " ==> " + b);
-    console.log("Regressão not ok");
+function geraScatterDados (xDados, yDados) {
+    let dados = [];
+
+    min = [Math.min(xDados), Math.min(yDados)]
+    max = [Math.max(xDados), Math.max(yDados)]
+
+    for(let i =0; i < xDados.length; i++) {
+        dados. push({x: xDados[i], y: yDados[i]});
+    };
+
+    return dados;
+}
+
+function geraLineDados (xDados, yDados) {
+    let dados = [];
+
+    let minX = Math.min(...xDados);
+    console.log(minX)
+    let minY = Math.min(...yDados);
+    let maxX = Math.max(...xDados);
+    let maxY = Math.max(...yDados);
+    fator = [maxX - minX, maxY - minY];
+    console.log(fator)
+    n = xDados.length;
+
+    minX = minX - fator[0] / n;
+    console.log(minX)
+    minY = minY - fator[1] / n;
+    maxX = maxX + fator[0] / n;
+    maxY = maxY + fator[1] / n;
+
+    dados = [{x: minX.toFixed(2), y: minY.toFixed(2)}, {x: maxX.toFixed(2), y: maxY.toFixed(2)}];
+
+    return dados;
+}
+
+function geraGraf(dadosIn) {
+    let options = {
+        title: {
+            display: true,
+            position: 'top',
+            text: `Gráfico de var`, //Inserir nome de variavel
+            fontSize: 18,
+        },
+        legend: {
+            display: false,
+        },
+        elements: {
+            //https://www.chartjs.org/docs/latest/configuration/elements.html
+            backgroundColor: 'rgba(0, 0, 0, 0,1)',
+            borderSkipped: 'right'
+        },
+        scales: {
+            xAxes: [{
+                type: 'linear',
+                position: 'bottom',
+                gridLines: {
+                    display: true
+                },
+            }],
+            yAxes: [{
+                ticks: { //Verificar necessidade
+                    min: 0,
+                    beginAtZero: true
+                },
+                gridLines: {
+                    display: true
+                }
+            }]
+        }
+    };
+
+    var ctx = document.getElementById('justChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'scatter',
+
+            // The data for our dataset
+            data: {
+                labels: "getLabel(quantidadesRepetidas(dadosIn, tipoVariavel))",
+                datasets: [{
+                    label: 'Frequência dos dados', //Trocar nome, colocar adequado
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: geraScatterDados(dadosIn.xDados, dadosIn.yDados)
+                }, {
+                    label: 'Frequência dos dados',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: geraLineDados(dadosIn.xDados, dadosIn.yDados),
+                    
+                    // Changes this dataset to become a line
+                    type: 'line'
+                }]
+            },
+
+            // Configuration options go here
+            options: options
+        });
+        Chart.defaults.global.defaultFontSize = 16;
+        Chart.defaults.global.defaultFontColor = 'rgb (23,39,48)';
+        Chart.platform.disableCSSInjection = true;
+}
+
+function callCorrelacao () {
+    let dadosIn = getDados();
+    let cor = correlacao(dadosIn.xDados, dadosIn.yDados);
+    let reg = regressao(dadosIn.xDados, dadosIn.yDados);
+    let find = document.getElementById("find").value;
+    let y = null;
+    let x = null;
+    if (find == "Encontrar Y") {
+        y = findY(dadosIn.xDados, reg.a, reg.b);
+    } else {
+        x = findX(dadosIn.yDados, reg.a, reg.b)
+    }
+    geraGraf(dadosIn);
 }
