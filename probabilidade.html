@@ -15,9 +15,9 @@
 <body>
     <header>
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light" id="nav1">
-                
-            <a class="navbar-brand mr-5" href="./index.html"><img src="./images/home-logo.png" id="logoIco" width="auto" 
-            height="30" alt=""></a>
+
+            <a class="navbar-brand mr-5" href="./index.html"><img src="./images/home-logo.png" id="logoIco" width="auto"
+                    height="30" alt=""></a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
                 aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
@@ -26,7 +26,7 @@
 
             <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
                 <ul class="navbar-nav mr-auto">
-                    
+
                     <li class="nav-item active">
                         <a class="nav-link" href="./index.html">Início <span class="sr-only">(Página atual)</span></a>
                     </li>
@@ -54,7 +54,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="descritiva.html">Descritiva</a>
                             <a class="dropdown-item" href="probabilidade.html">Probabilidade</a>
-                            <a class="dropdown-item" href="#">Correlação</a>
+                            <a class="dropdown-item" href="correlacao.html">Correlação</a>
                         </div>
                     </li>
                 </ul>
@@ -62,9 +62,25 @@
                     <img src="./images/colormodeico.png" id="ColorModeIco" width="auto" height="30" onclick="DarkMode()">
                 </form> -->
             </div>
-            
+
         </nav>
     </header>
+
+    <div class="modal fade" id="resultado" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Resultados</h5>
+                </div>
+                <div class="modal-body">
+                    <div id="resultadoInterior"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="butn btnconfirmar" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <main id="prob">
         <section id="sabas" class="container-abas grid-container">
@@ -85,7 +101,8 @@
                     Maior
                     <div id="escolhaintervalo"></div>
                     <br><br>
-                    <p id="botao"><input type="button" class="butn bconfirmar" value="Confirmar" onclick="callUniforme"></p>
+                    <p id="botao"><input type="button" class="butn bconfirmar" value="Confirmar" data-toggle="modal"
+                            data-target="#resultado" onclick="callUniforme()"></p>
                 </section>
             </div>
             <!-- Aba 2 -->
@@ -98,7 +115,8 @@
                     Evento (k):<br> <input type="number" name="eventok" class="dado"><br><br>
                     Sucesso (p):<br> <input type="number" name="sucessop" class="dado"><br><br>
                     Fracasso (q):<br> <input type="number" name="fracassoq" class="dado"><br><br>
-                    <p id="botao"><input type="button" class="butn bconfirmar" value="Confirmar" onclick="callBinomial()"></p>
+                    <p id="botao"><input type="button" class="butn bconfirmar" value="Confirmar" data-toggle="modal"
+                            data-target="#resultado" onclick="callBinomial()"></p>
                 </section>
             </div>
             <!-- Aba 3 -->
@@ -118,7 +136,8 @@
                     Maior
                     <div id="escolhaintervalo2"></div>
                     <br><br>
-                    <p id="botao"><input type="button" class="butn bconfirmar" value="Confirmar" onclick="callUniforme()"></p>
+                    <p id="botao"><input type="button" class="butn bconfirmar" value="Confirmar" data-toggle="modal"
+                            data-target="#resultado" onclick="callNormal()"></p>
                 </section>
             </div>
         </section>
