@@ -87,7 +87,7 @@ function callBinomial() {
      //Inserir resultados aqui   
 
      mResultados = document.querySelector("#resultadoInterior")
-     mResultados.innerHTML = `Probabilidade: ${res}% <br> ?`
+     mResultados.innerHTML = `Probabilidade: ${res}%`
 }
 
 function binomioMod(n, k) {
@@ -98,7 +98,7 @@ function binomioMod(n, k) {
     } else if (n == k + 1 || k == 1) {
         return n;
     } else {
-        return fatorial(n, k) / fatorial(n - k)
+        return fatorial(n) / fatorial(k)*fatorial(n - k)
     }
 
 }
@@ -116,6 +116,7 @@ function binomial(n, k, p, q) {
         k => Evento em estudo
         p => sucesso do evento
         q => fracasso do evento*/
+        console.log(binomioMod(n, k));
     return binomioMod(n, k) * (p ** k) * (q ** (n - k));
 }
 

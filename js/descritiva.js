@@ -9,7 +9,7 @@ function shazamBarra() {
         vbms.innerHTML = `${slider.value}%`
     }
 }
-
+let MediosD = {};
 function shazamMedida() {
     var barra = document.getElementById("barraMS")
     var barraescolha = document.getElementById("ems").value
@@ -68,6 +68,9 @@ function shazam() {
     if (mseparatriz != 'Selecione...') {
         percentual = document.getElementById("valorBMS").innerText;
         percentual = Number(percentual.substring(0, percentual.length - 1));
+    } else if (mseparatriz == 'Selecione...') {
+        mseparatriz = "Medida separatriz";
+        percentual = ''
     }
 
     let Quantidades = {};
@@ -340,7 +343,7 @@ function shazam() {
                     <td>${desvio}</td>
                 </tr>
                 <tr class="table-light">
-                    <td scope="row">Variância</td>
+                    <td scope="row">C. de Variação</td>
                     <td>${coeficienteVar(desvio, mediaData)}</td>
                 </tr>
                 <tr class="table-light">
@@ -368,30 +371,30 @@ function shazam() {
             let linha = 1,
                 frequenciaAtual = 0,
                 frequenciaPercentAtual = 0,
-                medianinhas = {};
+                medianinhas = {}, QuantidadesMe = {};
 
             for (let i in Quantidades) {
                 let linhaAtual = document.getElementsByTagName('tr');
                 linhaAtual[linha].innerHTML += `
                     <td>${i}</td>
-                    <td >${Quantidades[i]}</td>
-                    <td >${(Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>
-                    <td >${frequenciaAtual += Quantidades[i]}</td>
-                    <td >${(frequenciaPercentAtual += Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>`;
+                    <td>${Quantidades[i]}</td>
+                    <td>${(Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>
+                    <td>${frequenciaAtual += Quantidades[i]}</td>
+                    <td>${(frequenciaPercentAtual += Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>`;
                 linha++;
-                medianinhas[`${i}`] = frequenciaAtual;
+                QuantidadesMe[i] = [frequenciaAtual, Quantidades[i]];
             }
 
             document.getElementById('S2').style.display = 'none';
 
             s3 = document.getElementById('S3Resultados');
-            let mediaData = media(Quantidades, dadosIn.length);
+            let mediaData = mediaC(MediosD, dadosIn.length);
             let desvio = desvioPadrao(Quantidades, mediaData, dadosIn.length, processo);
             // s3.innerHTML += `<p style="color:black;">Moda: ${cortaString(acumularModa(Quantidades))}</p>
             // <p style="color:black;">Média: ${mediaData}</p>
             // <p style="color:black;">Mediana: ${cortaString(mediana(medianinhas, dadosIn.length))}</p>
             // <p style="color:black;">DesvioPadrão: ${desvio}</p>
-            // <p style="color:black;">Variância: ${coeficienteVar(desvio, mediaData)}</p>`;
+            // <p style="color:black;">C. de Variação: ${coeficienteVar(desvio, mediaData)}</p>`;
             s3.innerHTML += `
               <table class="table table-hover table-bordered table-sm" id="TabResult">
               <thead "thead-dark">
@@ -411,19 +414,19 @@ function shazam() {
                 </tr>
                 <tr class="table-light">
                   <td scope="row">Mediana</td>
-                  <td>${cortaString(mediana(medianinhas, dadosIn.length))}</td>
+                  <td>${medianaC(dadosIn.length, QuantidadesMe, isQuantiContinous(dadosIn,tipoVariavel).intervalo, 0.5)}</td>
                 </tr>
                 <tr class="table-light">
                   <td scope="row">DesvioPadrão</td>
                   <td>${desvio}</td>
                 </tr>
                 <tr class="table-light">
-                  <td scope="row">Variância</td>
+                  <td scope="row">C. de Variação</td>
                   <td>${coeficienteVar(desvio, mediaData)}</td>
                 </tr>
                 <tr class="table-light">
                     <td scope="row">${mseparatriz + ' ' + percentual}</td>
-                    <td>${exibePercentil(percentual, dadosIn, Quantidades, mseparatriz, tipoVariavel)}</td>
+                    <td>${medianaC(dadosIn.length, QuantidadesMe, isQuantiContinous(dadosIn,tipoVariavel).intervalo, percentual/100, mseparatriz)}</td>
                 </tr>
               </tbody>
             </table>
@@ -474,7 +477,7 @@ function shazam() {
         var ctx = document.getElementById('justChart').getContext('2d');
         var chart = new Chart(ctx, {
             // The type of chart we want to create
-            type: (tipoVariavel.substring(0,4) == "Qual")? 'pie':'bar',
+            type: (tipoVariavel.substring(0, 4) == "Qual") ? 'pie' : 'bar',
 
             // The data for our dataset
             data: {
@@ -523,11 +526,13 @@ function quantidadesRepetidas(vetor, tipoVariavel) {
         for (let i = 0; i < intervalo.length - 1; i++) {
             aux = 0;
             for (let j of vetor) {
-                if (j > intervalo[i] && j < intervalo[i + 1]) {
+                if (j >= intervalo[i] && j < intervalo[i + 1]) {
                     aux++
                 }
             }
             Quantidades[`${intervalo[i]} |-- ${intervalo[i + 1]}`] = aux;
+            MediosD[`${(intervalo[i] + intervalo[i + 1]) / 2}`] = aux;
+            console.log(MediosD);
         }
     } else {
         for (let i of vetor) {
@@ -696,6 +701,16 @@ function media(dadosIn, totalFreq) {
     return (soma / totalFreq).toFixed(2);
 }
 
+function mediaC(dadosIn, totalFreq) {
+    let soma = 0;
+
+    for (let i in dadosIn) {
+        soma += Number(i) * dadosIn[i];
+    }
+
+    return (soma / totalFreq).toFixed(2);
+}
+
 function mediana(dadosIn, totalFreq) {
     let posicoes = [],
         medianas = [];
@@ -778,13 +793,12 @@ function getDados(Quantidades) {
     return dados;
 }
 
-
 function exibePercentil(valor, dadosIn, Quantidades, mseparatriz, tipoVariavel) {
 
     let size = dadosIn.length;
     let posicaoDado = Math.round(valor * size / 100);
 
-    if (mseparatriz != 'Selecione...') {
+    if (mseparatriz != 'Medida separatriz') {
         let count = 0;
         let aux;
         if (tipoVariavel == 'Quantitativa Contínua') {
@@ -799,6 +813,8 @@ function exibePercentil(valor, dadosIn, Quantidades, mseparatriz, tipoVariavel) 
         } else {
             return dadosIn[Math.trunc(posicaoDado)];
         }
+    } else {
+        return "--"
     }
 }
 
@@ -843,4 +859,23 @@ function Voltar() {
     // $('#S3').remove();
     // document.getElementById('S2').style.display = 'inline';
     // document.querySelector(".fab").style = "visibility: hidden"
+}
+
+function medianaC(totalFrequencia, intervalos, interClasses, porcentagem, mseparatriz) {
+    let posicao = Number((totalFrequencia * porcentagem).toFixed(2));
+    let controle = 0,
+        vetorIntervalos;
+    if (mseparatriz == 'Medida separatriz') {
+        return '--';
+    }
+    for (let j in intervalos) {
+        if (posicao >= controle && posicao <= intervalos[j][0]) {
+            vetorIntervalos = j.split(' |-- ');
+            for (let i = 0; i < vetorIntervalos.length; i++) {
+                vetorIntervalos[i] = Number(vetorIntervalos[i]);
+            }
+            return (vetorIntervalos[0] + ((posicao - controle) / intervalos[j][1]) * interClasses).toFixed(2)
+        }
+        controle = intervalos[j][0];
+    }
 }
