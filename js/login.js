@@ -1,5 +1,5 @@
 function login() {
-    location.href = "./escolha.html";
+    return location.href = "./escolha.html";
 }
 
 function logi() {
@@ -10,6 +10,7 @@ function logi() {
     document.querySelector(".footerSocial").style.marginBottom = "2%"
     document.querySelector(".btnregistrar").style.transition = "all 0ms ease"
     document.querySelector(".btnlogin").style.transition = "all 500ms ease"
+    return false
 }
 
 function regi() {
@@ -20,4 +21,5 @@ function regi() {
     document.querySelector(".footerSocial").style.marginBottom = "0%"
     document.querySelector(".btnlogin").style.transition = "all 0ms ease"
     document.querySelector(".btnregistrar").style.transition = "all 500ms ease"
+    return false
 }
