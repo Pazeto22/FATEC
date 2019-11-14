@@ -74,7 +74,6 @@ main {
 }
 
 section#sabas {
-    /* padding: 8px; */
     padding-top: 8px;
     height: 39px;
     border-bottom: 2px solid rgb(255, 99, 132);
@@ -83,12 +82,10 @@ section#sabas {
 
 .dado, .ia {
     background: rgb(250, 253, 255);
-    /* border-radius: 5pt; */
     border: none;
     border-bottom: 1px solid rgb(224, 224, 224);
     background-color: rgba(255, 255, 255, 0);
     outline: none;
-    /* margin-left: 10px; */
 }
 
 .sconteudo,
@@ -109,7 +106,6 @@ section#sabas {
 }
 
 .butn {
-    /* height: 100px; */
     border: 2px solid black;
     border-radius: 16px;
     background-color: rgba(255, 255, 255, 0);
@@ -177,11 +173,8 @@ input.abas + label {
     color: grey;
     padding: 3px 32px;
     cursor: pointer;
-    /* background-color: rgb(255, 199, 211); */
-    /* border: 2px solid  rgb(255, 99, 132); */
     border-bottom: 0px;
     border-radius: 16px 16px 0 0;
-    /* background-color: rgba(255, 255, 255, 0); */
     -webkit-transition: all 500ms ease;
     -moz-transition: all 500ms ease;
     -ms-transition: all 500ms ease;

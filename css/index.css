@@ -1,10 +1,10 @@
+/* Navbar */
+
 header {
     padding: 25px;
 }
 
 #nav1 {
-    /* opacity: 0.85;
-     */
     background: rgba(252, 255, 255, 0.975) !important;
     border-bottom: 1px solid rgba(204, 204, 204, 0.5);
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
@@ -15,8 +15,9 @@ header {
     height: auto;
 }
 
+/* Botões */
+
 .butn {
-    /* height: 100px; */
     border: 2px solid black;
     border-radius: 16px;
     background-color: rgba(255, 255, 255, 0);
@@ -58,11 +59,31 @@ header {
     -ms-transition: all 500ms ease;
     -o-transition: all 500ms ease;
     transition: all 500ms ease;
-  }
+}
+
+.btnregistro {
+    color: rgb(255, 99, 132) !important;
+}
+
+.btnregistro:hover {
+    cursor: pointer;
+    text-decoration: underline !important;
+}
+
+input {
+    border: none;
+    border-bottom: 1px solid rgb(224, 224, 224);
+    background-color: rgba(255, 255, 255, 0);
+    outline: none;
+    width: 180px;
+    text-align: center;
+}
+
+/* Corpo */
 
 body{
     background-image: url("../images/home-background.jpg");
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     width: 100%;
@@ -109,65 +130,51 @@ div#interp{
     color: #2c0a0a;
 }
 
-.logar, .registrar{
+.mainlogin, .registrar{
     text-align: center;
     padding: 10px;
-}
-
-input {
-    border: none;
-    border-bottom: 1px solid rgb(224, 224, 224);
-    background-color: rgba(255, 255, 255, 0);
-    outline: none;
-    width: 180px;
-    text-align: center;
-}
-
-h1{
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important;
-    color: rgb(255, 99, 132) !important;
 }
 
 /* Footer */
 
 footer{
-    /* margin: auto; */
     width: 100%;
-    bottom: 30px;
+    height: auto;
+    bottom: 8px;
     position: absolute;
 }
 
+.mSociais{
+    width: 350px !important;
+}
+
 .grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-  }
+    display: inline-grid;
+    grid-template-columns: repeat(4, 1fr);
+}
 
 .footerSocial{
     width: 100%;
     height: auto;
-    margin-left: -12%;
     margin-bottom: 2%;
-    /* transform: translate(-50%, 320%);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    overflow: auto; */
 }
 
-.mSociais{
-    text-align: center;
-    width: 50px !important;
-}
+/* Icones do Footer */
 
 .iconesB{
-    width: 45px;
-    height: 45px;
-    margin-left: 21px;
-    margin-right: 21px;
-    background-color: rgb(255, 99, 132);
-    border-radius: 50%;
-    font-size: 25px;
+    cursor: auto;
+}
+
+.icones{
+    cursor: pointer;
+    font-size: 20px;
     color: white;
+    background-color: rgb(255, 99, 132); 
+    padding: 15px;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+
     -webkit-transition: all 300ms ease;
     -moz-transition: all 300ms ease;
     -ms-transition: all 300ms ease;
@@ -175,7 +182,7 @@ footer{
     transition: all 300ms ease;
 }
 
-.iconesB:hover{
+.icones:hover{
     transform: translateY(-4px);
     -webkit-transition: all 300ms ease;
     -moz-transition: all 300ms ease;
@@ -184,19 +191,9 @@ footer{
     transition: all 300ms ease;
 }
 
-.icones{
-    color: white;
-    text-align: center;
-    transform: translate(-20%, -13%);
-}
+/* Outros */
 
-/* Fim do Footer */
-
-.btnregistro {
+h1{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important;
     color: rgb(255, 99, 132) !important;
-}
-
-.btnregistro:hover {
-    cursor: pointer;
-    text-decoration: underline !important;
 }

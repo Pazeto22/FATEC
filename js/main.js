@@ -1,8 +1,6 @@
-let conectado = false
+// Verifica se o usuário está logado
 
-if(localStorage.getItem("acesso") == "true"){
-    conectado = true
-} else {
+if (localStorage.getItem("acesso") != "true") {
     alert("Você não tem acesso. Faça o login para continuar.")
     window.location.href = "./index.html"
-}
+} 
