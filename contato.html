@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>HAGYS - Correlação</title>
+    <title>HAGYS - Contato</title>
 
     <!-- FavIcon -->
     <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png">
@@ -14,16 +14,14 @@
     <link rel="manifest" href="./site.webmanifest">
     <!-- Fim FavIcon -->
 
+    <link rel="stylesheet" href="./css/contato.css">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/correlacao.css">
-    <link rel="stylesheet" href="./css/barramedidaseparatiz.css">
+    <script src="./js/mensagens.js"></script>
     <script src="./js/colormode.js"></script>
-    <script src="./js/correlacao.js"></script>
+    <script src="./js/descritiva.js"></script>
 </head>
 
-
 <body>
-
     <header>
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light" id="nav1">
 
@@ -42,16 +40,13 @@
                         <a class="nav-link" href="./index.html">Início <span class="sr-only">(Página atual)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Abrir chamado</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="./contato.html">Contato</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Sobre nós</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://site.fatecfranca.edu.br/">Fatec Franca</a>
+                        <a class="nav-link" href="https://site.fatecfranca.edu.br/" target="_blank">Fatec Franca</a>
                     </li>
 
                 </ul>
@@ -77,47 +72,40 @@
         </nav>
     </header>
 
-    <main id="escolha">
+    <main class="principal">
+        <h1>SAC - Serviço de Atendimento ao Cliente</h1>
+        <p class="subh1">Envie sua dúvida por este canal e a responderemos o quanto antes!</p>
         <div class="grid-container container">
-            <div class="grid-item" id="automatico">
-                <a onclick="funçãofutura()"><img class="bescolha image" src="./images/upload-icon.png"></a><br><br>
-                <p>Envie um arquivo CSV</p>
+            <div class="grid-item" id="mensagem">
+                Seu nome:<br>
+                <input type="text" id="nome" placeholder="Nome completo">
+                <br>E-Mail:<br>
+                <input type="email" id="email" placeholder="Ex: ricardobatista@gmail.com">
+                <br>Telefone:<br>
+                <input type="tel" id="telefone" placeholder="DDD Obrigatório - Ex: 16991234567">
+                <br>Assunto:<br>
+                <input type="text" id="assunto" placeholder="Motivo pelo contato">
+                <br>Mensagem:<br>
+                <textarea id="mensagemTxt" placeholder="Nos diga o que precisa"></textarea>
+                <p><br>
+                    <input type="button" class="butn btnenviar" value="Enviar Mensagem" onclick="mensagemContato()">
+                </p>
             </div>
-            <div class="linha-vertical"></div>
-            <div class="grid-item" id="manual">
-                <a onclick="manual()"><img class="bescolha image" src="./images/manual-icon.png"></a><br><br>
-                <p>Insira os dados manualmente</p>
+            <div class="grid-item" id="contato">
+                <img src="./images/fatec.png" style="width:autopx;height:65px;">
+                <p class="fatec">Faculdade de Tecnologia de Franca<br>• Fatec Franca •</p>
+                <p class="infofatec">Endereço: Rua Irênio Grecco nº 4580<br>
+                    Bairro: Vila Imperador<br>
+                    Cidade: Franca/SP<br>
+                    CEP: 14405-191<br>
+                    Telefone: (16) 3702-3204<br>
+                    Fax: (16) 3702-2854<br><br>
+                    <a href="mailto:fatecfranca@fatecfranca.edu.br" title="">fatecfranca@fatecfranca.edu.br</a><br><br>
+                    <a href="https://site.fatecfranca.edu.br/">https://site.fatecfranca.edu.br/</a>
+                </p>
             </div>
         </div>
     </main>
-
-    <main id="corre" style="visibility: hidden">
-        <div class="grid-container container">
-            <div class="grid-item">
-                Nome da variável independente (x): <br><input type="text" name="indepx" class="dado"
-                    placeholder="Nome da variável X" style="text-align:center"><br><br>
-                Insira os dados separando-os por ponto e vírgula (;):<br><br>
-                <textarea name="Dados" id="xDados" cols="60" rows="7" style="resize: vertical"
-                    placeholder="Insira os dados"></textarea><br>
-            </div>
-            <div class="grid-item">
-                Nome da variável dependente (y): <br><input type="text" name="indepy" class="dado"
-                    placeholder="Nome da variável Y" style="text-align:center"><br><br>
-                Insira os dados separando-os por ponto e vírgula (;):<br><br>
-                <textarea name="Dados" id="yDados" cols="60" rows="7" style="resize: vertical"
-                    placeholder="Insira os dados"></textarea><br>
-            </div>
-            <br>
-        </div>
-        <p id="botao"><input type="button" class="butn bconfirmar" value="Confirmar" onclick="callCorrelacao()"></p>
-        <!-- <div id='resultados'></div>
-        <canvas id="justChart"></canvas> -->
-    </main>
-
-    <script src="./js/jquery-3.3.1.slim.min.js"></script>
-    <script src="./js/popper.min.js"></script>
-    <script src="./js/bootstrap.min.js"></script>
-    <script src="./js/chart.js"></script>
 </body>
 
 </html>

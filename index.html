@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./fonts/css/all.css">
+    <script src="./js/login.js"></script>
     <script src="./js/colormode.js"></script>
     <script src="./js/descritiva.js"></script>
 </head>
@@ -41,13 +42,13 @@
                         <a class="nav-link" href="./index.html">Início <span class="sr-only">(Página atual)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contato</a>
+                        <a class="nav-link" href="./contato.html">Contato</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Sobre nós</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://site.fatecfranca.edu.br/" target="_blank">Parceiros</a>
+                        <a class="nav-link" href="https://site.fatecfranca.edu.br/" target="_blank">Fatec Franca</a>
                     </li>
 
                 </ul>
@@ -59,23 +60,35 @@
         </nav>
     </header>
 
-    <section id='login'>
-        <div id='login'>
+    <section class='login'>
+        <div class='logar'>
+            <img src="./images/home-logo.png" id="logoIcoLogin" height="100"><br><br>
+            <form name="form">
+                <input type="email" name="usuário" id="usuário" placeholder=" Digite seu email"><br><br>
+                <input type="password" name="senha" id="senha" placeholder=" Digite sua senha">
+            </form>
+
+            <p><br>
+                <!-- <input type="button" class="butn btnlogin" value="Entrar" onclick="location.href='escolha.html'"> -->
+                <input type="button" class="butn btnlogin" value="Entrar" onclick="login()">
+                <p>Não tem conta? Faça um <a class="btnregistro" onclick="regi()">registro</a></p>
+            </p>
+        </div>
+    </section>
+    <section class='registro' style="visibility: hidden">
+        <div class='registrar'>
             <img src="./images/home-logo.png" id="logoIcoLogin" height="100"><br><br>
             <!-- <p>Faça o login para entrar no interpretador de dados:</p> -->
             <!-- <h1>Entrar</h1><br> -->
-            <p>
-                <!-- <label>E-mail:</label> -->
-                <input type="email" name="usuário" id="usuário" placeholder=" Digite seu email">
-            </p><br>
-
-            <p>
-                <!-- <label>Senha:</label> -->
-                <input type="password" name="senha" id="senha" placeholder=" Digite sua senha">
-            </p>
+            <form name="form2">
+                <input type="text" id="nome" placeholder=" Digite seu nome"><br><br>
+                <input type="email" id="email" placeholder=" Digite seu email"><br><br>
+                <input type="password" id="senha" placeholder=" Digite sua senha">
+            </form>
 
             <p><br>
-                <input type="button" class="butn btnlogin" value="Entrar" onclick="location.href='escolha.html'">
+                <input type="button" class="butn btnregistrar" value="Registrar" onclick="registrar()">
+                <p>Já é cadastrado? Faça o <a class="btnregistro" onclick="logi()">login</a></p>
             </p>
         </div>
     </section>
