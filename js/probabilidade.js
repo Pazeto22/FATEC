@@ -165,8 +165,8 @@ function callUniforme() {
 }
 
 function callNormal() {
-    let media = document.getElementsByName('media')[0].value;
-    let desvioPadrao = document.getElementsByName('dpadrao')[0].value;
+    let media = Number(document.getElementsByName('media')[0].value);
+    let desvioPadrao = Number(document.getElementsByName('dpadrao')[0].value);
     let normalizado;
     let values = new Array(4);  // [menor, entremenor, entremaior, maior]
     let op = document.getElementsByName('intervaloa2');
@@ -181,6 +181,7 @@ function callNormal() {
             res = searchTable(normalizado).value + 0.5;
         } else {
             res = searchTable(normalizado).value;
+            console.log(res)
         }
     } else if (op[1].checked) {//entre
         values[1] = Number(document.getElementById('iaentremenor').value);
@@ -203,7 +204,7 @@ function callNormal() {
         }
     } else if (op[2].checked) {//maior
         values[3] = Number(document.getElementById('iamaior').value);
-        normalizado = (Number(values[0]) - Number(media)) / Number(desvioPadrao);
+        normalizado = (Number(values[3]) - Number(media)) / Number(desvioPadrao);
         normalizado = normalizado.toFixed(2);
         if (values[3] > media) {
             res = 0.5 - searchTable(normalizado).value;
@@ -215,12 +216,17 @@ function callNormal() {
     //Inserir resultados aqui
 
     mResultados = document.querySelector("#resultadoInterior")
-    mResultados.innerHTML = `Probabilidade: ${res}%`
+    mResultados.innerHTML = `Probabilidade: ${res*100}%`
 }
 
 function searchTable(number) {
+    if (number < 0) {
+        number = number *-1;
+    }
     let lin = Math.trunc(number * 10) / 10;
-    let col = (number - lin) * 100;
+    let col =Math.trunc((number - lin) * 100);
+    console.log('lin ' + lin);
+    console.log('col' + col);
 
     const tabela = [
         ['z', 0.0000, 1.0000, 2.0000, 3.0000, 4.0000, 5.0000, 6.0000, 7.0000, 8.0000, 9.0000],
@@ -270,10 +276,14 @@ function searchTable(number) {
     let i = 0;
 
     while (tabela[i][0] !== line) {
-        if (tabela[i][0] === line) {
-            return { ok: true, value: (tabela[index][column]) };
-        }
         i++;
+        if (i > 41) {
+            console.log("Erro: valor z não encontrado na tabela")
+            break;
+        }
+    }
+    if (tabela[i][0] === line) {
+        return { ok: true, value: (tabela[i][column]) };
     }
 
     return { ok: false, value: null };
