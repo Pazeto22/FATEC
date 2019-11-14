@@ -64,13 +64,13 @@
         <div class='logar'>
             <img src="./images/home-logo.png" id="logoIcoLogin" height="100"><br><br>
             <form name="form">
-                <input type="email" name="usuário" id="usuário" placeholder=" Digite seu email"><br><br>
-                <input type="password" name="senha" id="senha" placeholder=" Digite sua senha">
+                <input type="email" name="usuário" id="emailL" placeholder=" Digite seu email"><br><br>
+                <input type="password" name="senha" id="senhaL" placeholder=" Digite sua senha">
             </form>
 
             <p><br>
-                <input type="button" class="butn btnlogin" value="Entrar" onclick="location.href='escolha.html'">
-                <!-- <input type="button" class="butn btnlogin" value="Entrar" onclick="login()"> -->
+                <!-- <input type="button" class="butn btnlogin" value="Entrar" onclick="location.href='escolha.html'"> -->
+                <input type="button" class="butn btnlogin" value="Entrar" onclick="login()">
                 <p>Não tem conta? Faça um <a class="btnregistro" onclick="regi()">registro</a></p>
             </p>
         </div>
@@ -81,13 +81,13 @@
             <!-- <p>Faça o login para entrar no interpretador de dados:</p> -->
             <!-- <h1>Entrar</h1><br> -->
             <form name="form2">
-                <input type="text" id="nome" placeholder=" Digite seu nome"><br><br>
-                <input type="email" id="email" placeholder=" Digite seu email"><br><br>
-                <input type="password" id="senha" placeholder=" Digite sua senha">
+                <input type="text" id="nomeR" placeholder=" Digite seu nome"><br><br>
+                <input type="email" id="emailR" placeholder=" Digite seu email"><br><br>
+                <input type="password" id="senhaR" placeholder=" Digite sua senha">
             </form>
 
             <p><br>
-                <input type="button" class="butn btnregistrar" value="Registrar">
+                <input type="button" class="butn btnregistrar" value="Registrar" onclick="registrar()">
                 <p>Já é cadastrado? Faça o <a class="btnregistro" onclick="logi()">login</a></p>
             </p>
         </div>
