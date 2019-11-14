@@ -1,3 +1,8 @@
+function apagar() {
+    modal = document.querySelector("#resultadoInterior")
+    modal.innerHTML = ""
+}
+
 function intervalo(x) {
     valor = x.value
     section = document.querySelector("#escolhaintervalo")
@@ -78,16 +83,18 @@ function shazamabas(x) {
 }
 
 function callBinomial() {
-    let n = document.getElementsByName('tamostra')[0].value;
-    let k = document.getElementsByName('eventok')[0].value;
-    let p = document.getElementsByName('sucessop')[0].value;
-    let q = document.getElementsByName('fracassoq')[0].value;
-    let res = binomial(n, k, p, q);
+    let n = Number(document.querySelector('[name = "tamostra"]').value);
+    let k = Number(document.querySelector('[name = "eventok"]').value);
+    let p = Number(document.querySelector('[name = "sucessop"]').value)/100;
+    let q = Number(document.querySelector('[name = "fracassoq"]').value)/100;
+    let res = binomial(n, k, p, q).toFixed(2);
+    let media = n*q
+    let dpadrao = Number((Math.sqrt(n*p*q).toFixed(2)))
 
-     //Inserir resultados aqui   
+    //Inserir resultados aqui   
 
-     mResultados = document.querySelector("#resultadoInterior")
-     mResultados.innerHTML = `Probabilidade: ${res}%`
+    mResultados = document.querySelector("#resultadoInterior")
+    mResultados.innerHTML = `Probabilidade: ${res}% <br> Média: ${media} <br> Desvio Padrão: ${dpadrao}`
 }
 
 function binomioMod(n, k) {
@@ -98,9 +105,8 @@ function binomioMod(n, k) {
     } else if (n == k + 1 || k == 1) {
         return n;
     } else {
-        return fatorial(n) / fatorial(k)*fatorial(n - k)
+        return fatorial(n) / fatorial(k) * fatorial(n - k)
     }
-
 }
 
 function fatorial(n, k = 1) {
@@ -116,7 +122,7 @@ function binomial(n, k, p, q) {
         k => Evento em estudo
         p => sucesso do evento
         q => fracasso do evento*/
-        console.log(binomioMod(n, k));
+    console.log(binomioMod(n, k));
     return binomioMod(n, k) * (p ** k) * (q ** (n - k));
 }
 
@@ -134,7 +140,7 @@ function callUniforme() {
     if (op[0].checked) { //menor
         values[0] = Number(document.getElementById('iamenor').value);
         res = (1 / (max - min)) * (values[0] - min);
-        res = res*100
+        res = res * 100
     } else if (op[1].checked) {//entre
         values[1] = Number(document.getElementById('iaentremenor').value);
         values[2] = Number(document.getElementById('iaentremaior').value);
@@ -149,12 +155,13 @@ function callUniforme() {
     }
 
     media = (min + max) / 2;
-    desvioPadrao = Math.sqrt((max - min) ** 2 / 12);
+    desvioPadrao = (Math.sqrt((max - min) ** 2 / 12)).toFixed(2)
+    cVariacao = ((desvioPadrao/media)*100).toFixed(2)
 
     //Inserir resultados aqui   
 
     mResultados = document.querySelector("#resultadoInterior")
-    mResultados.innerHTML = `Probabilidade: ${res}% <br> Média: ${media} <br> Desvio Padrão: ${desvioPadrao.toFixed(2)}`   
+    mResultados.innerHTML = `Probabilidade: ${res}% <br> Desvio Padrão: ${desvioPadrao} <br> Média: ${media} <br> C. de Variação: ${cVariacao}`
 }
 
 function callNormal() {
@@ -164,7 +171,6 @@ function callNormal() {
     let values = new Array(4);  // [menor, entremenor, entremaior, maior]
     let op = document.getElementsByName('intervaloa2');
     let res;
-
 
     if (op[0].checked) { //menor
         values[0] = Number(document.getElementById('iamenor').value);
@@ -209,8 +215,7 @@ function callNormal() {
     //Inserir resultados aqui
 
     mResultados = document.querySelector("#resultadoInterior")
-    mResultados.innerHTML = `Probabilidade: ${res}% <br> Média: ${media} <br> Desvio Padrão: ${desvioPadrao.toFixed(2)}`
-
+    mResultados.innerHTML = `Probabilidade: ${res}%`
 }
 
 function searchTable(number) {
@@ -265,8 +270,8 @@ function searchTable(number) {
     let i = 0;
 
     while (tabela[i][0] !== line) {
-        if (tabela[i + 1][0] === line) {
-            return { ok: true, value: (tabela[index + 1][column]) };
+        if (tabela[i][0] === line) {
+            return { ok: true, value: (tabela[index][column]) };
         }
         i++;
     }

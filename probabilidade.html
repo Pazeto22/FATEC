@@ -2,9 +2,18 @@
 <html lang="pt-br">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HAGYS - Probabilidade</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- FavIcon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
+    <link rel="manifest" href="./site.webmanifest">
+    <!-- Fim FavIcon -->
+
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/probabilidade.css">
     <link rel="stylesheet" href="./css/barramedidaseparatiz.css">
@@ -83,7 +92,7 @@
         <section id="sabas" class="container-abas grid-container">
             <!-- Aba 1 -->
             <input type="radio" name="abas" class="abas" id="aba1" checked onchange="shazamabas(this)">
-            <label for="aba1">Uniforme</label>
+            <label for="aba1" onclick="apagar()">Uniforme</label>
             <div>
                 <section class="sconteudo">
                     <p id="botao">Insira os dados</p>
@@ -104,7 +113,7 @@
             </div>
             <!-- Aba 2 -->
             <input type="radio" name="abas" class="abas" id="aba2" onchange="shazamabas(this)">
-            <label for="aba2">Binomial</label>
+            <label for="aba2" onclick="apagar()">Binomial</label>
             <div>
                 <section class="sconteudo2">
                     <p id="botao">Insira os dados</p>
@@ -118,7 +127,7 @@
             </div>
             <!-- Aba 3 -->
             <input type="radio" name="abas" class="abas" id="aba3" onchange="shazamabas(this)">
-            <label for="aba3">Normal</label>
+            <label for="aba3" onclick="apagar()">Normal</label>
             <div>
                 <section class="sconteudo3">
                     <p id="botao">Insira os dados</p>
