@@ -127,6 +127,8 @@ function sortData(dadosIn, varType){
     if (dadosIn.endsWith(";")) {
         dadosIn = dadosIn.substring(0, dadosIn.length - 1);
     }
+    dadosIn = dadosIn.trim();
+    dadosIn= dadosIn.toUpperCase();
     dadosIn = dadosIn.split(";");
     dadosIn.sort();
 
@@ -445,8 +447,14 @@ function isQuantiContinous(vetor, varType) {
 }
 
 function isOrdinal() {
-    let varType = getDados().varType;
-    let Quantidades = getDados().Quantidades;
+    let varType = document.getElementById('vars').value;
+    let dadosIn = document.getElementById('PDados').value.replace(/ /g, '');
+    if (dadosIn.endsWith(";")) {
+        dadosIn = dadosIn.substring(0, dadosIn.length - 1);
+    }
+    dadosIn = dadosIn.split(";");
+
+    let Quantidades = quantidadesRepetidas(dadosIn, varType);
     let ordem = document.getElementById('ordem');
 
     if (varType == 'Qualitativa Ordinal' && ordem.innerText == "") {
