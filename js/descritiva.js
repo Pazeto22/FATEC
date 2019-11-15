@@ -1,3 +1,6 @@
+let MediosD = {};
+var palette;
+
 function shazamBarra() {
     //Funcionamento da barra da medida separatriz
     var slider = document.getElementById("barraMS")
@@ -9,7 +12,7 @@ function shazamBarra() {
         vbms.innerHTML = `${slider.value}%`
     }
 }
-let MediosD = {};
+
 function shazamMedida() {
     var barra = document.getElementById("barraMS")
     var barraescolha = document.getElementById("ems").value
@@ -38,8 +41,8 @@ function shazamMedida() {
 }
 
 function quaseshazam() {
-    let tipoVariavel = document.querySelector('#vars').value;
-    if (tipoVariavel == 'Qualitativa Ordinal') {
+    let varType = document.querySelector('#vars').value;
+    if (varType == 'Qualitativa Ordinal') {
         $('#cordem').modal('toggle')
     } else {
         return shazam()
@@ -47,85 +50,118 @@ function quaseshazam() {
 }
 
 function shazam() {
-    let vari = document.getElementById('PVar').value;
-    if (vari == "") {
-        vari = "Variável"
-    }
+    let infoFromPage = getInfo();
+    let results = [];
+
+    if (infoFromPage.varType == "Selecione..." || infoFromPage.dadosIn == "") {
+        alert("Insira todos os dados");
+    } else {
+        let auxRes = setDataTable(infoFromPage.varName,infoFromPage.varType,
+            infoFromPage.dadosIn, infoFromPage.Quantidades);
+
+        document.getElementById('S2').style.display = 'none';
+
+        results = setResults(infoFromPage.varType, infoFromPage.Quantidades, auxRes,
+            infoFromPage.dadosIn, infoFromPage.mseparatriz, infoFromPage.percentualSeparatriz,
+            infoFromPage.processo);
+
+        setResultsTable(results);
+        setGraph(infoFromPage.varName, infoFromPage.varType, infoFromPage.dadosIn);
+
+        document.querySelector(".fab").style = "visibility: visible";
+
+    } 
+}
+
+function getInfo() {
+    //Nome de variável
+    let varName = document.getElementById('PVar').value;
+    if (varName == "") {varName = "Variável"}
+
+    //Tipo de variável: quantitativa contínua, quantitativa discreta, qualitativa nominal, qualitativa ordinal
+    let varType = document.getElementById('vars').value;
+    
+    //Dados inseridos 
     let dadosIn = document.getElementById('PDados').value.replace(/ /g, '');
-    if (dadosIn.endsWith(";")) {
-        dadosIn = dadosIn.substring(0, dadosIn.length - 1);
+    dadosIn = sortData(dadosIn, varType);
+
+    //Gera objeto de dados
+    let Quantidades
+    if (varName.includes(';')) {
+        varName= varName.split(';');
+        let data = csvJSON(document.getElementById("PDados").value);
+        for (let i = 0; i < data.length - 1; i++) {
+            let aux = data[i][varName[0]];
+            if (aux.toUpperCase() in Quantidades) {
+                Quantidades[aux.toUpperCase()] += data[i][varName[1]];
+            } else {
+                Quantidades[aux.toUpperCase()] = data[i][varName[1]];
+            }
+        }
+        varName= varName[0];
+    } else {
+        Quantidades = quantidadesRepetidas(dadosIn, varType);
     }
-    dadosIn = dadosIn.split(";");
-    let tipoVariavel = document.getElementById('vars').value;
+
     let processo = "";
     if (document.getElementsByName('processos')[0].checked) {
         processo = "População";
     } else {
         processo = "Amostra";
     }
+
     let mseparatriz = document.getElementById('ems').value;
-    let percentual;
+
+    let percentualSeparatriz;
     if (mseparatriz != 'Selecione...') {
-        percentual = document.getElementById("valorBMS").innerText;
-        percentual = Number(percentual.substring(0, percentual.length - 1));
+        percentualSeparatriz = document.getElementById("valorBMS").innerText;
+        percentualSeparatriz = Number(percentualSeparatriz.substring(0, percentualSeparatriz.length - 1));
     } else if (mseparatriz == 'Selecione...') {
         mseparatriz = "Medida separatriz";
-        percentual = ''
+        percentualSeparatriz = ''
     }
+    return {varName, varType, processo, dadosIn, Quantidades, mseparatriz, percentualSeparatriz}
+}
 
-    let Quantidades = {};
-    // let abridor = window.tden('tabelas.html', '_self')
-    // alert(dadosIn)
-    // console.log(abridor.document.getElementById("titulo").innerHTML)
-    if (tipoVariavel == "Selecione..." || dadosIn == "") {
-        alert("Insira todos os dados");
-    } else {
-        let typeData = document.getElementById('typeIn').value;
-        if (typeData == 'Dados condensados') {
-            vari = vari.split(';');
-            var data = csvJSON(document.getElementById("PDados").value);
-            for (let i = 0; i < data.length - 1; i++) {
-                let aux = data[i][vari[0]];
-                if (aux.toUpperCase() in Quantidades) {
-                    Quantidades[aux.toUpperCase()] += data[i][vari[1]];
-                } else {
-                    Quantidades[aux.toUpperCase()] = data[i][vari[1]];
+function sortData(dadosIn, varType){
+    if (dadosIn.endsWith(";")) {
+        dadosIn = dadosIn.substring(0, dadosIn.length - 1);
+    }
+    dadosIn = dadosIn.split(";");
+    dadosIn.sort();
+
+    if (varType == 'Qualitativa Ordinal') {
+        let ordem = String(document.getElementById('nomeVars').innerHTML);
+
+        if (ordem.endsWith("<br>")) {
+            ordem = ordem.substring(0, ordem.length - 4);
+        }
+        ordem = ordem.toUpperCase();
+        ordem = ordem.split("<BR>");
+
+        let aux = [];
+            for (let i = 0; i < ordem.length; i++) {
+                for (let j = 0; j < dadosIn.length; j++) {
+                    if (dadosIn[j] == ordem[i]) {
+                        aux.push(dadosIn[j]);
+                    }
                 }
             }
-            vari = vari[0];
-        }
 
-        document.querySelector('#S3-Container').innerHTML +=
-            // `
-            // <section id = 'S3'>
-            //     <div class="table-responsive col-md-10" id="tabl2">
-            //         <table class=" col-md-10">
-            //             <thead class="thead-dark">
-            //                 <tr id='titulo'>
-            //                     <td >${vari}</td>
-            //                     <td >FI</td>
-            //                     <td >FR%</td>
-            //                     <td >FAC</td>
-            //                     <td >FAC%</td>
-            //                 </tr>
-            //             </thead>
-            //             <tbody id='corpo'></tbody>
-            //         </table>
-            //     </div>
-            //     <section id = 'S3Resultados'>
-            //     </section>
-            //     <div class="table-responsive col-md-10">
-            //     <canvas id="justChart"></canvas>
-            //     </div>
-            // </section>
-            // `;
-            `
+            dadosIn = aux;
+    }
+    return dadosIn;
+}
+
+function setDataTable(varName, varType, dadosIn, Quantidades) {
+    document.querySelector('#S3-Container').innerHTML +=
+    `
             <section id = 'S3'>
                 <div class="table-responsive col-md-10" id="tabl2">
                     <table class="table table-hover table-bordered table-sm" id="TabPrincipal">
                         <thead "thead-dark">
                             <tr class="table-shazam" id="titulo">
-                                <th scope="col">${vari}</th>
+                                <th scope="col">${varName}</th>
                                 <th scope="col">FI</th>
                                 <th scope="col">FR%</th>
                                 <th scope="col">FAC</th>
@@ -142,377 +178,210 @@ function shazam() {
             </section>
             `;
 
-        if (tipoVariavel == 'Qualitativa Nominal') {
+    let corpo = document.getElementById('corpo');
+    for (let i = 0; i < dadosIn.length; i++) {
+        dadosIn[i] = dadosIn[i].trim();
+        dadosIn[i] = dadosIn[i].toUpperCase();
+        corpo.innerHTML += `<tr class="table-light"></tr>`;
+    }
 
-            let corpo = document.getElementById('corpo');
-            for (let i = 0; i < dadosIn.length; i++) {
-                dadosIn[i] = dadosIn[i].trim();
-                dadosIn[i] = dadosIn[i].toUpperCase();
-                corpo.innerHTML += `<tr class="table-light"></tr>`;
-            }
-            dadosIn.sort();
+    let linha = 1,
+        frequenciaAtual = 0,
+        frequenciaPercentAtual = 0,
+        medianinhas = {},
+        QuantidadesMe = {};
 
+    for (let i in Quantidades) {
+        let linhaAtual = document.getElementsByTagName('tr');
 
-            // Escrevendo a tabela
-            if (typeData == 'Dados brutos') {
-                Quantidades = quantidadesRepetidas(dadosIn, tipoVariavel);
-            }
+        linhaAtual[linha].innerHTML += `
+            <td>${i}</td>
+            <td>${Quantidades[i]}</td>
+            <td>${(Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>
+            <td>${frequenciaAtual += Quantidades[i]}</td>
+            <td>${(frequenciaPercentAtual += Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>`;
+        linha++;
 
-            let linha = 1,
-                frequenciaAtual = 0,
-                frequenciaPercentAtual = 0,
-                medianinhas = {};
-            for (let i in Quantidades) {
-                let linhaAtual = document.getElementsByTagName('tr');
-                linhaAtual[linha].innerHTML += `
-                    <td>${i}</td>
-                    <td>${Quantidades[i]}</td>
-                    <td>${(Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>
-                    <td>${frequenciaAtual += Quantidades[i]}</td>
-                    <td>${(frequenciaPercentAtual += Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>`;
-                linha++;
-                medianinhas[`${i}`] = frequenciaAtual;
-            }
-
-            document.getElementById('S2').style.display = 'none';
-
-            s3 = document.getElementById('S3Resultados');
-            s3.innerHTML += `
-              <table class="table table-hover table-bordered table-sm" id="TabResult">
-              <thead "thead-dark">
-                <tr class="table-shazam">
-                  <td scope="col">#</td>
-                  <td scope="col">Resultado</td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="table-light">
-                  <td scope="row">Moda</td>
-                  <td>${acumularModa(Quantidades)}</td>
-                </tr>
-                <tr class="table-light">
-                  <td scope="row">Mediana</td>
-                  <td>${mediana(medianinhas, dadosIn.length)}</td>
-                </tr>
-                <tr class="table-light">
-                    <td scope="row">${mseparatriz + ' ' + percentual}</td>
-                    <td>${exibePercentil(percentual, dadosIn, Quantidades, mseparatriz, tipoVariavel)}</td>
-                </tr>
-              </tbody>
-            </table>
-            `;
-
-        } else if (tipoVariavel == 'Qualitativa Ordinal') {
-
-            let ordem = String(document.getElementById('nomeVars').innerHTML);
-
-            if (ordem.endsWith("<br>")) {
-                ordem = ordem.substring(0, ordem.length - 4);
-            }
-            ordem = ordem.toUpperCase();
-            ordem = ordem.split("<BR>");
-
-            let corpo = document.getElementById('corpo');
-            for (let i = 0; i < dadosIn.length; i++) {
-                dadosIn[i] = dadosIn[i].trim();
-                dadosIn[i] = dadosIn[i].toUpperCase();
-                corpo.innerHTML += `<tr class="table-light"></tr>`;
-            }
-            dadosIn.sort();
-
-            let aux = [];
-            for (let i = 0; i < ordem.length; i++) {
-                for (let j = 0; j < dadosIn.length; j++) {
-                    if (dadosIn[j] == ordem[i]) {
-                        aux.push(dadosIn[j]);
-                    }
-                }
-            }
-
-            dadosIn = aux;
-
-            // Escrevendo a tabela
-            if (typeData == 'Dados brutos') {
-                Quantidades = quantidadesRepetidas(dadosIn, tipoVariavel);
-            }
-
-            let linha = 1,
-                frequenciaAtual = 0,
-                frequenciaPercentAtual = 0,
-                medianinhas = {};
-            for (let i in Quantidades) {
-                let linhaAtual = document.getElementsByTagName('tr');
-                linhaAtual[linha].innerHTML += `
-                    <td>${i}</td>
-                    <td >${Quantidades[i]}</td>
-                    <td >${(Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>
-                    <td >${frequenciaAtual += Quantidades[i]}</td>
-                    <td >${(frequenciaPercentAtual += Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>`;
-                linha++;
-                medianinhas[`${i}`] = frequenciaAtual;
-            }
-
-            document.getElementById('S2').style.display = 'none';
-
-            s3 = document.getElementById('S3Resultados');
-            s3.innerHTML += `
-              <table class="table table-hover table-bordered table-sm" id="TabResult">
-              <thead "thead-dark">
-                <tr class="table-shazam">
-                  <th scope="col">#</th>
-                  <th scope="col">Resultado</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="table-light">
-                  <td scope="row">Moda</td>
-                  <td>${acumularModa(Quantidades)}</td>
-                </tr>
-                <tr class="table-light">
-                  <td scope="row">Mediana</td>
-                  <td>${mediana(medianinhas, dadosIn.length)}</td>
-                </tr>
-                <tr class="table-light">
-                    <td scope="row">${mseparatriz + ' ' + percentual}</td>
-                    <td>${exibePercentil(percentual, dadosIn, Quantidades, mseparatriz, tipoVariavel)}</td>
-                </tr>
-              </tbody>
-            </table>
-            `
-
-        } else if (tipoVariavel == 'Quantitativa Discreta') {
-            let corpo = document.getElementById('corpo');
-            for (let i = 0; i < dadosIn.length; i++) {
-                dadosIn[i] = dadosIn[i].trim();
-                dadosIn[i] = dadosIn[i].toUpperCase();
-                corpo.innerHTML += `<tr class="table-light"></tr>`;
-            }
-            dadosIn.sort();
-
-
-            // Escrevendo a tabela
-            if (typeData == 'Dados brutos') {
-                Quantidades = quantidadesRepetidas(dadosIn, tipoVariavel);
-            }
-
-            let linha = 1,
-                frequenciaAtual = 0,
-                frequenciaPercentAtual = 0,
-                medianinhas = {};
-
-            for (let i in Quantidades) {
-                let linhaAtual = document.getElementsByTagName('tr');
-                linhaAtual[linha].innerHTML += `
-                    <td>${i}</td>
-                    <td >${Quantidades[i]}</td>
-                    <td >${(Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>
-                    <td >${frequenciaAtual += Quantidades[i]}</td>
-                    <td >${(frequenciaPercentAtual += Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>`;
-                linha++;
-                medianinhas[`${i}`] = frequenciaAtual;
-            }
-
-            document.getElementById('S2').style.display = 'none';
-
-            s3 = document.getElementById('S3Resultados');
-            let mediaData = media(Quantidades, dadosIn.length);
-            let desvio = desvioPadrao(Quantidades, mediaData, dadosIn.length, processo);
-            s3.innerHTML += `
-            <table class="table table-hover table-bordered table-sm" id="TabResult">
-                <thead "thead-dark">
-                <tr class="table-shazam">
-                    <th scope="col">#</th>
-                    <th scope="col">Resultado</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="table-light">
-                    <td scope="row">Moda</td>
-                    <td>${acumularModa(Quantidades)}</td>
-                </tr>
-                <tr class="table-light">
-                    <td scope="row">Média</td>
-                    <td>${media(Quantidades, dadosIn.length)}</td>
-                </tr>
-                <tr class="table-light">
-                    <td scope="row">Mediana</td>
-                    <td>${mediana(medianinhas, dadosIn.length)}</td>
-                </tr>
-                <tr class="table-light">
-                    <td scope="row">Desvio Padrão</td>
-                    <td>${desvio}</td>
-                </tr>
-                <tr class="table-light">
-                    <td scope="row">C. de Variação</td>
-                    <td>${coeficienteVar(desvio, mediaData)}</td>
-                </tr>
-                <tr class="table-light">
-                    <td scope="row">${mseparatriz + ' ' + percentual}</td>
-                    <td>${exibePercentil(percentual, dadosIn, Quantidades, mseparatriz, tipoVariavel)}</td>
-                </tr>
-                </tbody>
-            </table>
-            `
-        } else if (tipoVariavel == 'Quantitativa Contínua') {
-
-            let corpo = document.getElementById('corpo');
-            for (let i = 0; i < dadosIn.length; i++) {
-                dadosIn[i] = dadosIn[i].trim();
-                dadosIn[i] = dadosIn[i].toUpperCase();
-                corpo.innerHTML += `<tr class="table-light"></tr>`;
-            }
-            dadosIn.sort();
-
-            // Escrevendo a tabela
-            if (typeData == 'Dados brutos') {
-                Quantidades = quantidadesRepetidas(dadosIn, tipoVariavel);
-            }
-
-            let linha = 1,
-                frequenciaAtual = 0,
-                frequenciaPercentAtual = 0,
-                medianinhas = {}, QuantidadesMe = {};
-
-            for (let i in Quantidades) {
-                let linhaAtual = document.getElementsByTagName('tr');
-                linhaAtual[linha].innerHTML += `
-                    <td>${i}</td>
-                    <td>${Quantidades[i]}</td>
-                    <td>${(Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>
-                    <td>${frequenciaAtual += Quantidades[i]}</td>
-                    <td>${(frequenciaPercentAtual += Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>`;
-                linha++;
-                QuantidadesMe[i] = [frequenciaAtual, Quantidades[i]];
-            }
-
-            document.getElementById('S2').style.display = 'none';
-
-            s3 = document.getElementById('S3Resultados');
-            let mediaData = mediaC(MediosD, dadosIn.length);
-            let desvio = desvioPadrao(Quantidades, mediaData, dadosIn.length, processo);
-            // s3.innerHTML += `<p style="color:black;">Moda: ${cortaString(acumularModa(Quantidades))}</p>
-            // <p style="color:black;">Média: ${mediaData}</p>
-            // <p style="color:black;">Mediana: ${cortaString(mediana(medianinhas, dadosIn.length))}</p>
-            // <p style="color:black;">DesvioPadrão: ${desvio}</p>
-            // <p style="color:black;">C. de Variação: ${coeficienteVar(desvio, mediaData)}</p>`;
-            s3.innerHTML += `
-              <table class="table table-hover table-bordered table-sm" id="TabResult">
-              <thead "thead-dark">
-                <tr class="table-shazam">
-                  <th scope="col">#</th>
-                  <th scope="col">Resultado</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="table-light">
-                  <td scope="row">Moda</td>
-                  <td>${cortaString(acumularModa(Quantidades))}</td>
-                </tr>
-                <tr class="table-light">
-                  <td scope="row">Média</td>
-                  <td>${mediaData}</td>
-                </tr>
-                <tr class="table-light">
-                  <td scope="row">Mediana</td>
-                  <td>${medianaC(dadosIn.length, QuantidadesMe, isQuantiContinous(dadosIn,tipoVariavel).intervalo, 0.5)}</td>
-                </tr>
-                <tr class="table-light">
-                  <td scope="row">DesvioPadrão</td>
-                  <td>${desvio}</td>
-                </tr>
-                <tr class="table-light">
-                  <td scope="row">C. de Variação</td>
-                  <td>${coeficienteVar(desvio, mediaData)}</td>
-                </tr>
-                <tr class="table-light">
-                    <td scope="row">${mseparatriz + ' ' + percentual}</td>
-                    <td>${medianaC(dadosIn.length, QuantidadesMe, isQuantiContinous(dadosIn,tipoVariavel).intervalo, percentual/100, mseparatriz)}</td>
-                </tr>
-              </tbody>
-            </table>
-            `
-
+        if (varType == 'Quantitativa Contínua'){
+            QuantidadesMe[i] = [frequenciaAtual, Quantidades[i]];
+        } else {
+            medianinhas[`${i}`] = frequenciaAtual;
         }
+    }
 
-        let options = {
-            title: {
-                display: true,
-                position: 'top',
-                text: `Gráfico de ${vari}`,
-                fontSize: 18,
-            },
-            legend: {
-                display: false,
-            },
-            elements: {
-                //https://www.chartjs.org/docs/latest/configuration/elements.html
-                backgroundColor: 'rgba(0, 0, 0, 0,1)',
-                borderSkipped: 'right'
-            },
-            scales: {
-                xAxes: [{
-                    gridLines: {
-                        display: (tipoVariavel.substring(0, 4) == "Qual") ? false : true
-                    },
-                    ticks: {
-                        display: (tipoVariavel.substring(0, 4) == "Qual") ? false : true
-                    }
-                }],
-                yAxes: [{
-                    ticks: {
-                        min: 0,
-                        beginAtZero: (tipoVariavel.substring(0, 4) == "Qual") ? false : true,
-                        display: (tipoVariavel.substring(0, 4) == "Qual") ? false : true
-                    },
-                    gridLines: {
-                        display: (tipoVariavel.substring(0, 4) == "Qual") ? false : true
-                    }
-                }]
-            }
-        };
-
-        palette = new DistinctColors({count: dadosIn.length})
-
-        if (tipoVariavel == 'Quantitativa Contínua') {
-            options.scales.xAxes[0].categoryPercentage = 1.0;
-            options.scales.xAxes[0].barPercentage = 1.0;
-        };
-
-        var ctx = document.getElementById('justChart').getContext('2d');
-        var chart = new Chart(ctx, {
-            // The type of chart we want to create
-            type: (tipoVariavel.substring(0, 4) == "Qual") ? 'pie' : 'bar',
-
-            // The data for our dataset
-            data: {
-                labels: getLabel(quantidadesRepetidas(dadosIn, tipoVariavel)),
-                datasets: [{
-                    label: 'Frequência dos dados',
-                    backgroundColor: (tipoVariavel.substring(0, 4) == "Qual") ? palette : 'rgb(255, 99, 132)',
-                    borderColor: (tipoVariavel.substring(0, 4) == "Qual") ? 'black' : 'rgb(255, 99, 132)',
-                    data: getDados(quantidadesRepetidas(dadosIn, tipoVariavel))
-                }]
-            },
-
-            // Configuration options go here
-            options: options
-        });
-        Chart.defaults.global.defaultFontSize = 16;
-        Chart.defaults.global.defaultFontColor = 'rgb (23,39,48)';
-        Chart.platform.disableCSSInjection = true;
-        document.getElementById('justChart').style.display = 'inherint';
-        document.querySelector(".fab").style = "visibility: visible"
+    if (varType == 'Quantitativa Contínua'){
+        return QuantidadesMe;
+    } else {
+        return medianinhas;
     }
 }
 
-function quantidadesRepetidas(vetor, tipoVariavel) {
+function setResults(varType, Quantidades, medianinhas, dadosIn, mseparatriz, percentual, processo) {
+    let results = [];
+    if (varType.substring(0, 4) == 'Qual') {
+        results.push(['Moda', acumularModa(Quantidades)]);
+        results.push(['Mediana', mediana(medianinhas, dadosIn.length)]);
+        if (mseparatriz != 'Medida separatriz') {
+            results.push([mseparatriz + ' ' + percentual, exibePercentil(percentual, dadosIn)]);
+        }
+     } else if (varType == 'Quantitativa Discreta') {
+        let mediaData = media(Quantidades, dadosIn.length);
+        let desvio =  desvioPadrao(Quantidades, mediaData, dadosIn.length, processo)
+
+        results.push(['Moda', acumularModa(Quantidades)]);
+        results.push(['Média', mediaData])
+        results.push(['Mediana', mediana(medianinhas, dadosIn.length)]);
+        results.push(['Desvio Padrão', desvio]);
+        results.push(['Coef. de Variação',coeficienteVar(desvio, mediaData)]);
+
+        if (mseparatriz != 'Medida separatriz') {
+            results.push([mseparatriz + ' ' + percentual, exibePercentil(percentual, dadosIn)]);
+        }
+    } else if (varType == 'Quantitativa Contínua') {
+        let mediaData = mediaC(MediosD, dadosIn.length);
+        let intervalo = isQuantiContinous(dadosIn,varType).intervalo;
+        let desvio =  desvioPadrao(Quantidades, mediaData, dadosIn.length, processo)
+
+        results.push(['Moda', cortaString(acumularModa(Quantidades))]);
+        results.push(['Média', mediaData])
+        results.push(['Mediana', medianaC(dadosIn.length, medianinhas, intervalo, 0.5)]);
+        results.push(['Desvio Padrão', desvio]);
+        results.push(['Coef. de Variação',coeficienteVar(desvio, mediaData)]);
+
+        if (mseparatriz != 'Medida separatriz') {
+            results.push([mseparatriz + ' ' + percentual, medianaC(dadosIn.length, medianinhas, isQuantiContinous(dadosIn,varType).intervalo, percentual/100)]);
+        }
+    }
+
+    return results;
+}
+
+function setResultsTable(results) {
+    let s3 = document.getElementById('S3Resultados');
+    let strHTML = '';
+    strHTML += `
+              <table class="table table-hover table-bordered table-sm" id="TabResult">
+              <thead "thead-dark">
+                <tr class="table-shazam">
+                  <th scope="col">#</th>
+                  <th scope="col">Resultado</th>
+                </tr>
+              </thead>
+              <tbody>`
+    for (let i = 0; i < results.length; i++) {
+        strHTML += `
+                <tr class="table-light">
+                  <td scope="row">${results[i][0]}</td>
+                  <td>${results[i][1]}</td>
+                </tr>`
+    }
+    strHTML += `
+                </tbody>
+            </table>
+            `
+    s3.innerHTML = strHTML;
+}
+
+function setGraph(varName, varType, dadosIn) {
+    let options = {
+        title: {
+            display: true,
+            position: 'top',
+            text: `Gráfico de ${varName}`,
+            fontSize: 18,
+        },
+        legend: {
+            display: false,
+        },
+        elements: {
+            //https://www.chartjs.org/docs/latest/configuration/elements.html
+            backgroundColor: 'rgba(0, 0, 0, 0,1)',
+            borderSkipped: 'right'
+        },
+        scales: {
+            xAxes: [{
+                gridLines: {
+                    display: (varType.substring(0, 4) == "Qual") ? false : true
+                },
+                ticks: {
+                    display: (varType.substring(0, 4) == "Qual") ? false : true
+                }
+            }],
+            yAxes: [{
+                ticks: {
+                    min: 0,
+                    beginAtZero: (varType.substring(0, 4) == "Qual") ? false : true,
+                    display: (varType.substring(0, 4) == "Qual") ? false : true
+                },
+                gridLines: {
+                    display: (varType.substring(0, 4) == "Qual") ? false : true
+                }
+            }]
+        }
+    };
+
+    palette = new DistinctColors({count: dadosIn.length})
+
+    if (varType == 'Quantitativa Contínua') {
+        options.scales.xAxes[0].categoryPercentage = 1.0;
+        options.scales.xAxes[0].barPercentage = 1.0;
+    };
+
+    var ctx = document.getElementById('justChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: (varType.substring(0, 4) == "Qual") ? 'pie' : 'bar',
+
+        // The data for our dataset
+        data: {
+            labels: getLabel(quantidadesRepetidas(dadosIn, varType)),
+            datasets: [{
+                label: 'Frequência dos dados',
+                backgroundColor: (varType.substring(0, 4) == "Qual") ? palette : 'rgb(255, 99, 132)',
+                fillColor: (varType.substring(0, 4) == "Qual") ? palette : 'rgb(255, 99, 132)',
+                hoverBackgroundColor: (varType.substring(0, 4) == "Qual") ? palette : 'rgb(255, 99, 132)',
+                hoverBorderColor: 'white',
+                borderColor: (varType.substring(0, 4) == "Qual") ? 'black' : 'rgb(255, 99, 132)',
+                data: getDados(quantidadesRepetidas(dadosIn, varType))
+            }]
+        },
+
+        // Configuration options go here
+        options: options
+    });
+
+    Chart.defaults.global.defaultFontSize = 16;
+    Chart.defaults.global.defaultFontColor = 'rgb (23,39,48)';
+    Chart.platform.disableCSSInjection = true;
+    //document.getElementById('justChart').style.display = 'inherint';
+}
+
+function getLabel(Quantidades) {
+    let label = [];
+
+    for (let i in Quantidades) {
+        label.push(i);
+    }
+    return label;
+};
+
+function getDados(Quantidades) {
+    let dados = [];
+
+    for (let i in Quantidades) {
+        dados.push(Quantidades[i]);
+    }
+    return dados;
+}
+
+function quantidadesRepetidas(vetor, varType) {
     let Quantidades = {};
     let aux;
 
-    if (isQuantiContinous(vetor, tipoVariavel).type) {
+    if (isQuantiContinous(vetor, varType).type) {
         vetor = vetor.map(Number);
         vetor = vetor.sort(function (a, b) { return a - b; });
-        let ic = isQuantiContinous(vetor, tipoVariavel).intervalo;
+        let ic = isQuantiContinous(vetor, varType).intervalo;
         let intervalo = [vetor[0]];
         let i = 0;
         let max = Math.max(...vetor);
@@ -525,8 +394,8 @@ function quantidadesRepetidas(vetor, tipoVariavel) {
                 flag = false
                 break;
             }
-
         }
+
         for (let i = 0; i < intervalo.length - 1; i++) {
             aux = 0;
             for (let j of vetor) {
@@ -536,7 +405,6 @@ function quantidadesRepetidas(vetor, tipoVariavel) {
             }
             Quantidades[`${intervalo[i]} |-- ${intervalo[i + 1]}`] = aux;
             MediosD[`${(intervalo[i] + intervalo[i + 1]) / 2}`] = aux;
-            console.log(MediosD);
         }
     } else {
         for (let i of vetor) {
@@ -553,36 +421,11 @@ function quantidadesRepetidas(vetor, tipoVariavel) {
     return Quantidades;
 }
 
-/*
-function ordinal() {
-    let Quantidades = quantidadesRepetidas(dadosIn, tipoVariavel);
-
-    let linha = 1,
-        frequenciaAtual = 0,
-        frequenciaPercentAtual = 0;
-
-    for (let i in Quantidades) {
-        let linhaAtual = document.getElementsByTagName('tr');
-        linhaAtual[linha].innerHTML += `
-            <td>${i}</td>
-            <td>${Quantidades[i]}</td>
-            <td>${(Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>
-            <td>${frequenciaAtual += Quantidades[i]}</td>
-            <td>${(frequenciaPercentAtual += Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>`;
-        linha++;
-    }
-
-    document.getElementById('S2').innerHTML= "";.innerHTML = "";
-}
-*/
-
-function isQuantiContinous(vetor, tipoVariavel) {
-
-    if (tipoVariavel == 'Quantitativa Contínua') {
-        dadosIn = vetor
-
+function isQuantiContinous(vetor, varType) {
+    //Calcula intervalo se for variavel contínua.
+    if (varType == 'Quantitativa Contínua') {
         let at = (Math.max(...vetor) - Math.min(...vetor)) + 1;
-        let k = Math.trunc(Math.sqrt(dadosIn.length));
+        let k = Math.trunc(Math.sqrt(vetor.length));
         let ic = 0;
 
         while (ic == 0) {
@@ -602,21 +445,11 @@ function isQuantiContinous(vetor, tipoVariavel) {
 }
 
 function isOrdinal() {
-    let tipoVariavel = document.getElementById('vars').value;
-    let dadosIn = document.getElementById('PDados').value.replace(/ /g, '');
-    if (dadosIn.endsWith(";")) {
-        dadosIn = dadosIn.substring(0, dadosIn.length - 1);
-    }
-    dadosIn = dadosIn.split(";");
-
-    let Quantidades = quantidadesRepetidas(dadosIn, tipoVariavel);
+    let varType = getDados().varType;
+    let Quantidades = getDados().Quantidades;
     let ordem = document.getElementById('ordem');
-    // let cordem = document.getElementById('cordem');
 
-    if (tipoVariavel == 'Qualitativa Ordinal' && ordem.innerText == "") {
-        // cordem.style.display = "inline";
-        // cordem.style.position = ""
-        // ordem.style.visibility = "visible";
+    if (varType == 'Qualitativa Ordinal' && ordem.innerText == "") {
         let strHTML = "";
 
         for (let i in Quantidades) {
@@ -626,7 +459,7 @@ function isOrdinal() {
 
         ordem.innerHTML += strHTML + '<p id="nomeVars"></p><br>';
 
-    } else if (tipoVariavel == 'Qualitativa Ordinal' && ordem.innerText != "") {
+    } else if (varType == 'Qualitativa Ordinal' && ordem.innerText != "") {
         let selectVar = document.getElementsByName('radOrdemVar');
         let ordem = document.getElementById('ordem');
         let strHTML = "";
@@ -671,7 +504,6 @@ function isOrdinal() {
         }
     } else {
         ordem.innerText = ""
-        // ordem.style.visibility = "hidden";
     }
 }
 
@@ -740,6 +572,22 @@ function mediana(dadosIn, totalFreq) {
     return medianas;
 }
 
+function medianaC(totalFrequencia, intervalos, interClasses, porcentagem) {
+    let posicao = Number((totalFrequencia * porcentagem).toFixed(2));
+    let controle = 0,
+        vetorIntervalos;
+    for (let j in intervalos) {
+        if (posicao >= controle && posicao <= intervalos[j][0]) {
+            vetorIntervalos = j.split(' |-- ');
+            for (let i = 0; i < vetorIntervalos.length; i++) {
+                vetorIntervalos[i] = Number(vetorIntervalos[i]);
+            }
+            return (vetorIntervalos[0] + ((posicao - controle) / intervalos[j][1]) * interClasses).toFixed(2)
+        }
+        controle = intervalos[j][0];
+    }
+}
+
 function desvioPadrao(Quantidades, media, totalFreq, processo) {
     let sum = 0;
 
@@ -755,6 +603,13 @@ function desvioPadrao(Quantidades, media, totalFreq, processo) {
 
 function coeficienteVar(desvio, media) {
     return ((desvio / media).toFixed(4)) * 100;
+}
+
+function exibePercentil(percentual, dadosIn) {
+    let size = dadosIn.length;
+    let posicaoDado = Math.round(percentual * size / 100);
+
+    return dadosIn[Math.trunc(posicaoDado)];
 }
 
 function cortaString(vetor) {
@@ -776,49 +631,6 @@ function cortaString(vetor) {
 
     } else {
         return vetor;
-    }
-}
-
-function getLabel(Quantidades) {
-    let label = [];
-
-    for (let i in Quantidades) {
-        label.push(i);
-    }
-    return label;
-};
-
-function getDados(Quantidades) {
-    let dados = [];
-
-    for (let i in Quantidades) {
-        dados.push(Quantidades[i]);
-    }
-    return dados;
-}
-
-function exibePercentil(valor, dadosIn, Quantidades, mseparatriz, tipoVariavel) {
-
-    let size = dadosIn.length;
-    let posicaoDado = Math.round(valor * size / 100);
-
-    if (mseparatriz != 'Medida separatriz') {
-        let count = 0;
-        let aux;
-        if (tipoVariavel == 'Quantitativa Contínua') {
-            for (let i in Quantidades) {
-                if (count >= posicaoDado) {
-                    aux = i;
-                    break;
-                }
-                count += Quantidades[i];
-            }
-            return Number(Number(aux.substring(0, aux.indexOf(" "))) + ((Math.trunc(posicaoDado) - count) / Quantidades[aux]) * isQuantiContinous(dadosIn, tipoVariavel).intervalo).toFixed(2);
-        } else {
-            return dadosIn[Math.trunc(posicaoDado)];
-        }
-    } else {
-        return "--"
     }
 }
 
@@ -859,27 +671,4 @@ function csvJSON(csv) {
 
 function Voltar() {
     location.reload();
-    // document.getElementById('S3').innerHTML = ""
-    // $('#S3').remove();
-    // document.getElementById('S2').style.display = 'inline';
-    // document.querySelector(".fab").style = "visibility: hidden"
-}
-
-function medianaC(totalFrequencia, intervalos, interClasses, porcentagem, mseparatriz) {
-    let posicao = Number((totalFrequencia * porcentagem).toFixed(2));
-    let controle = 0,
-        vetorIntervalos;
-    if (mseparatriz == 'Medida separatriz') {
-        return '--';
-    }
-    for (let j in intervalos) {
-        if (posicao >= controle && posicao <= intervalos[j][0]) {
-            vetorIntervalos = j.split(' |-- ');
-            for (let i = 0; i < vetorIntervalos.length; i++) {
-                vetorIntervalos[i] = Number(vetorIntervalos[i]);
-            }
-            return (vetorIntervalos[0] + ((posicao - controle) / intervalos[j][1]) * interClasses).toFixed(2)
-        }
-        controle = intervalos[j][0];
-    }
 }
