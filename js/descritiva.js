@@ -452,22 +452,26 @@ function shazam() {
             scales: {
                 xAxes: [{
                     gridLines: {
-                        display: true
+                        display: (tipoVariavel.substring(0, 4) == "Qual") ? false : true
                     },
+                    ticks: {
+                        display: (tipoVariavel.substring(0, 4) == "Qual") ? false : true
+                    }
                 }],
                 yAxes: [{
                     ticks: {
                         min: 0,
-                        beginAtZero: true
+                        beginAtZero: (tipoVariavel.substring(0, 4) == "Qual") ? false : true,
+                        display: (tipoVariavel.substring(0, 4) == "Qual") ? false : true
                     },
                     gridLines: {
-                        display: true
+                        display: (tipoVariavel.substring(0, 4) == "Qual") ? false : true
                     }
                 }]
             }
         };
 
-
+        palette = new DistinctColors({count: dadosIn.length})
 
         if (tipoVariavel == 'Quantitativa Contínua') {
             options.scales.xAxes[0].categoryPercentage = 1.0;
@@ -484,8 +488,8 @@ function shazam() {
                 labels: getLabel(quantidadesRepetidas(dadosIn, tipoVariavel)),
                 datasets: [{
                     label: 'Frequência dos dados',
-                    backgroundColor: 'rgb(255, 99, 132)',
-                    borderColor: 'rgb(255, 99, 132)',
+                    backgroundColor: (tipoVariavel.substring(0, 4) == "Qual") ? palette : 'rgb(255, 99, 132)',
+                    borderColor: (tipoVariavel.substring(0, 4) == "Qual") ? 'black' : 'rgb(255, 99, 132)',
                     data: getDados(quantidadesRepetidas(dadosIn, tipoVariavel))
                 }]
             },
