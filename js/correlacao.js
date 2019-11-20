@@ -6,11 +6,17 @@ function manual(){
 }
 
 function getData() {
-    xDataName = document.getElementsByName('indepx')[0].value
-    xData = document.getElementById('xData').value.replace(/ /g, '');
+    let xDataName = document.getElementsByName('indepx')[0].value;
+    if (xDataName == "") {
+        xDataName = "X"
+    }
+    let xData = document.getElementById('xData').value.replace(/ /g, '');
     xData = xData.replace(/,/g, '.');
-    yDataName = document.getElementsByName('indepy')[0].value
-    yData = document.getElementById('yData').value.replace(/ /g, '');
+    let yDataName = document.getElementsByName('indepy')[0].value;
+    if (yDataName == "") {
+        yDataName = "Y"
+    }
+    let yData = document.getElementById('yData').value.replace(/ /g, '');
     yData = yData.replace(/,/g, '.');
 
     if (xData.endsWith(";")) {
@@ -194,13 +200,19 @@ function callCorrelacao () {
     geraGraf(dataIn, reg.a, reg.b);
 }
 
-function addPoint () {
+function addPoint() {
+    let dataIn = getData();
+    let reg = regressao(dataIn.xData, dataIn.yData);
     let y = null;
     let x = null;
-    if (document.getElementById('xAdd')) {
-        y = findY(dataIn.xData, reg.a, reg.b);
+    if (document.getElementById('xAdd').value != "") {
+        x = Number(document.getElementById('xAdd').value)
+        y = findY(x, reg.a, reg.b);
+        document.getElementById('yAdd').value = y;
     } else {
-        x = findX(dataIn.yData, reg.a, reg.b)
+        y = Number(document.getElementById('yAdd').value)
+        x = findX(y, reg.a, reg.b);
+        document.getElementById('xAdd').value = x;
     }
 }
 function lerArq() {
