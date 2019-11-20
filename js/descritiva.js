@@ -66,7 +66,7 @@ function shazam() {
             infoFromPage.processo);
 
         setResultsTable(results);
-        setGraph(infoFromPage.varName, infoFromPage.varType, infoFromPage.dadosIn);
+        setGraph(infoFromPage.varName, infoFromPage.varType, infoFromPage.Quantidades);
 
         document.querySelector(".fab").style = "visibility: visible";
 
@@ -284,7 +284,13 @@ function setResultsTable(results) {
     s3.innerHTML = strHTML;
 }
 
-function setGraph(varName, varType, dadosIn) {
+function setGraph(varName, varType, Quantidades) {
+    let sizeQuantidades = () => {
+        let size;
+        for( let i in Quantidades){
+            size++;
+        }
+    }
     let options = {
         title: {
             display: true,
@@ -322,7 +328,7 @@ function setGraph(varName, varType, dadosIn) {
         }
     };
 
-    palette = new DistinctColors({count: dadosIn.length})
+    palette = new DistinctColors({count: sizeQuantidades})
 
     if (varType == 'Quantitativa Contínua') {
         options.scales.xAxes[0].categoryPercentage = 1.0;
@@ -336,7 +342,7 @@ function setGraph(varName, varType, dadosIn) {
 
         // The data for our dataset
         data: {
-            labels: getLabel(quantidadesRepetidas(dadosIn, varType)),
+            labels: getLabel(Quantidades),
             datasets: [{
                 label: 'Frequência dos dados',
                 backgroundColor: (varType.substring(0, 4) == "Qual") ? palette : 'rgb(255, 99, 132)',
@@ -344,7 +350,7 @@ function setGraph(varName, varType, dadosIn) {
                 hoverBackgroundColor: (varType.substring(0, 4) == "Qual") ? palette : 'rgb(255, 99, 132)',
                 hoverBorderColor: 'rgb(255, 99, 132)',
                 borderColor: (varType.substring(0, 4) == "Qual") ? 'black' : 'rgb(255, 99, 132)',
-                data: getDados(quantidadesRepetidas(dadosIn, varType))
+                data: getDados(Quantidades)
             }]
         },
 
