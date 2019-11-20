@@ -64,16 +64,12 @@
         <section class='login'>
             <div class='mainlogin'>
                 <img src="./images/home-logo.png" id="logoIcoLogin" height="100"><br><br>
-                <form name="form">
-                    <input type="email" name="usuário" id="emailL" placeholder=" Digite seu email"><br><br>
-                    <input type="password" name="senha" id="senhaL" placeholder=" Digite sua senha">
-                </form>
-
-                <p><br>
-                    <!-- <input type="button" class="butn btnlogin" value="Entrar" onclick="location.href='escolha.html'"> -->
-                    <input type="submit" class="butn btnlogin" value="Entrar" onclick="logar()">
+                <form name="form" onsubmit="logar();return false">
+                    <input type="email" name="usuário" id="emailL" autocomplete="off" placeholder=" Digite seu email" required><br><br>
+                    <input type="password" name="senha" id="senhaL" placeholder=" Digite sua senha" required><br><br>
+                    <input type="submit" class="butn btnlogin" value="Entrar"><br><br>
                     <p>Não tem conta? Faça um <a class="btnregistro" onclick="regi()">registro</a></p>
-                </p>
+                </form>
             </div>
         </section>
         <section class='registro' style="display: none">
@@ -81,16 +77,12 @@
                 <img src="./images/home-logo.png" id="logoIcoLogin" height="100"><br><br>
                 <!-- <p>Faça o login para entrar no interpretador de dados:</p> -->
                 <!-- <h1>Entrar</h1><br> -->
-                <form name="form2">
-                    <input type="text" id="nomeR" placeholder="Nome" required><br><br>
-                    <input type="email" id="emailR" placeholder="nome@email.com" required><br><br>
-                    <input type="password" id="senhaR" placeholder="senha" required>
-
-
-                    <p><br>
-                        <input type="submit" class="butn btnregistrar" value="Registrar" onclick="registrar()">
-                        <p>Já é cadastrado? Faça o <a class="btnregistro" onclick="logi()">login</a></p>
-                    </p>
+                <form name="form2" onsubmit="registrar();return false">
+                    <input type="text" id="nomeR" placeholder="Nome" autocomplete="off" required><br><br>
+                    <input type="email" id="emailR" placeholder="nome@email.com" autocomplete="off" required><br><br>
+                    <input type="password" id="senhaR" placeholder="senha" required><br><br>
+                    <input type="submit" class="butn btnregistrar" value="Registrar""><br><br>
+                    <p>Já é cadastrado? Faça o <a class="btnregistro" onclick="logi()">login</a></p>
                 </form>
             </div>
         </section>

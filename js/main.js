@@ -9,10 +9,10 @@ if (localStorage.getItem("acesso") != "true") {
 function startBody() {
     // Dá boas vindas ao usuário
     if (localStorage.getItem("acessoAdmin") == "true") {
-        document.querySelector(".boasvindas").innerHTML = `Seja bem vindo, Admin (<a onclick="deslogar()" class="sair">sair</a>)`
+        document.querySelector(".boasvindas").innerHTML = `Bem vindo(a), Admin (<a onclick="deslogar()" class="sair">sair</a>)`
     } else {
         let usuario = localStorage.getItem("nome")
-        document.querySelector(".boasvindas").innerHTML = `Seja bem vindo, ${usuario} (<a onclick="deslogar()" class="sair">sair</a>)`
+        document.querySelector(".boasvindas").innerHTML = `Bem vindo(a), ${usuario} (<a onclick="deslogar()" class="sair">sair</a>)`
     }
 }
 

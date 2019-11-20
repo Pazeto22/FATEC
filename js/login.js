@@ -37,7 +37,7 @@ function logar() {
         document.querySelector(".mainlogin").innerHTML = `<p><img src="./images/home-logo.png" id="logoIcoLogin" height="100"><br><br>Você fez o login com sucesso!<br><img src="./images/loading.gif" style="width:autopx;height:80px;"><br>Você será redirecionado 3 segundos.</p>`
         // Redireciona o usuário para a página de escolhas em 3 segundos
         return setTimeout(function () { window.location.href = "./escolha.html"; }, 3000);
-    } else if (emailL == "admin" && senhaL == "admin") {
+    } else if (emailL == "admin@admin.com" && senhaL == "admin") {
         localStorage.setItem('acesso', true)
         localStorage.setItem('acessoAdmin', true)
         document.querySelector(".mainlogin").innerHTML = `<p><img src="./images/home-logo.png" id="logoIcoLogin" height="100"><br><br>Você fez o login com sucesso!<br><img src="./images/loading.gif" style="width:autopx;height:80px;"><br>Você será redirecionado 3 segundos.</p>`

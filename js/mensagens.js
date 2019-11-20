@@ -8,7 +8,6 @@ function mensagemContato() {
     assunto = document.querySelector("#assunto").value
     mensagem = document.querySelector("#mensagemTxt").value
     main = document.querySelector(".container")
-    console.log(mensagem)
 
     if (nome == "" || nome == undefined || email == "" || email == undefined || telefone == "" || telefone == undefined || assunto == "" || assunto == undefined || mensagem == "" || mensagem == undefined) {
         alert("Você deve preencher todos os campos antes de enviar a mensagem")

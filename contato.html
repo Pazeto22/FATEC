@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- oi -->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -65,19 +65,20 @@
         <p class="subh1">Envie sua dúvida por este canal e a responderemos o quanto antes!</p>
         <div class="grid-container container">
             <div class="grid-item" id="mensagem">
-                Seu nome:<br>
-                <input type="text" id="nome" placeholder="Nome completo">
-                <br>E-Mail:<br>
-                <input type="email" id="email" placeholder="Ex: ricardobatista@gmail.com">
-                <br>Telefone:<br>
-                <input type="tel" id="telefone" placeholder="DDD Obrigatório - Ex: 16991234567">
-                <br>Assunto:<br>
-                <input type="text" id="assunto" placeholder="Motivo pelo contato">
-                <br>Mensagem:<br>
-                <textarea id="mensagemTxt" placeholder="Nos diga o que precisa"></textarea>
-                <p><br>
-                    <input type="button" class="butn btnenviar" value="Enviar Mensagem" onclick="mensagemContato()">
-                </p>
+                <form onsubmit="mensagemContato();return false">
+                    <label>Seu nome:</label><br>
+                    <input type="text" id="nome" placeholder="Nome completo" autocomplete="off" required>
+                    <br><label>E-Mail:</label><br>
+                    <input type="email" id="email" placeholder="Ex: ricardobatista@gmail.com" autocomplete="off" required>
+                    <br><label>Telefone:</label><br>
+                    <input type="tel" id="telefone" placeholder="DDD Obrigatório - Ex: 16991234567" autocomplete="off" required>
+                    <br><label>Assunto:</label><br>
+                    <input type="text" id="assunto" placeholder="Motivo pelo contato" autocomplete="off" required>
+                    <br><label>Mensagem:</label><br>
+                    <textarea id="mensagemTxt" placeholder="Nos diga o que precisa" required></textarea>
+                    <br><br>
+                    <input type="submit" class="butn btnenviar" value="Enviar Mensagem"><br><br>
+                </form>
             </div>
             <div class="grid-item" id="contato">
                 <img src="./images/fatec.png" style="width:autopx;height:65px;">

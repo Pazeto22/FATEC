@@ -25,7 +25,7 @@
 
 <body onload="startBody()">
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" id="nav1">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light" id="nav1">
 
             <a class="navbar-brand mr-3" href="./escolha.html"><img src="./images/home-logo.png" id="logoIco"
                     width="auto" height="30" alt=""></a>
@@ -78,12 +78,11 @@
         <div class="grid-container container">
             <div class="grid-item" id="automatico">
                 <a onclick="funçãofutura()"><img class="bescolha image" src="./images/upload-icon.png"></a><br><br>
-                <p>Envie um arquivo CSV</p>
+                <label>Envie um arquivo CSV</label>
             </div>
-            <div class="linha-vertical"></div>
             <div class="grid-item" id="manual">
                 <a onclick="manual()"><img class="bescolha image" src="./images/manual-icon.png"></a><br><br>
-                <p>Insira os dados manualmente</p>
+                <label>Insira os dados manualmente</label>
             </div>
         </div>
     </main>
@@ -91,24 +90,41 @@
     <main id="corre" style="visibility: hidden">
         <div class="grid-container container">
             <div class="grid-item">
-                Nome da variável independente (x): <br><input type="text" name="indepx" class="dado"
-                    placeholder="Nome da variável X" style="text-align:center"><br><br>
-                Insira os dados separando-os por ponto e vírgula (;):<br><br>
+                <label>Nome da variável independente (x):</label><br>
+                <input type="text" name="indepx" class="dado" placeholder="Nome da variável X"
+                    style="text-align:center"><br><br>
+                <label>Insira os dados separando-os por ponto e vírgula (;):</label><br><br>
                 <textarea name="Dados" id="xDados" cols="60" rows="7" style="resize: vertical"
                     placeholder="Insira os dados"></textarea><br>
             </div>
             <div class="grid-item">
-                Nome da variável dependente (y): <br><input type="text" name="indepy" class="dado"
-                    placeholder="Nome da variável Y" style="text-align:center"><br><br>
-                Insira os dados separando-os por ponto e vírgula (;):<br><br>
+                <label>Nome da variável dependente (y):</label><br>
+                <input type="text" name="indepy" class="dado" placeholder="Nome da variável Y"
+                    style="text-align:center"><br><br>
+                <label>Insira os dados separando-os por ponto e vírgula (;):</label><br><br>
                 <textarea name="Dados" id="yDados" cols="60" rows="7" style="resize: vertical"
                     placeholder="Insira os dados"></textarea><br>
             </div>
             <br>
         </div>
         <p id="botao"><input type="button" class="butn bconfirmar" value="Confirmar" onclick="callCorrelacao()"></p>
+    </main>
+
+    <main id="resultados" style="visibility: hidden">
+        <div class="grid-container container">
+            <div class="grid-item cGrafico"></div>
+            <div class="grid-item cAdicionar">
+                <h1>Correlação</h1>
+                <label>Adicione alguma variavel independente (X):</label><br>
+                <textarea name="Dados" id="xAdd" cols="60" rows="7" style="resize: none"
+                    placeholder="Insira os dados"></textarea><br><br>
+                <label>Adicione alguma variavel dependente (Y):</label><br>
+                <textarea name="Dados" id="yAdd" cols="60" rows="7" style="resize: none"
+                    placeholder="Insira os dados"></textarea><br>
+                <p id="botao"><input type="button" class="butn bconfirmar" value="Adicionar" onclick=""></p>
+            </div>
+            <br>
         </div>
-        <div id='resultados' style="display: none"></div>
     </main>
 
     <script src="./js/jquery-3.3.1.slim.min.js"></script>
