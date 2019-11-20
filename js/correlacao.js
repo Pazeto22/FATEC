@@ -5,39 +5,43 @@ function manual(){
     manual.style.visibility = "visible"
 }
 
-function getDados() {
-    xDados = document.getElementById('xDados').value.replace(/ /g, '');
-    yDados = document.getElementById('yDados').value.replace(/ /g, '');
+function getData() {
+    xDataName = document.getElementsByName('indepx')[0].value
+    xData = document.getElementById('xData').value.replace(/ /g, '');
+    xData = xData.replace(/,/g, '.');
+    yDataName = document.getElementsByName('indepy')[0].value
+    yData = document.getElementById('yData').value.replace(/ /g, '');
+    yData = yData.replace(/,/g, '.');
 
-    if (xDados.endsWith(";")) {
-        xDados = xDados.substring(0, dadosIn.length - 1);
+    if (xData.endsWith(";")) {
+        xData = xData.substring(0, dataIn.length - 1);
     }
-    xDados = xDados.split(";");
-    for (let i = 0; i < xDados.length; i++) {
-        if (Number(xDados[i]) != NaN) {
-            xDados[i] = Number(xDados[i]);
+    xData = xData.split(";");
+    for (let i = 0; i < xData.length; i++) {
+        if (Number(xData[i]) != NaN) {
+            xData[i] = Number(xData[i]);
         } else {
-            xDados[i].splice(i, 1);
+            xData[i].splice(i, 1);
         }
     }
 
-    if (yDados.endsWith(";")) {
-        yDados = yDados.substring(0, dadosIn.length - 1);
+    if (yData.endsWith(";")) {
+        yData = yData.substring(0, dataIn.length - 1);
     }
-    yDados = yDados.split(";");
-    for (let i = 0; i < yDados.length; i++) {
-        if (Number(yDados[i]) != NaN) {
-            yDados[i] = Number(yDados[i]);
+    yData = yData.split(";");
+    for (let i = 0; i < yData.length; i++) {
+        if (Number(yData[i]) != NaN) {
+            yData[i] = Number(yData[i]);
         } else {
-            yDados[i].splice(i, 1);
+            yData[i].splice(i, 1);
         }
     }
     
-    if(yDados.length != xDados.length) {
+    if(yData.length != xData.length) {
         alert("Entrada de dados divergente, por favor corrija");
-        return {xDados, yDados};
+        return {xData, yData, xDataName, yDataName};
     } else {
-        return {xDados, yDados};
+        return {xData, yData, xDataName, yDataName};
     }
 }
 
@@ -86,32 +90,32 @@ function findX(y, a, b) {
     return Number(((y - b) / a).toFixed(2));
 }
 
-function geraScatterDados (xDados, yDados) {
+function geraScatterDados (xData, yData) {
     let dados = [];
 
-    for(let i =0; i < xDados.length; i++) {
-        dados. push({x: xDados[i], y: yDados[i]});
+    for(let i =0; i < xData.length; i++) {
+        dados. push({x: xData[i], y: yData[i]});
     };
 
     return dados;
 }
 
-function geraLineDados (xDados, a, b) {
+function geraLineDados (xData, a, b) {
     let dados = [];
 
-    for(let i =0; i < xDados.length; i++) {
-        dados. push({x: xDados[i], y: findY(xDados[i], a, b)});
+    for(let i =0; i < xData.length; i++) {
+        dados. push({x: xData[i], y: findY(xData[i], a, b)});
     };
     console.log(dados);
     return dados;
 }
 
-function geraGraf(dadosIn, a, b) {
+function geraGraf(dataIn, a, b) {
     let options = {
         title: {
             display: true,
             position: 'top',
-            text: `Gráfico de var`, //Inserir nome de variavel
+            text: `${dataIn.yDataName} em função de ${dataIn.xDataName}`, 
             fontSize: 18,
         },
         legend: {
@@ -149,7 +153,7 @@ function geraGraf(dadosIn, a, b) {
 
             // The data for our dataset
             data: {
-                labels: dadosIn.xDados,
+                labels: dataIn.xData,
                 datasets: [{
                     showline: true,
                     pointRadius: 0,
@@ -158,7 +162,8 @@ function geraGraf(dadosIn, a, b) {
                     fill: false,
                     backgroundColor: 'rgb(255, 99, 132)',
                     borderColor: 'rgb(255, 99, 132)',
-                    data: geraLineDados(dadosIn.xDados, a, b)
+                    borderDash: [1,1],
+                    data: geraLineDados(dataIn.xData, a, b)
                 }, {
                     showline: false,
                     borderWidth: 0,
@@ -166,7 +171,7 @@ function geraGraf(dadosIn, a, b) {
                     fill: false,
                     backgroundColor: 'rgb(255, 99, 132)',
                     borderColor: 'rgba(255, 99, 132, 0)',
-                    data: geraScatterDados(dadosIn.xDados, dadosIn.yDados)
+                    data: geraScatterDados(dataIn.xData, dataIn.yData)
                 }]
             },
 
@@ -179,54 +184,40 @@ function geraGraf(dadosIn, a, b) {
 }
 
 function callCorrelacao () {
-    let dadosIn = getDados();
-    let cor = correlacao(dadosIn.xDados, dadosIn.yDados);
-    let reg = regressao(dadosIn.xDados, dadosIn.yDados);
-    let y = null;
-    let x = null;
-    if (true) {
-        y = findY(dadosIn.xDados, reg.a, reg.b);
-    } else {
-        x = findX(dadosIn.yDados, reg.a, reg.b)
-    }
+    let dataIn = getData();
+    let cor = correlacao(dataIn.xData, dataIn.yData);
+    let reg = regressao(dataIn.xData, dataIn.yData);
     document.querySelector("#resultados").style = "visibility: inherit"
     document.querySelector("#corre").style = "visibility: hidden"
     let graficoDiv = document.querySelector(".cGrafico")
     graficoDiv.innerHTML += `Correlação: ${cor} <br> Y = ${reg.a}X + ${reg.b} <br> <canvas id="justChart"></canvas>`
-    geraGraf(dadosIn, reg.a, reg.b);
+    geraGraf(dataIn, reg.a, reg.b);
 }
 
+function addPoint () {
+    let y = null;
+    let x = null;
+    if (document.getElementById('xAdd')) {
+        y = findY(dataIn.xData, reg.a, reg.b);
+    } else {
+        x = findX(dataIn.yData, reg.a, reg.b)
+    }
+}
 function lerArq() {
     let arq = document.getElementById("fileDesc").files[0];
     let reader = new FileReader();
     reader.onload = function (e) {
-        var dados = document.getElementById("PDados");
+        var dados = document.getElementById("xData");
         dados.value = reader.result;
     }
     reader.readAsText(arq);
 }
 
-function csvJSON(csv) {
-    // credits: http://techslides.com/convert-csv-to-json-in-javascript
-    var lines = csv.split("\n");
-
-    var result = [];
-
-    var headers = lines[0].split(",");
-
-    for (var i = 1; i < lines.length; i++) {
-
-        var obj = {};
-        var currentline = lines[i].split(",");
-
-        for (var j = 0; j < headers.length; j++) {
-            obj[headers[j]] = currentline[j];
-        }
-
-        result.push(obj);
-
-    }
-
-    return result; //JavaScript object
-    //return JSON.stringify(result); //JSON
+function splitImportedData(){
+    let data = document.getElementById("xData").value
+    data = data.split("\n");
+    console.log(data)
+    document.getElementById("xData").value = data[0];
+    document.getElementById("yData").value = data[1];
+    manual();
 }
