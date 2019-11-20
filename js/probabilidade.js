@@ -88,7 +88,7 @@ function callBinomial() {
     let p = Number(document.querySelector('[name = "sucessop"]').value)/100;
     let q = Number(document.querySelector('[name = "fracassoq"]').value)/100;
     let res = binomial(n, k, p, q).toFixed(2);
-    let media = n*q
+    let media = n*p
     let dpadrao = Number((Math.sqrt(n*p*q).toFixed(2)))
 
     //Inserir resultados aqui   
@@ -181,7 +181,6 @@ function callNormal() {
             res = searchTable(normalizado).value + 0.5;
         } else {
             res = searchTable(normalizado).value;
-            console.log(res)
         }
     } else if (op[1].checked) {//entre
         values[1] = Number(document.getElementById('iaentremenor').value);
@@ -225,8 +224,6 @@ function searchTable(number) {
     }
     let lin = Math.trunc(number * 10) / 10;
     let col =Math.trunc((number - lin) * 100);
-    console.log('lin ' + lin);
-    console.log('col' + col);
 
     const tabela = [
         ['z', 0.0000, 1.0000, 2.0000, 3.0000, 4.0000, 5.0000, 6.0000, 7.0000, 8.0000, 9.0000],

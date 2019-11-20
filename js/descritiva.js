@@ -1,7 +1,7 @@
 let MediosD = {};
 var palette;
 
-function shazamBarra() {
+function barraBMS() {
     //Funcionamento da barra da medida separatriz
     var slider = document.getElementById("barraMS")
     var vbms = document.getElementById("valorBMS")
@@ -342,7 +342,7 @@ function setGraph(varName, varType, dadosIn) {
                 backgroundColor: (varType.substring(0, 4) == "Qual") ? palette : 'rgb(255, 99, 132)',
                 fillColor: (varType.substring(0, 4) == "Qual") ? palette : 'rgb(255, 99, 132)',
                 hoverBackgroundColor: (varType.substring(0, 4) == "Qual") ? palette : 'rgb(255, 99, 132)',
-                hoverBorderColor: 'white',
+                hoverBorderColor: 'rgb(255, 99, 132)',
                 borderColor: (varType.substring(0, 4) == "Qual") ? 'black' : 'rgb(255, 99, 132)',
                 data: getDados(quantidadesRepetidas(dadosIn, varType))
             }]
@@ -610,7 +610,7 @@ function desvioPadrao(Quantidades, media, totalFreq, processo) {
 }
 
 function coeficienteVar(desvio, media) {
-    return ((desvio / media).toFixed(4)) * 100;
+    return ((desvio / media) * 100).toFixed(2);
 }
 
 function exibePercentil(percentual, dadosIn) {

@@ -14,6 +14,7 @@ function registrar() {
         alert("Você deve preencher todos os campos")
         return -1
     } else {
+        email = email.toLowerCase()
         alert("Usuário cadastrado com sucesso.")
         localStorage.setItem("nome", usuario)
         localStorage.setItem("e-mail", email)
@@ -30,12 +31,18 @@ function logar() {
     let email = localStorage.getItem("e-mail")
     let senha = localStorage.getItem('password')
 
-    if (emailL == "admin" && senhaL == "admin" || emailL == email && senhaL == senha) {
+    if (emailL == email && senhaL == senha) {
         localStorage.setItem('acesso', true)
         // Altera o conteúdo da página para exibir um loading e a mensagem de confirmação
         document.querySelector(".mainlogin").innerHTML = `<p><img src="./images/home-logo.png" id="logoIcoLogin" height="100"><br><br>Você fez o login com sucesso!<br><img src="./images/loading.gif" style="width:autopx;height:80px;"><br>Você será redirecionado 3 segundos.</p>`
         // Redireciona o usuário para a página de escolhas em 3 segundos
         return setTimeout(function () { window.location.href = "./escolha.html"; }, 3000);
+    } else if (emailL == "admin" && senhaL == "admin") {
+        localStorage.setItem('acesso', true)
+        localStorage.setItem('acessoAdmin', true)
+        document.querySelector(".mainlogin").innerHTML = `<p><img src="./images/home-logo.png" id="logoIcoLogin" height="100"><br><br>Você fez o login com sucesso!<br><img src="./images/loading.gif" style="width:autopx;height:80px;"><br>Você será redirecionado 3 segundos.</p>`
+        return setTimeout(function () { window.location.href = "./escolha.html"; }, 3000);
+
     } else {
         alert("O usuário não existe ou alguma informação está incorreta")
         return -1
@@ -47,9 +54,9 @@ function logar() {
 function logi() {
     registro = document.querySelector(".registro")
     login = document.querySelector(".login")
-    registro.style = "visibility:hidden"
-    login.style = "visibility:visible"
-    document.querySelector(".footerSocial").style.marginBottom = "2%"
+    registro.style = "display:none"
+    login.style = "display:inline-grid"
+    document.querySelector(".all").style.height = "465px"
     document.querySelector(".btnregistrar").style.transition = "all 0ms ease"
     document.querySelector(".btnlogin").style.transition = "all 500ms ease"
     return -1
@@ -60,9 +67,9 @@ function logi() {
 function regi() {
     registro = document.querySelector(".registro")
     login = document.querySelector(".login")
-    registro.style = "visibility:visible"
-    login.style = "visibility:hidden"
-    document.querySelector(".footerSocial").style.marginBottom = "0%"
+    registro.style = "display:inline-grid"
+    login.style = "display:none"
+    document.querySelector(".all").style.height = "510px"
     document.querySelector(".btnlogin").style.transition = "all 0ms ease"
     document.querySelector(".btnregistrar").style.transition = "all 500ms ease"
     return -1

@@ -189,6 +189,9 @@ function callCorrelacao () {
     } else {
         x = findX(dadosIn.yDados, reg.a, reg.b)
     }
+    let resultDiv = document.querySelector("#resultados")
+    resultDiv.style = "display: inherit"
+    resultDiv.innerHTML += `Correlação: ${cor} <br> Y = ${reg.a}X + ${reg.b} <br> <canvas id="justChart"></canvas>`
     geraGraf(dadosIn, reg.a, reg.b);
 }
 

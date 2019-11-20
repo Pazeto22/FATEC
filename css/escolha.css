@@ -1,3 +1,5 @@
+/* Navbar */
+
 header {
     padding: 25px;
 }
@@ -8,9 +10,21 @@ header {
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
 }
 
+.logo{
+    max-height: 45px;
+    height: auto;
+}
+
+.sair{
+    color: rgb(255, 99, 132) !important;
+    cursor: pointer;
+}
+
+/* Corpo */
+
 body{
     background-image: url("../images/home-background.jpg");
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     text-align: center !important;
@@ -47,6 +61,8 @@ section#principal{
     margin-right: 10px;
 }
 
+/* Botões */
+
 .bescolha {
     height: 250px;  
     width: 250px;
@@ -65,10 +81,10 @@ section#principal{
   }
 
   .text{
-      background-color: rgb(255, 99, 132);
-      padding: 10px;
-      border-radius: 16px;
-      color: white;
+    background-color: rgb(255, 99, 132);
+    padding: 10px;
+    border-radius: 16px;
+    color: white;
   }
 
   .butn {

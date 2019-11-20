@@ -13,15 +13,19 @@ div#conteudoNavbarSuportado{
     width: 20%;
 }
 
+.sair{
+    color: rgb(255, 99, 132) !important;
+    cursor: pointer;
+}
+
 body {
     background-image: url("../images/dados-background.jpg");
-    background-size: 100% !important;
+    background-size: cover !important;
     background-repeat: no-repeat !important;
     background-attachment: fixed;
     background-position: center;
     font-family: Calibri, sans-serif !important;
     text-align: center !important;
-    color: white !important;
 }
 
 h1 {
@@ -40,6 +44,8 @@ main{
 }
 
 main#prob {
+    /* margin-top: 4%;
+    display: inline-grid; */
     transform: translate(-50%, -50%);
     position: absolute;
     top: 50%;
@@ -50,6 +56,8 @@ main#prob {
 }
 
 main#resultados {
+    /* margin-top: 5%;
+    display: inline-grid; */
     transform: translate(-50%, -50%);
     position: absolute;
     top: 50%;
