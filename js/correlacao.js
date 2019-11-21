@@ -217,6 +217,8 @@ function addPoint() {
 }
 function lerArq() {
     let arq = document.getElementById("fileDesc").files[0];
+    document.querySelector(".arquivoN").style.visibility = "visible"
+    document.querySelector(".arquivoN").innerHTML = `<label>${arq.name}</label>`
     let reader = new FileReader();
     reader.onload = function (e) {
         var dados = document.getElementById("xData");

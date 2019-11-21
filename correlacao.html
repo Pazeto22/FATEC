@@ -73,31 +73,35 @@
 
         </nav>
     </header>
+
     <div class="modal fade" id="importFile" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <!--<h5>Escolha um arquivo</h5> -->
+                    <h5>Importação de CSV</h5>
                 </div>
                 <div class="modal-body">
-                    <label class="butn btnenviar" for="fileDesc">
-                        <input type="file" class="butn btnenviar" id="fileDesc" accept=".csv , .txt"
-                            style="display: none;" onchange="lerArq()" >
+                    <label class="butn bconfirmar" for="fileDesc">
+                        <input type="file" class="butn bconfirmar" id="fileDesc" accept=".csv , .txt"
+                            style="display: none;" onchange="lerArq()">
                         Escolha um arquivo
-                    </label>
+                    </label><br>
+                    <span class="arquivoN" style="visibility: hidden;"></span>
                 </div>
                 <div class="modal-footer">
-                    <button onclick="splitImportedData();" type="button" class="butn btnconfirmar"
+                    <button onclick="splitImportedData();" type="button" class="butn bconfirmar"
                         data-dismiss="modal">Continuar</button>
                 </div>
             </div>
         </div>
+    </div>
 
     </div>
     <main id="escolha">
         <div class="grid-container container">
             <div class="grid-item" id="automatico">
-                <a onclick="$('#importFile').modal('toggle')"><img class="bescolha image" src="./images/upload-icon.png"></a><br><br>
+                <a onclick="$('#importFile').modal('toggle')"><img class="bescolha image"
+                        src="./images/upload-icon.png"></a><br><br>
                 <label>Envie um arquivo CSV</label>
             </div>
             <div class="grid-item" id="manual">
