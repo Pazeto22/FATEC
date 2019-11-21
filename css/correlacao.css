@@ -24,8 +24,8 @@ div#conteudoNavbarSuportado{
 
 body {
     background-image: url("../images/dados-background.jpg");
-    background-size: 100% !important;
-    background-repeat: no-repeat !important;
+    background-size: cover;
+    background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
     font-family: Calibri, sans-serif !important;
