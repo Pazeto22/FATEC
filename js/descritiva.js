@@ -677,7 +677,3 @@ function csvJSON(csv) {
     return result; //JavaScript object
     //return JSON.stringify(result); //JSON
 }
-
-function Voltar() {
-    location.reload();
-}

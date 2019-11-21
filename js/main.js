@@ -23,3 +23,9 @@ function deslogar() {
     alert("Você foi deslogado com sucesso")
     window.location.href = "./index.html"
 }
+
+// Adiciona um botão para atualizar/voltar a página
+
+function Voltar() {
+    location.reload();
+}

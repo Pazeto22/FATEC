@@ -1,4 +1,5 @@
 function manual(){
+    document.querySelector(".fab").style = "visibility: visible";
     escolha = document.querySelector("#escolha")
     manual = document.querySelector("#corre")
     escolha.style.visibility = "hidden"
@@ -6,6 +7,7 @@ function manual(){
 }
 
 function getData() {
+    document.querySelector(".fab").style = "visibility: visible";
     let xDataName = document.getElementsByName('indepx')[0].value;
     if (xDataName == "") {
         xDataName = "X"

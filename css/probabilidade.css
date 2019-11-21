@@ -1,3 +1,5 @@
+/* NavBar */
+
 header {
     padding: 25px;
 }
@@ -17,6 +19,8 @@ div#conteudoNavbarSuportado{
     color: rgb(255, 99, 132) !important;
     cursor: pointer;
 }
+
+/* Corpo */
 
 body {
     background-image: url("../images/dados-background.jpg");
@@ -44,8 +48,6 @@ main{
 }
 
 main#prob {
-    /* margin-top: 4%;
-    display: inline-grid; */
     transform: translate(-50%, -50%);
     position: absolute;
     top: 50%;
@@ -56,24 +58,16 @@ main#prob {
 }
 
 main#resultados {
-    /* margin-top: 5%;
-    display: inline-grid; */
     transform: translate(-50%, -50%);
     position: absolute;
     top: 50%;
     left: 50%;
     overflow: auto;
-    /* width: 622px;
-    height: 400px; */
 }
 
 div#escolhaintervalo,
 div#escolhaintervalo2 {
     display: none;
-}
-
-p#botao{
-    text-align: center;
 }
 
 div,
@@ -113,6 +107,28 @@ section#sabas {
     display: none;  
 }
 
+p#botao{
+    text-align: center;
+}
+
+.container-abas {
+    justify-content: left;
+    text-align: left;
+    text-align: left;
+}
+
+.modal-content{
+    background: white !important;
+    color: #444;
+    padding-top: 15px !important;
+    padding: 8px !important;
+    border-radius: 16px !important;
+    background: rgb(245, 252, 255) !important;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226) !important;
+}
+
+/* Botões e conteúdo */
+
 .butn {
     border: 2px solid black;
     border-radius: 16px;
@@ -142,16 +158,6 @@ section#sabas {
     -ms-transition: all 500ms ease;
     -o-transition: all 500ms ease;
     transition: all 500ms ease;
-}
-
-img#ColorModeIco{
-    cursor: pointer;
-}
-
-.container-abas {
-    justify-content: left;
-    text-align: left;
-    text-align: left;
 }
 
 input.abas {
@@ -202,16 +208,6 @@ input.abas:hover + label {
 input.abas:checked + label {
     background-color: rgb(255, 99, 132);
     color: white;
-}
-
-.modal-content{
-    background: white !important;
-    color: #444;
-    padding-top: 15px !important;
-    padding: 8px !important;
-    border-radius: 16px !important;
-    background: rgb(245, 252, 255) !important;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226) !important;
 }
 
 .btnconfirmar {
