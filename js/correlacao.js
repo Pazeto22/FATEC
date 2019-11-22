@@ -7,6 +7,7 @@ function manual(){
 }
 
 function getData() {
+    let flag;
     document.querySelector(".fab").style = "visibility: visible";
     let xDataName = document.getElementsByName('indepx')[0].value;
     if (xDataName == "") {
@@ -47,9 +48,11 @@ function getData() {
     
     if(yData.length != xData.length) {
         alert("Entrada de dados divergente, por favor corrija");
-        return {xData, yData, xDataName, yDataName};
+        flag = false
+        return {xData, yData, xDataName, yDataName, flag};
     } else {
-        return {xData, yData, xDataName, yDataName};
+        flag = true
+        return {xData, yData, xDataName, yDataName, flag};
     }
 }
 
@@ -69,7 +72,6 @@ function correlacao(x, y) {
 
     return Number(cor.toFixed(2));
 }
-
 
 function regressao(x, y) {
     let xDataSum = x.reduce((a, b) => a + b, 0);
@@ -193,13 +195,17 @@ function geraGraf(dataIn, a, b) {
 
 function callCorrelacao () {
     let dataIn = getData();
-    let cor = correlacao(dataIn.xData, dataIn.yData);
-    let reg = regressao(dataIn.xData, dataIn.yData);
-    document.querySelector("#resultados").style = "visibility: inherit"
-    document.querySelector("#corre").style = "visibility: hidden"
-    let graficoDiv = document.querySelector(".cGrafico")
-    graficoDiv.innerHTML += `Correlação: ${cor} <br> Y = ${reg.a}X + ${reg.b} <br> <canvas id="justChart"></canvas>`
-    geraGraf(dataIn, reg.a, reg.b);
+    if (document.getElementById('xData').value == ""  || !dataIn.flag){
+        alert('Por favor insira os valores de x e y');
+    } else {
+        let cor = correlacao(dataIn.xData, dataIn.yData);
+        let reg = regressao(dataIn.xData, dataIn.yData);
+        document.querySelector("#resultados").style = "visibility: inherit"
+        document.querySelector("#corre").style = "visibility: hidden"
+        let graficoDiv = document.querySelector(".cGrafico")
+        graficoDiv.innerHTML += `Correlação: ${cor} <br> Y = ${reg.a}X + ${reg.b} <br> <canvas id="justChart"></canvas>`
+        geraGraf(dataIn, reg.a, reg.b);
+    }
 }
 
 function addPoint() {
@@ -211,10 +217,12 @@ function addPoint() {
         x = Number(document.getElementById('xAdd').value)
         y = findY(x, reg.a, reg.b);
         document.getElementById('yAdd').value = y;
-    } else {
+    } else if(document.getElementById('yAdd').value != "") {
         y = Number(document.getElementById('yAdd').value)
         x = findX(y, reg.a, reg.b);
         document.getElementById('xAdd').value = x;
+    } else {
+        alert("Insira apenas um valor!");
     }
 }
 function lerArq() {
@@ -232,7 +240,6 @@ function lerArq() {
 function splitImportedData(){
     let data = document.getElementById("xData").value
     data = data.split("\n");
-    console.log(data)
     document.getElementById("xData").value = data[0];
     document.getElementById("yData").value = data[1];
     manual();
