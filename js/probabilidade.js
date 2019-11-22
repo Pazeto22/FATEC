@@ -87,14 +87,27 @@ function callBinomial() {
     let k = Number(document.querySelector('[name = "eventok"]').value);
     let p = Number(document.querySelector('[name = "sucessop"]').value)/100;
     let q = Number(document.querySelector('[name = "fracassoq"]').value)/100;
-    let res = binomial(n, k, p, q).toFixed(2);
-    let media = n*p
-    let dpadrao = Number((Math.sqrt(n*p*q).toFixed(2)))
+    let res;
+    if (p != 0 && q != 0 && n != 0) {
+        if (k <= n && k >= 0 && p + q == 1) {
+            let res = binomial(n, k, p, q).toFixed(2);
+            let media = n*p;
+            let dpadrao = Number((Math.sqrt(n*p*q).toFixed(2)));
 
-    //Inserir resultados aqui   
-
-    mResultados = document.querySelector("#resultadoInterior")
-    mResultados.innerHTML = `Probabilidade: ${res}% <br> Média: ${media} <br> Desvio Padrão: ${dpadrao}`
+            mResultados = document.querySelector("#resultadoInterior")
+            mResultados.innerHTML = `Probabilidade: ${res}% <br> Média: ${media} <br> Desvio Padrão: ${dpadrao}`
+            $('#resultado').modal('show');
+        } else {
+            if (p +q != 1) {
+                alert('A soma de p + q deve dar 100!')
+            } else {
+                alert('Insira um valor de k compatível!');
+            }
+        }
+    } else {
+        alert('Por favor insira todos os dados!')
+        $('#resultado').modal('hide');
+    }
 }
 
 function binomioMod(n, k) {
@@ -136,32 +149,53 @@ function callUniforme() {
     let values = new Array(4);  // [menor, entremenor, entremaior, maior]
     let op = document.getElementsByName('intervaloa');
     let res;
+    let flagOp = true;
 
-    if (op[0].checked) { //menor
-        values[0] = Number(document.getElementById('iamenor').value);
-        res = (1 / (max - min)) * (values[0] - min);
-        res = res * 100
-    } else if (op[1].checked) {//entre
-        values[1] = Number(document.getElementById('iaentremenor').value);
-        values[2] = Number(document.getElementById('iaentremaior').value);
-        if (values[2] > values[1]) {
-            res = (1 / (max - min)) * (values[2] - values[1]);
+    if (max != 0) {
+        if (op[0].checked) { //menor
+            values[0] = Number(document.getElementById('iamenor').value);
+            if (values[0] == 0){
+                alert('Insira um valor válido no intervalo!');
+                flagOp = false;
+            }
+            res = (1 / (max - min)) * (values[0] - min);
+            res = res * 100
+        } else if (op[1].checked) {//entre
+            values[1] = Number(document.getElementById('iaentremenor').value);
+            values[2] = Number(document.getElementById('iaentremaior').value);
+            if (values[2] == 0) {
+                alert('Insira um valor válido no intervalo!');
+                flagOp = false;
+            }
+            if (values[2] > values[1]) {
+                res = (1 / (max - min)) * (values[2] - values[1]);
+            } else {
+                res = (1 / (max - min)) * (values[1] - values[2]);
+            }
+        } else if (op[2].checked) {//maior
+            values[3] = Number(document.getElementById('iamaior').value);
+            if (values[3] == 0) {
+                alert('Insira um valor válido no intervalo!');
+                flagOp = false;
+            }
+            res = (1 / (max - min)) * (max - values[3]);
         } else {
-            res = (1 / (max - min)) * (values[1] - values[2]);
+            alert('Selecione uma opção válida!');
+            flagOp = false;
         }
-    } else if (op[2].checked) {//maior
-        values[3] = Number(document.getElementById('iamaior').value);
-        res = (1 / (max - min)) * (max - values[3]);
+        if (flagOp){
+            media = (min + max) / 2;
+            desvioPadrao = (Math.sqrt((max - min) ** 2 / 12)).toFixed(2)
+            cVariacao = ((desvioPadrao/media)*100).toFixed(2)
+
+            mResultados = document.querySelector("#resultadoInterior")
+            mResultados.innerHTML = `Probabilidade: ${res*100}% <br> Desvio Padrão: ${desvioPadrao} <br> Média: ${media} <br> C. de Variação: ${cVariacao}`
+            $('#resultado').modal('show');
+        }
+    } else {
+        alert('Por favor preencha todos os dados!');
+        $('#resultado').modal('hide');
     }
-
-    media = (min + max) / 2;
-    desvioPadrao = (Math.sqrt((max - min) ** 2 / 12)).toFixed(2)
-    cVariacao = ((desvioPadrao/media)*100).toFixed(2)
-
-    //Inserir resultados aqui   
-
-    mResultados = document.querySelector("#resultadoInterior")
-    mResultados.innerHTML = `Probabilidade: ${res}% <br> Desvio Padrão: ${desvioPadrao} <br> Média: ${media} <br> C. de Variação: ${cVariacao}`
 }
 
 function callNormal() {
@@ -171,51 +205,71 @@ function callNormal() {
     let values = new Array(4);  // [menor, entremenor, entremaior, maior]
     let op = document.getElementsByName('intervaloa2');
     let res;
-
-    if (op[0].checked) { //menor
-        values[0] = Number(document.getElementById('iamenor').value);
-        normalizado = (Number(values[0]) - Number(media)) / Number(desvioPadrao);
-        normalizado = normalizado.toFixed(2);
-
-        if (values[0] > media) {
-            res = searchTable(normalizado).value + 0.5;
+    let flagOp = true;
+    if (media != 0 && desvioPadrao != 0) {
+        if (op[0].checked) { //menor
+            values[0] = Number(document.getElementById('iamenor').value);
+            if (values[0] == 0){
+                alert('Insira um valor válido no intervalo!');
+                flagOp = false;
+            }
+            normalizado = (Number(values[0]) - Number(media)) / Number(desvioPadrao);
+            normalizado = normalizado.toFixed(2);
+    
+            if (values[0] > media) {
+                res = searchTable(normalizado).value + 0.5;
+            } else {
+                res = searchTable(normalizado).value;
+            }
+        } else if (op[1].checked) {//entre
+            values[1] = Number(document.getElementById('iaentremenor').value);
+            values[2] = Number(document.getElementById('iaentremaior').value);
+            if (values[2] == 0){
+                alert('Insira um valor válido no intervalo!');
+                flagOp = false;
+            }
+            normalizado1 = (Number(values[1]) - Number(media)) / Number(desvioPadrao);
+            normalizado1 = normalizado1.toFixed(2);
+            normalizado2 = (Number(values[2]) - Number(media)) / Number(desvioPadrao);
+            normalizado2 = normalizado2.toFixed(2);
+    
+            if (values[1] < media && values[2] > media) {
+                res = searchTable(normalizado1).value + searchTable(normalizado2).value;
+            } else if (values[1] > media && values[2] > media) {
+                res = searchTable(normalizado2).value - searchTable(normalizado1).value;
+            } else if (values[1] < media && values[2] < media) {
+                res = searchTable(normalizado1).value - searchTable(normalizado2).value;
+            } else if (values[1] == media && values[2] > media) {
+                res = searchTable(normalizado2).value;
+            } else if (values[2] == media && values[1] < media) {
+                res = searchTable(normalizado1).value;
+            }
+        } else if (op[2].checked) {//maior
+            values[3] = Number(document.getElementById('iamaior').value);
+            if (values[3] == 0){
+                alert('Insira um valor válido no intervalo!');
+                flagOp = false;
+            }
+            normalizado = (Number(values[3]) - Number(media)) / Number(desvioPadrao);
+            normalizado = normalizado.toFixed(2);
+            if (values[3] > media) {
+                res = 0.5 - searchTable(normalizado).value;
+            } else {
+                res = 0.5 + searchTable(normalizado).value;
+            }
         } else {
-            res = searchTable(normalizado).value;
+            alert('Selecione uma opção válida!');
+            flagOp = false;
         }
-    } else if (op[1].checked) {//entre
-        values[1] = Number(document.getElementById('iaentremenor').value);
-        values[2] = Number(document.getElementById('iaentremaior').value);
-        normalizado1 = (Number(values[1]) - Number(media)) / Number(desvioPadrao);
-        normalizado1 = normalizado1.toFixed(2);
-        normalizado2 = (Number(values[2]) - Number(media)) / Number(desvioPadrao);
-        normalizado2 = normalizado2.toFixed(2);
-
-        if (values[1] < media && values[2] > media) {
-            res = searchTable(normalizado1).value + searchTable(normalizado2).value;
-        } else if (values[1] > media && values[2] > media) {
-            res = searchTable(normalizado2).value - searchTable(normalizado1).value;
-        } else if (values[1] < media && values[2] < media) {
-            res = searchTable(normalizado1).value - searchTable(normalizado2).value;
-        } else if (values[1] == media && values[2] > media) {
-            res = searchTable(normalizado2).value;
-        } else if (values[2] == media && values[1] < media) {
-            res = searchTable(normalizado1).value;
+        if (flagOp) {
+            mResultados = document.querySelector("#resultadoInterior")
+            mResultados.innerHTML = `Probabilidade: ${res*100}%`
+            $('#resultado').modal('show');
         }
-    } else if (op[2].checked) {//maior
-        values[3] = Number(document.getElementById('iamaior').value);
-        normalizado = (Number(values[3]) - Number(media)) / Number(desvioPadrao);
-        normalizado = normalizado.toFixed(2);
-        if (values[3] > media) {
-            res = 0.5 - searchTable(normalizado).value;
-        } else {
-            res = 0.5 + searchTable(normalizado).value;
-        }
+    } else {
+        alert('Por favor preencha todos os dados!');
+        $('#resultado').modal('hide');
     }
-
-    //Inserir resultados aqui
-
-    mResultados = document.querySelector("#resultadoInterior")
-    mResultados.innerHTML = `Probabilidade: ${res*100}%`
 }
 
 function searchTable(number) {
@@ -271,17 +325,20 @@ function searchTable(number) {
     const column = Number(col) + 1;
     const line = Number(lin);
     let i = 0;
-
-    while (tabela[i][0] !== line) {
-        i++;
-        if (i > 41) {
-            console.log("Erro: valor z não encontrado na tabela")
-            break;
+    
+    if (line > 3.9) {
+        return { ok: true, value: 0 };
+    } else {
+        while (tabela[i][0] !== line) {
+            i++;
+            if (i > 41) {
+                console.log("Erro: valor z não encontrado na tabela")
+                break;
+            }
         }
+        if (tabela[i][0] === line) {
+            return { ok: true, value: (tabela[i][column]) };
+        }
+        return { ok: false, value: null };
     }
-    if (tabela[i][0] === line) {
-        return { ok: true, value: (tabela[i][column]) };
-    }
-
-    return { ok: false, value: null };
 }
