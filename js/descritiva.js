@@ -56,7 +56,7 @@ function shazam() {
     if (infoFromPage.varType == "Selecione..." || infoFromPage.dadosIn == "") {
         alert("Insira todos os dados");
     } else {
-        let auxRes = setDataTable(infoFromPage.varName,infoFromPage.varType,
+        let auxRes = setDataTable(infoFromPage.varName, infoFromPage.varType,
             infoFromPage.dadosIn, infoFromPage.Quantidades);
 
         document.getElementById('S2').style.display = 'none';
@@ -70,17 +70,17 @@ function shazam() {
 
         document.querySelector(".fab").style = "visibility: visible";
 
-    } 
+    }
 }
 
 function getInfo() {
     //Nome de variável
     let varName = document.getElementById('PVar').value;
-    if (varName == "") {varName = "Variável"}
+    if (varName == "") { varName = "Variável" }
 
     //Tipo de variável: quantitativa contínua, quantitativa discreta, qualitativa nominal, qualitativa ordinal
     let varType = document.getElementById('vars').value;
-    
+
     //Dados inseridos 
     let dadosIn = document.getElementById('PDados').value.replace(/ /g, '');
     dadosIn = sortData(dadosIn, varType);
@@ -88,7 +88,7 @@ function getInfo() {
     //Gera objeto de dados
     let Quantidades
     if (varName.includes(';')) {
-        varName= varName.split(';');
+        varName = varName.split(';');
         let data = csvJSON(document.getElementById("PDados").value);
         for (let i = 0; i < data.length - 1; i++) {
             let aux = data[i][varName[0]];
@@ -98,7 +98,7 @@ function getInfo() {
                 Quantidades[aux.toUpperCase()] = data[i][varName[1]];
             }
         }
-        varName= varName[0];
+        varName = varName[0];
     } else {
         Quantidades = quantidadesRepetidas(dadosIn, varType);
     }
@@ -120,15 +120,15 @@ function getInfo() {
         mseparatriz = "Medida separatriz";
         percentualSeparatriz = ''
     }
-    return {varName, varType, processo, dadosIn, Quantidades, mseparatriz, percentualSeparatriz}
+    return { varName, varType, processo, dadosIn, Quantidades, mseparatriz, percentualSeparatriz }
 }
 
-function sortData(dadosIn, varType){
+function sortData(dadosIn, varType) {
     if (dadosIn.endsWith(";")) {
         dadosIn = dadosIn.substring(0, dadosIn.length - 1);
     }
     dadosIn = dadosIn.trim();
-    dadosIn= dadosIn.toUpperCase();
+    dadosIn = dadosIn.toUpperCase();
     dadosIn = dadosIn.split(";");
     dadosIn.sort();
 
@@ -142,22 +142,22 @@ function sortData(dadosIn, varType){
         ordem = ordem.split("<BR>");
 
         let aux = [];
-            for (let i = 0; i < ordem.length; i++) {
-                for (let j = 0; j < dadosIn.length; j++) {
-                    if (dadosIn[j] == ordem[i]) {
-                        aux.push(dadosIn[j]);
-                    }
+        for (let i = 0; i < ordem.length; i++) {
+            for (let j = 0; j < dadosIn.length; j++) {
+                if (dadosIn[j] == ordem[i]) {
+                    aux.push(dadosIn[j]);
                 }
             }
+        }
 
-            dadosIn = aux;
+        dadosIn = aux;
     }
     return dadosIn;
 }
 
 function setDataTable(varName, varType, dadosIn, Quantidades) {
     document.querySelector('#S3-Container').innerHTML +=
-    `
+        `
             <section id = 'S3'>
                 <div class="table-responsive col-md-10" id="tabl2">
                     <table class="table table-hover table-bordered table-sm" id="TabPrincipal">
@@ -204,14 +204,14 @@ function setDataTable(varName, varType, dadosIn, Quantidades) {
             <td>${(frequenciaPercentAtual += Quantidades[i] / dadosIn.length * 100).toFixed(2)}</td>`;
         linha++;
 
-        if (varType == 'Quantitativa Contínua'){
+        if (varType == 'Quantitativa Contínua') {
             QuantidadesMe[i] = [frequenciaAtual, Quantidades[i]];
         } else {
             medianinhas[`${i}`] = frequenciaAtual;
         }
     }
 
-    if (varType == 'Quantitativa Contínua'){
+    if (varType == 'Quantitativa Contínua') {
         return QuantidadesMe;
     } else {
         return medianinhas;
@@ -226,32 +226,32 @@ function setResults(varType, Quantidades, medianinhas, dadosIn, mseparatriz, per
         if (mseparatriz != 'Medida separatriz') {
             results.push([mseparatriz + ' ' + percentual, exibePercentil(percentual, dadosIn)]);
         }
-     } else if (varType == 'Quantitativa Discreta') {
+    } else if (varType == 'Quantitativa Discreta') {
         let mediaData = media(Quantidades, dadosIn.length);
-        let desvio =  desvioPadrao(Quantidades, mediaData, dadosIn.length, processo)
+        let desvio = desvioPadrao(Quantidades, mediaData, dadosIn.length, processo)
 
         results.push(['Moda', acumularModa(Quantidades)]);
         results.push(['Média', mediaData])
         results.push(['Mediana', mediana(medianinhas, dadosIn.length)]);
         results.push(['Desvio Padrão', desvio]);
-        results.push(['Coef. de Variação',coeficienteVar(desvio, mediaData)]);
+        results.push(['Coef. de Variação', coeficienteVar(desvio, mediaData)]);
 
         if (mseparatriz != 'Medida separatriz') {
             results.push([mseparatriz + ' ' + percentual, exibePercentil(percentual, dadosIn)]);
         }
     } else if (varType == 'Quantitativa Contínua') {
         let mediaData = mediaC(MediosD, dadosIn.length);
-        let intervalo = isQuantiContinous(dadosIn,varType).intervalo;
-        let desvio =  desvioPadrao(Quantidades, mediaData, dadosIn.length, processo)
+        let intervalo = isQuantiContinous(dadosIn, varType).intervalo;
+        let desvio = desvioPadrao(Quantidades, mediaData, dadosIn.length, processo)
 
         results.push(['Moda', cortaString(acumularModa(Quantidades))]);
         results.push(['Média', mediaData])
         results.push(['Mediana', medianaC(dadosIn.length, medianinhas, intervalo, 0.5)]);
         results.push(['Desvio Padrão', desvio]);
-        results.push(['Coef. de Variação',coeficienteVar(desvio, mediaData)]);
+        results.push(['Coef. de Variação', coeficienteVar(desvio, mediaData)]);
 
         if (mseparatriz != 'Medida separatriz') {
-            results.push([mseparatriz + ' ' + percentual, medianaC(dadosIn.length, medianinhas, isQuantiContinous(dadosIn,varType).intervalo, percentual/100)]);
+            results.push([mseparatriz + ' ' + percentual, medianaC(dadosIn.length, medianinhas, isQuantiContinous(dadosIn, varType).intervalo, percentual / 100)]);
         }
     }
 
@@ -287,7 +287,7 @@ function setResultsTable(results) {
 function setGraph(varName, varType, Quantidades) {
     let sizeQuantidades = () => {
         let size;
-        for( let i in Quantidades){
+        for (let i in Quantidades) {
             size++;
         }
     }
@@ -328,7 +328,7 @@ function setGraph(varName, varType, Quantidades) {
         }
     };
 
-    palette = new DistinctColors({count: sizeQuantidades})
+    palette = new DistinctColors({ count: sizeQuantidades })
 
     if (varType == 'Quantitativa Contínua') {
         options.scales.xAxes[0].categoryPercentage = 1.0;

@@ -1,11 +1,11 @@
-1. Descritiva: Corrigir Ordinal, dados numéricos organizam por ordem crescente e não pela escolhida;
+1. ~Descritiva: Corrigir Ordinal, dados numéricos organizam por ordem crescente e não pela escolhida;~
 2. Probabilidade: Corrigir Normal, resultado errado;
-3. Probabilidade: Corrigir Binomial, porcentagem da probabilidade errada.
+3. ~Probabilidade: Corrigir Binomial, porcentagem da probabilidade errada.~
 4. ~Correlação: Colocar os nomes das variáveis X e Y aparecendo no gráfico;~
-5. Correlação: Criar função para adicionar X e Y após gerar o gráfico;
-6. ~Correlação: Criar importação de CSV~
-7. ~Correlação: Corrigir o bug de não ler ponto em número quebrado (3.5 -> 3,5)~
-8. Correlação e Probabilidade: Impedir de calcular sem inserir todos os dados
+5. ~Correlação: Criar função para adicionar X e Y após gerar o gráfico;~
+6. ~Correlação: Criar importação de CSV;~
+7. ~Correlação: Corrigir o bug de não ler ponto em número quebrado (3.5 -> 3,5);~
+8. ~Correlação e Probabilidade: Impedir de calcular sem inserir todos os dados;~
 
 9. JS: Padronizar os códigos copiados;
 10. JS: Comentar os códigos dizendo o que fazem;
