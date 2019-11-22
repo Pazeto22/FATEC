@@ -208,6 +208,12 @@ function callCorrelacao () {
     }
 }
 
+function apagarTxt(){
+    document.querySelector("#xAdd").value = ""
+    document.querySelector("#yAdd").value = ""
+
+}
+
 function addPoint() {
     let dataIn = getData();
     let reg = regressao(dataIn.xData, dataIn.yData);

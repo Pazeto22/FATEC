@@ -90,7 +90,7 @@ function callBinomial() {
     let res;
     if (p != 0 && q != 0 && n != 0) {
         if (k <= n && k >= 0 && p + q == 1) {
-            let res = binomial(n, k, p, q).toFixed(2);
+            let res = (binomial(n, k, p, q).toPrecision(2))*100;
             let media = n*p;
             let dpadrao = Number((Math.sqrt(n*p*q).toFixed(2)));
 
@@ -99,7 +99,7 @@ function callBinomial() {
             $('#resultado').modal('show');
         } else {
             if (p +q != 1) {
-                alert('A soma de p + q deve dar 100!')
+                alert('A soma de p + q deve dar 100%!')
             } else {
                 alert('Insira um valor de k compatível!');
             }
@@ -189,7 +189,7 @@ function callUniforme() {
             cVariacao = ((desvioPadrao/media)*100).toFixed(2)
 
             mResultados = document.querySelector("#resultadoInterior")
-            mResultados.innerHTML = `Probabilidade: ${res*100}% <br> Desvio Padrão: ${desvioPadrao} <br> Média: ${media} <br> C. de Variação: ${cVariacao}`
+            mResultados.innerHTML = `Probabilidade: ${res}% <br> Desvio Padrão: ${desvioPadrao} <br> Média: ${media} <br> C. de Variação: ${cVariacao}`
             $('#resultado').modal('show');
         }
     } else {
