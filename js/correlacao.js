@@ -1,4 +1,5 @@
 function manual(){
+    document.querySelector(".fab").style = "visibility: visible";
     escolha = document.querySelector("#escolha")
     manual = document.querySelector("#corre")
     escolha.style.visibility = "hidden"
@@ -6,6 +7,7 @@ function manual(){
 }
 
 function getData() {
+    document.querySelector(".fab").style = "visibility: visible";
     let xDataName = document.getElementsByName('indepx')[0].value;
     if (xDataName == "") {
         xDataName = "X"
@@ -217,6 +219,8 @@ function addPoint() {
 }
 function lerArq() {
     let arq = document.getElementById("fileDesc").files[0];
+    document.querySelector(".arquivoN").style.visibility = "visible"
+    document.querySelector(".arquivoN").innerHTML = `<label>${arq.name}</label>`
     let reader = new FileReader();
     reader.onload = function (e) {
         var dados = document.getElementById("xData");

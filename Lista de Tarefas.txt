@@ -1,22 +1,26 @@
 1. Descritiva: Corrigir Ordinal, dados numéricos organizam por ordem crescente e não pela escolhida;
 2. Probabilidade: Corrigir Normal, resultado errado;
-3. Correlação: Colocar os nomes das variáveis X e Y aparecendo no gráfico;
-4. Correlação: Criar função para adicionar X e Y após gerar o gráfico;
+3. Probabilidade: Corrigir Binomial, porcentagem da probabilidade errada.
+4. ~Correlação: Colocar os nomes das variáveis X e Y aparecendo no gráfico;~
+5. Correlação: Criar função para adicionar X e Y após gerar o gráfico;
+6. ~Correlação: Criar importação de CSV~
+7. ~Correlação: Corrigir o bug de não ler ponto em número quebrado (3.5 -> 3,5)~
 
-5. JS: Padronizar os códigos copiados;
-6. JS: Comentar os códigos dizendo o que fazem;
-7. JS: Se necessário organizar os códigos;
+8. JS: Padronizar os códigos copiados;
+9. JS: Comentar os códigos dizendo o que fazem;
+10. JS: Se necessário organizar os códigos;
 
-8. CSS: Organizar por NavBar / Corpo / Botões e outro se precisar;
-9. CSS: Remover o que não estiver usando para limpar;
-10. HTML: Adicionar os botões para voltar para a página principal da Correlação;
-11. HTML: Adicionar pelo menos um modo de acessibilidade (IHC);
+11. ~CSS: Organizar por NavBar / Corpo / Botões e outro se precisar;~
+12. ~CSS: Remover o que não estiver usando para limpar;~
+13. ~CSS: Padronizar o Modal de importação da Correlação;~
+14. ~HTML: Adicionar os botões para voltar para a página principal da Correlação;~
+15. HTML: Adicionar pelo menos um modo de acessibilidade (IHC);
 
-12. HTML: Criar a página 'Sobre Nós';
+16. HTML: Criar a página 'Sobre Nós';
 
-13. Documentação: Terminar BPMN;
-14. Documentação: Unir as duas partes e padronizar;
-15. Documentação: Revisar e corrigir o que precisar;
+17. Documentação: Terminar BPMN;
+18. Documentação: Unir as duas partes e padronizar;
+19. Documentação: Revisar e corrigir o que precisar;
 
-16. Apresentação: Criar os slides;
-17. Apresentação: Definir a participação de cada um;
+20. Apresentação: Criar os slides;
+21. Apresentação: Definir a participação de cada um;

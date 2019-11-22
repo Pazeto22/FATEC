@@ -24,8 +24,8 @@ div#conteudoNavbarSuportado{
 
 body {
     background-image: url("../images/dados-background.jpg");
-    background-size: 100% !important;
-    background-repeat: no-repeat !important;
+    background-size: cover;
+    background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
     font-family: Calibri, sans-serif !important;
@@ -92,7 +92,6 @@ main#resultados {
 /* Botões e conteúdo */
 
 .butn {
-    /* height: 100px; */
     border: 2px solid black;
     border-radius: 16px;
     background-color: rgba(255, 255, 255, 0);
