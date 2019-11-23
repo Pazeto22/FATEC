@@ -85,20 +85,20 @@ function shazamabas(x) {
 function callBinomial() {
     let n = Number(document.querySelector('[name = "tamostra"]').value);
     let k = Number(document.querySelector('[name = "eventok"]').value);
-    let p = Number(document.querySelector('[name = "sucessop"]').value)/100;
-    let q = Number(document.querySelector('[name = "fracassoq"]').value)/100;
+    let p = Number(document.querySelector('[name = "sucessop"]').value) / 100;
+    let q = Number(document.querySelector('[name = "fracassoq"]').value) / 100;
     let res;
     if (p != 0 && q != 0 && n != 0) {
         if (k <= n && k >= 0 && p + q == 1) {
-            let res = (binomial(n, k, p, q).toPrecision(2))*100;
-            let media = n*p;
-            let dpadrao = Number((Math.sqrt(n*p*q).toFixed(2)));
+            let res = (binomial(n, k, p, q).toPrecision(2)) * 100;
+            let media = n * p;
+            let dpadrao = Number((Math.sqrt(n * p * q).toFixed(2)));
 
             mResultados = document.querySelector("#resultadoInterior")
             mResultados.innerHTML = `Probabilidade: ${res}% <br> Média: ${media} <br> Desvio Padrão: ${dpadrao}`
             $('#resultado').modal('show');
         } else {
-            if (p +q != 1) {
+            if (p + q != 1) {
                 alert('A soma de p + q deve dar 100%!')
             } else {
                 alert('Insira um valor de k compatível!');
@@ -154,23 +154,22 @@ function callUniforme() {
     if (max != 0) {
         if (op[0].checked) { //menor
             values[0] = Number(document.getElementById('iamenor').value);
-            if (values[0] == 0){
+            if (values[0] == 0) {
                 alert('Insira um valor válido no intervalo!');
                 flagOp = false;
             }
-            res = (1 / (max - min)) * (values[0] - min);
-            res = res * 100
+            res = (1 / (max - min)) * (values[0] - min) * 100;
         } else if (op[1].checked) {//entre
             values[1] = Number(document.getElementById('iaentremenor').value);
             values[2] = Number(document.getElementById('iaentremaior').value);
-            if (values[2] == 0) {
-                alert('Insira um valor válido no intervalo!');
+            if (values[2] == 0 || values[1] == 0) {
+                alert('Indique todos os intervalos');
                 flagOp = false;
             }
             if (values[2] > values[1]) {
-                res = (1 / (max - min)) * (values[2] - values[1]);
+                res = (1 / (max - min)) * (values[2] - values[1]) * 100;
             } else {
-                res = (1 / (max - min)) * (values[1] - values[2]);
+                res = (1 / (max - min)) * (values[1] - values[2]) * 100;
             }
         } else if (op[2].checked) {//maior
             values[3] = Number(document.getElementById('iamaior').value);
@@ -178,15 +177,15 @@ function callUniforme() {
                 alert('Insira um valor válido no intervalo!');
                 flagOp = false;
             }
-            res = (1 / (max - min)) * (max - values[3]);
+            res = (1 / (max - min)) * (max - values[3]) * 100;
         } else {
             alert('Selecione uma opção válida!');
             flagOp = false;
         }
-        if (flagOp){
+        if (flagOp) {
             media = (min + max) / 2;
             desvioPadrao = (Math.sqrt((max - min) ** 2 / 12)).toFixed(2)
-            cVariacao = ((desvioPadrao/media)*100).toFixed(2)
+            cVariacao = ((desvioPadrao / media) * 100).toFixed(2)
 
             mResultados = document.querySelector("#resultadoInterior")
             mResultados.innerHTML = `Probabilidade: ${res}% <br> Desvio Padrão: ${desvioPadrao} <br> Média: ${media} <br> C. de Variação: ${cVariacao}`
@@ -209,13 +208,13 @@ function callNormal() {
     if (media != 0 && desvioPadrao != 0) {
         if (op[0].checked) { //menor
             values[0] = Number(document.getElementById('iamenor').value);
-            if (values[0] == 0){
+            if (values[0] == 0) {
                 alert('Insira um valor válido no intervalo!');
                 flagOp = false;
             }
             normalizado = (Number(values[0]) - Number(media)) / Number(desvioPadrao);
             normalizado = normalizado.toFixed(2);
-    
+
             if (values[0] > media) {
                 res = searchTable(normalizado).value + 0.5;
             } else {
@@ -224,7 +223,7 @@ function callNormal() {
         } else if (op[1].checked) {//entre
             values[1] = Number(document.getElementById('iaentremenor').value);
             values[2] = Number(document.getElementById('iaentremaior').value);
-            if (values[2] == 0){
+            if (values[2] == 0) {
                 alert('Insira um valor válido no intervalo!');
                 flagOp = false;
             }
@@ -232,7 +231,7 @@ function callNormal() {
             normalizado1 = normalizado1.toFixed(2);
             normalizado2 = (Number(values[2]) - Number(media)) / Number(desvioPadrao);
             normalizado2 = normalizado2.toFixed(2);
-    
+
             if (values[1] < media && values[2] > media) {
                 res = searchTable(normalizado1).value + searchTable(normalizado2).value;
             } else if (values[1] > media && values[2] > media) {
@@ -246,7 +245,7 @@ function callNormal() {
             }
         } else if (op[2].checked) {//maior
             values[3] = Number(document.getElementById('iamaior').value);
-            if (values[3] == 0){
+            if (values[3] == 0) {
                 alert('Insira um valor válido no intervalo!');
                 flagOp = false;
             }
@@ -263,7 +262,7 @@ function callNormal() {
         }
         if (flagOp) {
             mResultados = document.querySelector("#resultadoInterior")
-            mResultados.innerHTML = `Probabilidade: ${res*100}%`
+            mResultados.innerHTML = `Probabilidade: ${res * 100}%`
             $('#resultado').modal('show');
         }
     } else {
@@ -274,10 +273,10 @@ function callNormal() {
 
 function searchTable(number) {
     if (number < 0) {
-        number = number *-1;
+        number = number * -1;
     }
     let lin = Math.trunc(number * 10) / 10;
-    let col =Math.trunc((number - lin) * 100);
+    let col = Math.trunc((number - lin) * 100);
 
     const tabela = [
         ['z', 0.0000, 1.0000, 2.0000, 3.0000, 4.0000, 5.0000, 6.0000, 7.0000, 8.0000, 9.0000],
@@ -325,7 +324,7 @@ function searchTable(number) {
     const column = Number(col) + 1;
     const line = Number(lin);
     let i = 0;
-    
+
     if (line > 3.9) {
         return { ok: true, value: 0 };
     } else {
