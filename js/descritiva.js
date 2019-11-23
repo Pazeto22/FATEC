@@ -286,10 +286,11 @@ function setResultsTable(results) {
 
 function setGraph(varName, varType, Quantidades) {
     let sizeQuantidades = () => {
-        let size;
+        let size=0;
         for (let i in Quantidades) {
             size++;
         }
+        return size;
     }
     let options = {
         title: {
@@ -328,7 +329,7 @@ function setGraph(varName, varType, Quantidades) {
         }
     };
 
-    palette = new DistinctColors({ count: sizeQuantidades })
+    palette = new DistinctColors({ count: sizeQuantidades() })
 
     if (varType == 'Quantitativa Contínua') {
         options.scales.xAxes[0].categoryPercentage = 1.0;

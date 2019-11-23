@@ -95,7 +95,7 @@ function callBinomial() {
             let dpadrao = Number((Math.sqrt(n * p * q).toFixed(2)));
 
             mResultados = document.querySelector("#resultadoInterior")
-            mResultados.innerHTML = `Probabilidade: ${res}% <br> Média: ${media} <br> Desvio Padrão: ${dpadrao}`
+            mResultados.innerHTML = `Probabilidade: ${res.toFixed(4)}% <br> Média: ${media} <br> Desvio Padrão: ${dpadrao}`
             $('#resultado').modal('show');
         } else {
             if (p + q != 1) {
@@ -188,7 +188,7 @@ function callUniforme() {
             cVariacao = ((desvioPadrao / media) * 100).toFixed(2)
 
             mResultados = document.querySelector("#resultadoInterior")
-            mResultados.innerHTML = `Probabilidade: ${res}% <br> Desvio Padrão: ${desvioPadrao} <br> Média: ${media} <br> C. de Variação: ${cVariacao}`
+            mResultados.innerHTML = `Probabilidade: ${res.toFixed(4)}% <br> Desvio Padrão: ${desvioPadrao} <br> Média: ${media} <br> C. de Variação: ${cVariacao}`
             $('#resultado').modal('show');
         }
     } else {
@@ -218,7 +218,7 @@ function callNormal() {
             if (values[0] > media) {
                 res = searchTable(normalizado).value + 0.5;
             } else {
-                res = searchTable(normalizado).value;
+                res = 0.5 - searchTable(normalizado).value;
             }
         } else if (op[1].checked) {//entre
             values[1] = Number(document.getElementById('iaentremenor').value);
@@ -262,7 +262,7 @@ function callNormal() {
         }
         if (flagOp) {
             mResultados = document.querySelector("#resultadoInterior")
-            mResultados.innerHTML = `Probabilidade: ${res * 100}%`
+            mResultados.innerHTML = `Probabilidade: ${res.toFixed(4) * 100}%`
             $('#resultado').modal('show');
         }
     } else {
@@ -326,7 +326,7 @@ function searchTable(number) {
     let i = 0;
 
     if (line > 3.9) {
-        return { ok: true, value: 0 };
+        return { ok: true, value: 0.5 };
     } else {
         while (tabela[i][0] !== line) {
             i++;
