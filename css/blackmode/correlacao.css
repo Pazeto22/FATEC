@@ -5,10 +5,9 @@ header {
 }
 
 #nav1 {
-    background: rgba(252, 255, 255, 0.975) !important;
-    border-bottom: 1px solid rgba(204, 204, 204, 0.5);
+    background: rgba(18, 22, 31, 0.8) !important;
+    border-bottom: 1px solid rgba(40, 51, 73, 0.5);
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
 }
 
 div#conteudoNavbarSuportado{
@@ -21,13 +20,25 @@ div#conteudoNavbarSuportado{
 }
 
 .boasvindas{
-    color: black;
+    color: white;
+}
+
+.dropdown-menu{
+    background: rgba(18, 22, 31, 0.8) !important;
+}
+
+.dropdown-item{
+    color: white !important;
+}
+.dropdown-item:hover{
+    background: rgba(47, 57, 82, 0.8) !important;
+    color: white !important;
 }
 
 /* Corpo */
 
 body {
-    background-image: url("../images/dados-background.jpg");
+    background-image: url("../../images/dados-background-black.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -44,8 +55,8 @@ h1 {
 }
 
 main{
-    color: black;
-    background: rgba(245, 252, 255, 0.85);
+    color: white;
+    background: rgba(10, 24, 31, 0.75);
     padding: 5px;
     border-radius: 16px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226);
@@ -94,12 +105,12 @@ main#resultados {
 }
 
 .modal-content{
-    background: white !important;
-    color: #444;
+    background: black !important;
+    color: white;
     padding-top: 15px !important;
     padding: 8px !important;
     border-radius: 16px !important;
-    background: rgb(245, 252, 255) !important;
+    background: rgba(10, 24, 31, 0.75)!important;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226) !important;
 }
 
@@ -147,7 +158,7 @@ input {
     background-color: rgba(255, 255, 255, 0);
     outline: none;
     margin-top: 30px;
-    color: black;
+    color: white;
 }
 
 .bescolha {
@@ -169,8 +180,8 @@ input {
     min-height: 64px;
     height: 64px;
     max-height: 300px;
-    background: rgb(250, 253, 255);
-    color: black;
+    background: rgb(10, 23, 29);
+    color: white;
     border-radius: 5pt;
     outline: none;
 }

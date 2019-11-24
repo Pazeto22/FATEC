@@ -1,19 +1,45 @@
-/* NavBar */
+/* Navbar */
 
 header {
     padding: 25px;
 }
 
 #nav1 {
-    background: rgba(252, 255, 255, 0.975) !important;
-    border-bottom: 1px solid rgba(204, 204, 204, 0.5);
+    background: rgba(18, 22, 31, 0.8) !important;
+    border-bottom: 1px solid rgba(40, 51, 73, 0.5);
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo{
+    max-height: 45px;
+    height: auto;
+}
+
+.sair{
+    color: rgb(255, 99, 132) !important;
+    cursor: pointer;
+}
+
+.boasvindas{
+    color: white;
+}
+
+.dropdown-menu{
+    background: rgba(18, 22, 31, 0.8) !important;
+}
+
+.dropdown-item{
+    color: white !important;
+}
+.dropdown-item:hover{
+    background: rgba(47, 57, 82, 0.8) !important;
+    color: white !important;
 }
 
 /* Corpo */
 
 body{
-    background-image: url("../images/home-background.jpg");
+    background-image: url("../../images/home-background-black.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -23,65 +49,61 @@ body{
     font-family: Calibri, sans-serif !important;
 }
 
-main{
-    color: black;
-    background: rgba(245, 252, 255, 0.85);
+section{
+    background: rgba(10, 24, 31, 0.75);
     padding: 5px;
     border-radius: 16px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226);
 }
 
-.principal {
-    transform: translate(-50%, -45%);
+section#principal{
+    transform: translate(-50%, -50%);
     position: absolute;
     top: 50%;
     left: 50%;
     overflow: auto;
-    width: auto;
-    height: auto;
 }
 
 .grid-container {
     display: grid;
-    grid-template-columns: auto auto;
-    text-align: center;
+    grid-template-columns: auto auto auto;
+    grid-gap: 10px;
+    margin: 10px;
   }
 
 .grid-item {
     padding: 2px !important;
     margin-left: 10px;
     margin-right: 10px;
-    font-size: 12px !important;
-    text-align: left;
-}
-
-h1 {
-    padding: 8px;
-    font-weight: bold;
-    text-align: center;
-    font-size: 18pt !important;
-    color: rgb(255, 99, 132) !important;
-}
-
-div#mensagem {
-    width: 350px;
-}
-
-div#contato {
-    text-align: center;
-    width: 320px;
 }
 
 /* Botões e conteúdo */
 
-input {
-    margin-bottom: 10px;
-    width: 300px;
-    background: rgb(250, 253, 255);
+.bescolha {
+    height: 250px;  
+    width: 250px;
+    border: 4px solid rgb(255, 99, 132);
+    border-radius: 8px;
+    cursor: pointer;
     outline: none;
-}
+    background-color: rgb(255, 99, 132);
+    border-radius: 15px;
+    box-shadow: 0 9px rgb(255, 70, 110);
+  }
 
-.butn {
+  .bescolha:hover {
+    box-shadow: 0 5px rgb(255, 62, 104);
+    transform: translateY(4px);
+  }
+
+  .text{
+    background-color: rgb(255, 99, 132);
+    padding: 10px;
+    border-radius: 16px;
+    color: white;
+  }
+
+  .butn {
     border: 2px solid black;
     border-radius: 16px;
     background-color: rgba(255, 255, 255, 0);
@@ -91,8 +113,8 @@ input {
     outline: none;
 }
 
-.btnenviar {
-    width: 300px;
+.btnescolha {
+    width: 250px;
     border-color: rgb(255, 99, 132);
     color: rgb(255, 99, 132);
     -webkit-transition: all 500ms ease;
@@ -102,7 +124,7 @@ input {
     transition: all 500ms ease;
 }
 
-.btnenviar:hover {
+.btnescolha:hover {
     background-color: rgb(255, 99, 132);
     color: white;
     -webkit-transition: all 500ms ease;
@@ -111,31 +133,3 @@ input {
     -o-transition: all 500ms ease;
     transition: all 500ms ease;
   }
-
-  textarea {
-    margin-bottom: 10px;
-    width: 300px;
-    height: 112px;
-    background: rgb(250, 253, 255);
-    color: black;
-    outline: none;
-    resize: none !important;
-}
-
-.fatec {
-    padding: 8px;
-    font-weight: bold;
-    font-size: 15pt !important;
-    text-align: center;
-    color: brown;
-}
-
-.infofatec {
-    text-align: center;
-}
-
-.subh1 {
-    font-size: 10pt !important;
-    margin-top: -15px;
-    text-align: center;
-}

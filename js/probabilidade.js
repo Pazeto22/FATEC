@@ -95,7 +95,7 @@ function callBinomial() {
             let dpadrao = Number((Math.sqrt(n * p * q).toFixed(2)));
 
             mResultados = document.querySelector("#resultadoInterior")
-            mResultados.innerHTML = `Probabilidade: ${res.toFixed(4)}% <br> Média: ${media} <br> Desvio Padrão: ${dpadrao}`
+            mResultados.innerHTML = `Probabilidade: ${res.toFixed(2)}% <br> Média: ${media} <br> Desvio Padrão: ${dpadrao}`
             $('#resultado').modal('show');
         } else {
             if (p + q != 1) {
@@ -188,7 +188,7 @@ function callUniforme() {
             cVariacao = ((desvioPadrao / media) * 100).toFixed(2)
 
             mResultados = document.querySelector("#resultadoInterior")
-            mResultados.innerHTML = `Probabilidade: ${res.toFixed(4)}% <br> Desvio Padrão: ${desvioPadrao} <br> Média: ${media} <br> C. de Variação: ${cVariacao}`
+            mResultados.innerHTML = `Probabilidade: ${res.toFixed(2)}% <br> Desvio Padrão: ${desvioPadrao} <br> Média: ${media} <br> C. de Variação: ${cVariacao}`
             $('#resultado').modal('show');
         }
     } else {
@@ -262,7 +262,7 @@ function callNormal() {
         }
         if (flagOp) {
             mResultados = document.querySelector("#resultadoInterior")
-            mResultados.innerHTML = `Probabilidade: ${res.toFixed(4) * 100}%`
+            mResultados.innerHTML = `Probabilidade: ${res.toFixed(2) * 100}%`
             $('#resultado').modal('show');
         }
     } else {
@@ -340,4 +340,22 @@ function searchTable(number) {
         }
         return { ok: false, value: null };
     }
+}
+
+// ColorMode - Troca as cores da página
+
+function DarkMode() {
+    document.querySelector("link[href='./css/probabilidade.css']").href = "./css/blackmode/probabilidade.css";
+    document.querySelector("#nav1").className = "navbar fixed-top navbar-expand-lg navbar navbar-dark bg-dark"
+    document.querySelector("#ColorModeIco").setAttribute("onClick", "javascript: LightMode();");
+    document.querySelector("#ColorModeIco").src = "./images/colormodeico-black.png"
+    localStorage.setItem("colormode", "black")
+}
+
+function LightMode() {
+    document.querySelector("link[href='./css/blackmode/probabilidade.css']").href = "./css/probabilidade.css";
+    document.querySelector("#nav1").className = "navbar fixed-top navbar-expand-lg navbar navbar-light bg-light"
+    document.querySelector("#ColorModeIco").setAttribute("onClick", "javascript: DarkMode();");
+    document.querySelector("#ColorModeIco").src = "./images/colormodeico.png"
+    localStorage.setItem("colormode", "white")
 }

@@ -4,6 +4,16 @@ if (localStorage.getItem("acesso") == "true") {
     window.location.href = "./escolha.html"
 }
 
+// Inicializa as funções que devem funcionar ao carregar a página
+function startBody() {
+    // Verifica o colormode selecionado
+    if (localStorage.getItem("colormode") == "black") {
+        DarkMode()
+    } else if (localStorage.getItem("colormode") == "white") {
+        LightMode()
+    }
+}
+
 // Registra o usuário e armazena os dados localmente
 
 function registrar() {
@@ -73,4 +83,22 @@ function regi() {
     document.querySelector(".btnlogin").style.transition = "all 0ms ease"
     document.querySelector(".btnregistrar").style.transition = "all 500ms ease"
     return -1
+}
+
+// ColorMode - Troca as cores da página
+
+function DarkMode() {
+    document.querySelector("link[href='./css/index.css']").href = "./css/blackmode/index.css";
+    document.querySelector("#nav1").className = "navbar fixed-top navbar-expand-lg navbar navbar-dark bg-dark"
+    document.querySelector("#ColorModeIco").setAttribute("onClick", "javascript: LightMode();");
+    document.querySelector("#ColorModeIco").src = "./images/colormodeico-black.png"
+    localStorage.setItem("colormode", "black")
+}
+
+function LightMode() {
+    document.querySelector("link[href='./css/blackmode/index.css']").href = "./css/index.css";
+    document.querySelector("#nav1").className = "navbar fixed-top navbar-expand-lg navbar navbar-light bg-light"
+    document.querySelector("#ColorModeIco").setAttribute("onClick", "javascript: DarkMode();");
+    document.querySelector("#ColorModeIco").src = "./images/colormodeico.png"
+    localStorage.setItem("colormode", "white")
 }

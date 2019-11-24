@@ -360,7 +360,7 @@ function setGraph(varName, varType, Quantidades) {
     });
 
     Chart.defaults.global.defaultFontSize = 16;
-    Chart.defaults.global.defaultFontColor = 'rgb (23,39,48)';
+    Chart.defaults.global.defaultFontColor = 'rgb(255, 99, 132)';
     Chart.platform.disableCSSInjection = true;
     //document.getElementById('justChart').style.display = 'inherint';
 }
@@ -683,4 +683,22 @@ function csvJSON(csv) {
 
     return result; //JavaScript object
     //return JSON.stringify(result); //JSON
+}
+
+// ColorMode - Troca as cores da página
+
+function DarkMode() {
+    document.querySelector("link[href='./css/descritiva.css']").href = "./css/blackmode/descritiva.css";
+    document.querySelector("#nav1").className = "navbar fixed-top navbar-expand-lg navbar navbar-dark bg-dark"
+    document.querySelector("#ColorModeIco").setAttribute("onClick", "javascript: LightMode();");
+    document.querySelector("#ColorModeIco").src = "./images/colormodeico-black.png"
+    localStorage.setItem("colormode", "black")
+}
+
+function LightMode() {
+    document.querySelector("link[href='./css/blackmode/descritiva.css']").href = "./css/descritiva.css";
+    document.querySelector("#nav1").className = "navbar fixed-top navbar-expand-lg navbar navbar-light bg-light"
+    document.querySelector("#ColorModeIco").setAttribute("onClick", "javascript: DarkMode();");
+    document.querySelector("#ColorModeIco").src = "./images/colormodeico.png"
+    localStorage.setItem("colormode", "white")
 }

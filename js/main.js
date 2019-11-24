@@ -14,12 +14,19 @@ function startBody() {
         let usuario = localStorage.getItem("nome")
         document.querySelector(".boasvindas").innerHTML = `Bem vindo(a), ${usuario} (<a onclick="deslogar()" class="sair">sair</a>)`
     }
+    // Verifica o colormode selecionado
+    if (localStorage.getItem("colormode") == "black") {
+        DarkMode()
+    } else if (localStorage.getItem("colormode") == "white") {
+        LightMode()
+    }
 }
 
 // Desloga ao clicar em sair
 function deslogar() {
     localStorage.removeItem("acesso")
     localStorage.removeItem("acessoAdmin")
+    localStorage.removeItem("colormode")
     alert("Você foi deslogado com sucesso")
     window.location.href = "./index.html"
 }

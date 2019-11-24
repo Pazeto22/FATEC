@@ -1,0 +1,280 @@
+/* NavBar */
+
+header {
+    padding: 25px;
+}
+
+#nav1 {
+    background: rgba(18, 22, 31, 0.8) !important;
+    border-bottom: 1px solid rgba(40, 51, 73, 0.5);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+div#conteudoNavbarSuportado{
+    width: 20%;
+}
+
+.sair{
+    color: rgb(255, 99, 132) !important;
+    cursor: pointer;
+}
+
+.boasvindas{
+    color: white;
+}
+
+.dropdown-menu{
+    background: rgba(18, 22, 31, 0.8) !important;
+}
+
+.dropdown-item{
+    color: white !important;
+}
+.dropdown-item:hover{
+    background: rgba(47, 57, 82, 0.8) !important;
+    color: white !important;
+}
+
+/* Corpo */
+
+body {
+    background-image: url("../../images/dados-background-black.jpg");
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed;
+    background-position: center;
+    font-family: Calibri, sans-serif !important;
+    text-align: center !important;
+}
+
+h1 {
+    padding: 8px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 13pt;
+}
+
+main{
+    color: black;
+    background: rgba(10, 24, 31, 0.75);
+    padding: 5px;
+    border-radius: 16px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226);
+    color: white;
+}
+
+main#prob {
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    overflow: auto;
+    width: 622px;
+    height: 400px;
+}
+
+main#resultados {
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    overflow: auto;
+}
+
+div#escolhaintervalo,
+div#escolhaintervalo2 {
+    display: none;
+}
+
+div,
+main {
+    margin: auto;
+}
+
+section#sabas {
+    padding-top: 8px;
+    height: 39px;
+    border-bottom: 2px solid rgb(255, 99, 132);
+    width: 600;
+}
+
+.dado, .ia {
+    background: rgb(250, 253, 255);
+    border: none;
+    border-bottom: 1px solid rgb(224, 224, 224);
+    background-color: rgba(255, 255, 255, 0);
+    outline: none;
+}
+
+.sconteudo,
+.sconteudo2,
+.sconteudo3{
+    padding: 12px;
+    width: 612px;
+}
+
+.sconteudo{
+    display: inline;
+}
+.sconteudo2{
+    display: none;
+}
+.sconteudo3{
+    display: none;  
+}
+
+p#botao{
+    text-align: center;
+}
+
+.container-abas {
+    justify-content: left;
+    text-align: left;
+    text-align: left;
+}
+
+.modal-content{
+    background: black !important;
+    color: white;
+    padding-top: 15px !important;
+    padding: 8px !important;
+    border-radius: 16px !important;
+    background: rgba(10, 24, 31, 0.75)!important;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226) !important;
+}
+
+/* Botões e conteúdo */
+
+.dado{
+    color: white;
+}
+
+.butn {
+    border: 2px solid black;
+    border-radius: 16px;
+    background-color: rgba(255, 255, 255, 0);
+    color: black;
+    padding: 5px;
+    cursor: pointer;
+    outline: none;
+}
+
+.bconfirmar {
+    width: 155px;
+    border-color: rgb(255, 99, 132);
+    color: rgb(255, 99, 132);
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.bconfirmar:hover {
+    background-color: rgb(255, 99, 132);
+    color: white;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+input.abas {
+    display: none;
+}
+
+input.abas + label + div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    opacity: 0;
+    transition: opacity ease-in-out .3s;
+}
+
+input.abas:checked + label + div {
+    opacity: 1;
+    z-index: 1000;
+}
+
+input.abas:checked + label + div {
+    opacity: 1;
+    z-index: 1000;
+}
+
+input.abas + label {
+    color: grey;
+    padding: 3px 32px;
+    cursor: pointer;
+    border-bottom: 0px;
+    border-radius: 16px 16px 0 0;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+input.abas:hover + label {
+    background-color: rgb(204, 78, 105);
+    color: white;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+input.abas:checked + label {
+    background-color: rgb(255, 99, 132);
+    color: white;
+}
+
+.btnconfirmar {
+    width: 125px;
+    border-color: rgb(255, 99, 132);
+    color: rgb(255, 99, 132);
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.btnconfirmar:hover {
+    background-color: rgb(255, 99, 132);
+    color: white;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+  }
+
+  input[type='radio']:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #d1d3d1;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 3px solid rgb(192, 192, 192);
+}
+
+input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: rgb(255, 99, 132);
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 3px solid rgb(192, 192, 192);
+}

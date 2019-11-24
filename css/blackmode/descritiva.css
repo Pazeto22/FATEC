@@ -1,0 +1,266 @@
+/* NavBar */
+
+header {
+    padding: 25px;
+}
+
+#nav1 {
+    background: rgba(18, 22, 31, 0.8) !important;
+    border-bottom: 1px solid rgba(40, 51, 73, 0.5);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+div#conteudoNavbarSuportado{
+    width: 20%;
+}
+
+.sair{
+    color: rgb(255, 99, 132) !important;
+    cursor: pointer;
+}
+
+.boasvindas{
+    color: white;
+}
+
+.dropdown-menu{
+    background: rgba(18, 22, 31, 0.8) !important;
+}
+
+.dropdown-item{
+    color: white !important;
+}
+.dropdown-item:hover{
+    background: rgba(47, 57, 82, 0.8) !important;
+    color: white !important;
+}
+
+/* Corpo */
+
+body {
+    background-image: url("../../images/dados-background-black.jpg");
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    font-family: Calibri, sans-serif !important;
+    text-align: center !important;
+}
+
+h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    text-align: center;
+    font-size: 30pt;
+}
+
+section#iDados {
+    width: 50%;
+    margin: 30px auto;
+    color: white;
+    padding-top: 15px !important;
+    padding: 3px;
+    border-radius: 16px;
+    width: 950px;
+    height: auto;
+    background: rgba(10, 24, 31, 0.75);
+    box-shadow: 3px 3px 10px rgba(36, 36, 36, 0.226);
+}
+
+div#ddados {
+    width: 425px;
+    margin: 10px;
+}
+
+div,
+section {
+    margin: auto;
+}
+
+p#s2ex {
+    font: normal 8pt arial;
+    margin: auto;
+}
+
+.modal-content{
+    background: black !important;
+    color: white;
+    padding-top: 15px !important;
+    padding: 8px !important;
+    border-radius: 16px !important;
+    background: rgba(10, 24, 31, 0.75)!important;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226) !important;
+}
+
+section#S2 {
+    font: normal 13pt arial;
+    width: 1200px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 54%;
+    left: 50%;
+    overflow: auto;
+}
+
+section#S3 {
+    background: rgba(10, 24, 31, 0.75);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226);
+    border-radius: 16px;
+    font: normal 13pt arial;
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 1000px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 10px;
+    margin: 10px;
+  }
+
+.grid-item {
+    padding: 2px !important;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/* Gráfico/Tabela */
+
+.chartjs-render-monitor {
+    height: 400px !important;
+    width: auto !important;
+}
+
+table{
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226) !important;
+}
+
+.table-shazam{
+    background-color: rgb(255, 99, 132);
+}
+
+div#tabl2{
+    padding: 5px;
+}
+
+td{
+    background-color: rgba(19, 23, 34, 0.87) !important;
+}
+
+.table-bordered > tbody > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > thead > tr > th {
+    border: 1px solid black;
+}
+
+/* Botões e conteúdo */
+
+textarea {
+    margin-bottom: 10px;
+    width: 400px;
+    height: 112px;
+    background: rgb(10, 23, 29);
+    color: white;
+    border-radius: 5pt;
+    outline: none;
+    resize: none !important;
+}
+
+select {
+    margin-top: 10pt;
+    background: rgb(10, 23, 29);
+    color: white;
+    border-radius: 5pt;
+    outline: none;
+}
+
+input {
+    margin-top: 10pt;
+    background: rgb(10, 23, 29);
+    color: white;
+    border: none;
+    border-bottom: 1px solid rgb(224, 224, 224);
+    background-color: rgba(255, 255, 255, 0);
+    outline: none;
+}
+
+.butn {
+    border: 2px solid black;
+    border-radius: 16px;
+    background-color: rgba(255, 255, 255, 0);
+    color: black;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.btnconfirmar {
+    width: 125px;
+    border-color: rgb(255, 99, 132);
+    color: rgb(255, 99, 132);
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.btnconfirmar:hover {
+    background-color: rgb(255, 99, 132);
+    color: white;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+  }
+
+.btnenviar {
+    width: 185px;
+    border-color: rgb(255, 99, 132);
+    color: rgb(255, 99, 132);
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.btnenviar:hover {
+    background-color: rgb(255, 99, 132);
+    color: white;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+  }
+
+  input[type='radio']:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #d1d3d1;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 3px solid rgb(192, 192, 192);
+}
+
+input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: rgb(255, 99, 132);
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 3px solid rgb(192, 192, 192);
+}

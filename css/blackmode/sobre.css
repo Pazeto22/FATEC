@@ -5,8 +5,8 @@ header {
 }
 
 #nav1 {
-    background: rgba(252, 255, 255, 0.975) !important;
-    border-bottom: 1px solid rgba(204, 204, 204, 0.5);
+    background: rgba(18, 22, 31, 0.8) !important;
+    border-bottom: 1px solid rgba(40, 51, 73, 0.5);
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -23,7 +23,7 @@ header {
 /* Corpo */
 
 body{
-    background-image: url("../images/home-background.jpg");
+    background-image: url("../../images/home-background-black.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -82,7 +82,7 @@ body{
 }
 
 div#pessoa{
-    background: rgba(245, 252, 255, 0.85);
+    background: rgba(10, 24, 31, 0.75);
     padding: 5px;
     border-radius: 16px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226);
@@ -91,7 +91,7 @@ div#pessoa{
     -ms-transition: all 500ms ease;
     -o-transition: all 500ms ease;
     transition: all 500ms ease;
-    color: black;
+    color: white;
 }
 
 div#pessoa:hover{

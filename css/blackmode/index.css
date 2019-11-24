@@ -5,8 +5,8 @@ header {
 }
 
 #nav1 {
-    background: rgba(252, 255, 255, 0.975) !important;
-    border-bottom: 1px solid rgba(204, 204, 204, 0.5);
+    background: rgba(18, 22, 31, 0.8) !important;
+    border-bottom: 1px solid rgba(40, 51, 73, 0.5);
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -23,7 +23,7 @@ header {
 /* Corpo */
 
 body{
-    background-image: url("../images/home-background.jpg");
+    background-image: url("../../images/home-background-black.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -55,7 +55,7 @@ h1{
 }
 
 .login{
-    background: rgba(245, 252, 255, 0.85);
+    background: rgba(10, 24, 31, 0.75);
     padding: 5px;
     border-radius: 16px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226);
@@ -63,11 +63,11 @@ h1{
     height: auto;
     margin-top: 5%;
     display: inline-grid;
-    color: black;
+    color: white;
 }
 
 .registro{
-    background: rgba(245, 252, 255, 0.85);
+    background: rgba(10, 24, 31, 0.75);
     padding: 5px;
     border-radius: 16px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226);
@@ -79,7 +79,7 @@ h1{
 
 div#interp{
     font: bold 12pt arial;
-    color: #2c0a0a;
+    color: white;
 }
 
 .mainlogin, .registrar{
@@ -93,7 +93,7 @@ div#interp{
     border: 2px solid black;
     border-radius: 16px;
     background-color: rgba(255, 255, 255, 0);
-    color: black;
+    color: white;
     padding: 5px;
     cursor: pointer;
     outline: none;
@@ -149,7 +149,7 @@ input {
     outline: none;
     width: 180px;
     text-align: center;
-    color: black;
+    color: white;
 }
 
 /* Footer */

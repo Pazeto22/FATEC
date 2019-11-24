@@ -16,16 +16,15 @@
 
     <link rel="stylesheet" href="./css/contato.css">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <script src="./js/mensagens.js"></script>
-    <script src="./js/descritiva.js"></script>
+    <script src="./js/contato.js"></script>
 </head>
 
-<body>
-    <header>
+<body onload="startBody()">
+        <header>
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light" id="nav1">
 
-            <a class="navbar-brand mr-3" href="./index.html"><img src="./images/home-logo.png" id="logoIco"
-                    width="auto" height="30" alt=""></a>
+            <a class="navbar-brand mr-3" href="./index.html"><img src="./images/home-logo.png" id="logoIco" width="auto"
+                    height="30" alt=""></a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
                 aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
@@ -47,11 +46,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="https://site.fatecfranca.edu.br/" target="_blank">Fatec Franca</a>
                     </li>
-
                 </ul>
                 <li class="nav-item boasvindas mr-3" style="list-style: none"></li>
+                <form class="form-inline my-2 my-lg-0">
+                    <img src="./images/colormodeico.png" id="ColorModeIco" width="auto" height="30"
+                        onclick="DarkMode()">
+                </form>
             </div>
-
         </nav>
     </header>
 
@@ -65,9 +66,11 @@
                     <label>Seu nome:</label><br>
                     <input type="text" id="nome" placeholder="Nome completo" autocomplete="off" required>
                     <br><label>E-Mail:</label><br>
-                    <input type="email" id="email" placeholder="Ex: ricardobatista@gmail.com" autocomplete="off" required>
+                    <input type="email" id="email" placeholder="Ex: ricardobatista@gmail.com" autocomplete="off"
+                        required>
                     <br><label>Telefone:</label><br>
-                    <input type="tel" id="telefone" placeholder="DDD Obrigatório - Ex: 16991234567" autocomplete="off" required>
+                    <input type="tel" id="telefone" placeholder="DDD Obrigatório - Ex: 16991234567" autocomplete="off"
+                        required>
                     <br><label>Assunto:</label><br>
                     <input type="text" id="assunto" placeholder="Motivo pelo contato" autocomplete="off" required>
                     <br><label>Mensagem:</label><br>
@@ -77,7 +80,7 @@
                 </form>
             </div>
             <div class="grid-item" id="contato">
-                <img src="./images/fatec.png" style="width:autopx;height:65px;">
+                <img class="fatecimg" src="./images/fatec.png" style="width:autopx;height:65px;">
                 <p class="fatec">Faculdade de Tecnologia de Franca<br>• Fatec Franca •</p>
                 <p class="infofatec">Endereço: Rua Irênio Grecco nº 4580<br>
                     Bairro: Vila Imperador<br>

@@ -20,6 +20,15 @@ div#conteudoNavbarSuportado{
     cursor: pointer;
 }
 
+.boasvindas{
+    color: black;
+}
+
+.dropdown-menu{
+    background: rgba(252, 255, 255, 0.975) !important;
+    color: black !important;
+}
+
 /* Corpo */
 
 body {
@@ -45,6 +54,7 @@ main{
     padding: 5px;
     border-radius: 16px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.226);
+    color: black;
 }
 
 main#prob {
@@ -230,3 +240,31 @@ input.abas:checked + label {
     -o-transition: all 500ms ease;
     transition: all 500ms ease;
   }
+
+  input[type='radio']:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #d1d3d1;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 3px solid rgb(192, 192, 192);
+}
+
+input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: rgb(255, 99, 132);
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 3px solid rgb(192, 192, 192);
+}

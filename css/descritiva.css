@@ -20,6 +20,10 @@ div#conteudoNavbarSuportado{
     cursor: pointer;
 }
 
+.boasvindas{
+    color: black;
+}
+
 /* Corpo */
 
 body {
@@ -37,10 +41,9 @@ h1 {
 }
 
 section#iDados {
-    background: white;
     width: 50%;
     margin: 30px auto;
-    color: #444;
+    color: black;
     padding-top: 15px !important;
     padding: 3px;
     border-radius: 16px;
@@ -140,6 +143,7 @@ textarea {
     width: 400px;
     height: 112px;
     background: rgb(250, 253, 255);
+    color: black;
     border-radius: 5pt;
     outline: none;
     resize: none !important;
@@ -148,6 +152,7 @@ textarea {
 select {
     margin-top: 10pt;
     background: rgb(250, 253, 255);
+    color: black;
     border-radius: 5pt;
     outline: none;
 }
@@ -155,6 +160,7 @@ select {
 input {
     margin-top: 10pt;
     background: rgb(250, 253, 255);
+    color: black;
     border: none;
     border-bottom: 1px solid rgb(224, 224, 224);
     background-color: rgba(255, 255, 255, 0);
@@ -211,3 +217,31 @@ input {
     -o-transition: all 500ms ease;
     transition: all 500ms ease;
   }
+
+  input[type='radio']:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #d1d3d1;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 3px solid rgb(192, 192, 192);
+}
+
+input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: rgb(255, 99, 132);
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 3px solid rgb(192, 192, 192);
+}
