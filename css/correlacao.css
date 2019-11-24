@@ -174,3 +174,29 @@ input {
     border-radius: 5pt;
     outline: none;
 }
+
+@media only screen and (max-width: 900px) {
+    .grid-container {
+        grid-template-columns: auto;
+    }
+    main#escolha{
+        transform: translate(0%, 0%);
+        top: 20%;
+        left: 0%;
+    }
+    main#maincorre{
+        transform: translate(0%, 0%);
+        top: 20%;
+        left: 0%;
+        width: auto;
+    }
+    main#resultados{
+        transform: translate(0%, 0%);
+        top: 20%;
+        left: 0%;
+        width: auto;
+    }
+    canvas#justChart{
+        width: auto;  
+    }
+}

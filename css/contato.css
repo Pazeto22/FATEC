@@ -139,3 +139,17 @@ input {
     margin-top: -15px;
     text-align: center;
 }
+
+/* Responsividade */
+
+@media only screen and (max-width: 1000px) {
+    .grid-container {
+        grid-template-columns: auto;
+    }
+    .principal{
+        transform: translate(0%, 0%);
+        top: 15%;
+        left: 0%;
+        margin-bottom: 7%;
+    }
+}
