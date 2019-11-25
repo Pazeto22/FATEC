@@ -85,19 +85,18 @@ function regressao(x, y) {
     }
 
     let a = (n * sumXY - xDataSum * yDataSum) / (n * xDataQuad - xDataSum ** 2);
-    a = Number(a.toFixed(2));
-    let b = yDataSum / n - a * xDataSum / n;
-    b = Number(b.toFixed(2));
-
+    let b = yDataSum / n - a * (xDataSum / n);
+    a = Number(a.toFixed(4));
+    b = Number(b.toFixed(4));
     return { a, b };
 }
 
 function findY(x, a, b) {
-    return Number((a * x + b).toFixed(2));
+    return Number((a * x + b));
 }
 
 function findX(y, a, b) {
-    return Number(((y - b) / a).toFixed(2));
+    return Number(((b - y) / -a));
 }
 
 function geraScatterDados(xData, yData) {
@@ -116,7 +115,6 @@ function geraLineDados(xData, a, b) {
     for (let i = 0; i < xData.length; i++) {
         dados.push({ x: xData[i], y: findY(xData[i], a, b) });
     };
-    console.log(dados);
     return dados;
 }
 
@@ -205,7 +203,7 @@ function callCorrelacao() {
         document.querySelector("#resultados").style = "visibility: inherit"
         document.querySelector("#corre").style = "visibility: hidden"
         let graficoDiv = document.querySelector(".cGrafico")
-        graficoDiv.innerHTML += `Correlação: ${cor} <br> Y = ${reg.a}X + ${reg.b} <br> <canvas id="justChart"></canvas>`
+        graficoDiv.innerHTML += `<b>Correlação:</b> ${cor} <br> <b>Y =</b> ${reg.a}<b>X +</b> ${reg.b} <br> <canvas id="justChart"></canvas>`
         geraGraf(dataIn, reg.a, reg.b);
     }
 }
@@ -213,7 +211,6 @@ function callCorrelacao() {
 function apagarTxt() {
     document.querySelector("#xAdd").value = ""
     document.querySelector("#yAdd").value = ""
-
 }
 
 function addPoint() {
@@ -224,15 +221,16 @@ function addPoint() {
     if (document.getElementById('xAdd').value != "") {
         x = Number(document.getElementById('xAdd').value)
         y = findY(x, reg.a, reg.b);
-        document.getElementById('yAdd').value = y;
+        document.getElementById('yAdd').value = y.toFixed(2);
     } else if (document.getElementById('yAdd').value != "") {
         y = Number(document.getElementById('yAdd').value)
         x = findX(y, reg.a, reg.b);
-        document.getElementById('xAdd').value = x;
+        document.getElementById('xAdd').value = x.toFixed(2);
     } else {
         alert("Insira apenas um valor!");
     }
 }
+
 function lerArq() {
     let arq = document.getElementById("fileDesc").files[0];
     document.querySelector(".arquivoN").style.visibility = "visible"

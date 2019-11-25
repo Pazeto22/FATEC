@@ -1,5 +1,0 @@
-2. Probabilidade: Corrigir Normal, resultado errado;
-
-9. JS: Padronizar os códigos copiados;
-10. JS: Comentar os códigos dizendo o que fazem;
-11. JS: Se necessário organizar os códigos;
