@@ -39,6 +39,10 @@ body{
     margin: 10px;
 }
 
+p{
+    color: white;
+}
+
 h1{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important;
     color: rgb(255, 99, 132) !important;
