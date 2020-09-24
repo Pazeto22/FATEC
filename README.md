@@ -45,8 +45,7 @@ e foi divido em três partes sendo elas back-end, front-end e a documentação d
 </br>
 
 <div style="display: flex;">
-<img src="./images/favicon-16.png" alt="HAGYS" title="#HAGYS" style="margin: 5px;" height="13">
-<p>HEITOR FERNANDES PIRES</p> 
+<img src="./images/favicon-16.png" alt="HAGYS" title="#HAGYS" style="margin: 5px;" height="13"> HEITOR FERNANDES PIRES
 </div>  
     
 - Auxiliou o desenvolvimento do Front-End
@@ -54,30 +53,26 @@ e foi divido em três partes sendo elas back-end, front-end e a documentação d
 
 
 <div style="display: flex;">
-<img src="./images/favicon-16.png" alt="HAGYS" title="#HAGYS" style="margin: 5px;" height="13">
-<p>ANA CAROLINA FONSECA BARRETO</p> 
+<img src="./images/favicon-16.png" alt="HAGYS" title="#HAGYS" style="margin: 5px;" height="13"> ANA CAROLINA FONSECA BARRETO
 </div>
 
 - Responsável pela Documentação
 
 <div style="display: flex;">
-<img src="./images/favicon-16.png" alt="HAGYS" title="#HAGYS" style="margin: 5px;" height="13">
-<p>GUSTAVO ALBERTO PAZETO</p> 
+<img src="./images/favicon-16.png" alt="HAGYS" title="#HAGYS" style="margin: 5px;" height="13"> GUSTAVO ALBERTO PAZETO
 </div>
 
 - Responsável pelo Front-End
 - Responsável pelo sistema de cadastro/login e colormode(modo escuro)
 
 <div style="display: flex;">
-<img src="./images/favicon-16.png" alt="HAGYS" title="#HAGYS" style="margin: 5px;" height="13">
-<p>YAGO PRESTES MONTANARI RABELO</p> 
+<img src="./images/favicon-16.png" alt="HAGYS" title="#HAGYS" style="margin: 5px;" height="13"> YAGO PRESTES MONTANARI RABELO
 </div>
 
 - Responsável pela Documentação
 
 <div style="display: flex;">
-<img src="./images/favicon-16.png" alt="HAGYS" title="#HAGYS" style="margin: 5px;" height="13">
-<p>SAMUEL CARDOSO DIAS FERNANDES</p> 
+<img src="./images/favicon-16.png" alt="HAGYS" title="#HAGYS" style="margin: 5px;" height="13"> SAMUEL CARDOSO DIAS FERNANDES
 </div>
 
 - Responsável pelo Back-End
@@ -107,8 +102,7 @@ ___
 ___
 
 <div style=" display: flex; align-items: center; text-align: center">
-<img src="images\manual-icon.png" alt="HAGYS" title="#HAGYS" style="margin: 5px;" height="50">
-<h3>License</h3> 
+<img src="images\manual-icon.png" alt="HAGYS" title="#HAGYS" style="margin: 5px;" height="50"> <h3>License
 </div>
 
 This project is under the MIT license. See the LICENSE for more information.
