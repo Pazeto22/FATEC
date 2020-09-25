@@ -102,7 +102,8 @@ ___
 ___
 
 <div style=" display: flex; align-items: center; text-align: center">
-<img src="images\manual-icon.png" alt="HAGYS" title="#HAGYS" style="margin: 5px;" height="50">  ###License
+<img src="images\manual-icon.png" alt="HAGYS" title="#HAGYS" style="margin: 5px;" height="50">
+<h3>License</h3> 
 </div>
 
 This project is under the MIT license. See the LICENSE for more information.
